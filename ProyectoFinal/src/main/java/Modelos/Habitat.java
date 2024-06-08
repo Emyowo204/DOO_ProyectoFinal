@@ -20,8 +20,8 @@ public class Habitat {
         listaRecintos[index].desbloquear(animal);
     }
 
-    public void comprarAnimal(int index) {
-        listaRecintos[index].comprarAnimal();
+    public void comprarAnimal(int index, String nombre) {
+        listaRecintos[index].comprarAnimal(nombre);
     }
 
     public Recinto getRecinto(int index) {

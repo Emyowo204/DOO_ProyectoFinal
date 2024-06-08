@@ -9,11 +9,11 @@ import java.awt.BorderLayout;
 
 public class Ventana extends JFrame {
 
-    /** Constructor se crea una ventana de 1280x757 con título "Expendedor de Productos" */
+    /** Constructor se crea una ventana de 1280x757 con título "Zoologico" */
     public Ventana() {
         super();
         this.setLayout((new BorderLayout()));
-        this.setTitle("Expendedor de Productos");
+        this.setTitle("Zoologico");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         this.setSize(1280,757);

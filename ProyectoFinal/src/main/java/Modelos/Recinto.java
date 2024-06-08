@@ -19,12 +19,12 @@ public class Recinto {
         adquirido = true;
     }
 
-    public void comprarAnimal() {
+    public void comprarAnimal(String nombre) {
         if (tipo == null) {
             // error
         }
         else {
-            listaAnimales.add(new AnimalFactory().crearAnimal(tipo));
+            listaAnimales.add(new AnimalFactory().crearAnimal(tipo, nombre));
         }
     }
 }
