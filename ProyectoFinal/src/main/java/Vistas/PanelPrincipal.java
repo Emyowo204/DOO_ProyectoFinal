@@ -2,6 +2,7 @@ package Vistas;
 
 import Modelos.Habitat;
 import Modelos.TipoHabitat;
+import Modelos.Zoologico;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -12,21 +13,27 @@ import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
 
-    private PanelHabitat[] listaPanelHabitat;
+    PanelZoologico panelZoo;
 
     public PanelPrincipal() {
-        super(null);
-        listaPanelHabitat = new PanelHabitat[6];
-        this.setBackground(new Color(99,155, 255));
-        int j=0;
-        for(int i=0; i<6; i++) {
-            listaPanelHabitat[i] = new PanelHabitat(new Habitat(TipoHabitat.Sabana));
-            listaPanelHabitat[i].setBounds(10+150*(i%2),10+150*j,100,100);
-            this.add(listaPanelHabitat[i]);
-            if(i%2==1)
-                j++;
+        super(new BorderLayout());
+        this.setOpaque(true);
+        panelZoo = new PanelZoologico(new Zoologico());
+        this.add(panelZoo, BorderLayout.CENTER);
+    }
+
+    public void toggleHabitat(PanelHabitat panelhabitat, boolean toggle) {
+
+        panelhabitat.setBackground(Color.GREEN);
+        if(toggle) {
+            this.add(panelhabitat, BorderLayout.CENTER);
+            //this.remove(panelZoo);
+        } else {
+            this.add(panelZoo);
+            //this.remove(panelhabitat);
         }
-        int i=0;
+        panelhabitat.setBackground(Color.GREEN);
+        repaint();
     }
 
     /** Método para dibujar los componentes de Swing del panel y los sub paneles

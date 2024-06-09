@@ -1,11 +1,21 @@
 package Modelos;
 
 public enum TipoAnimal {
-    Mono(1000, TipoHabitat.Jungla),
-    Leon(1000, TipoHabitat.Sabana),
-    Delfin(1000, TipoHabitat.Acuatico);
+    Mono(1000, TipoHabitat.Selva, TipoComida.Fruta),
+    Leon(1000, TipoHabitat.Sabana, TipoComida.CarneRoja),
+    Delfin(1000, TipoHabitat.Acuatico, TipoComida.Pescado);
 
-    private TipoAnimal(int precio, TipoHabitat tipo) {
+    private int precio;
+    private TipoHabitat habitat;
+    private TipoComida comida;
 
+    private TipoAnimal(int precio, TipoHabitat habitat, TipoComida comida) {
+        this.precio = precio;
+        this.habitat = habitat;
+        this.comida = comida;
     }
+
+    public int getPrecio() { return precio; }
+    public TipoHabitat getHabitat() { return habitat; }
+    public TipoComida getComida() { return comida; }
 }

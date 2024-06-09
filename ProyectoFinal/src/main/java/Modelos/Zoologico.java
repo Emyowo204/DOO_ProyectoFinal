@@ -1,11 +1,13 @@
 package Modelos;
 
+import java.awt.event.HierarchyBoundsAdapter;
+
 public class Zoologico {
     private Habitat[] listaHabitat;
 
     public Zoologico() {
-        listaHabitat = new Habitat[4];
-        for(int i=0; i<4; i++) {
+        listaHabitat = new Habitat[6];
+        for(int i=0; i<6; i++) {
             listaHabitat[i] = new Habitat(TipoHabitat.values()[i]);
         }
     }
@@ -21,4 +23,6 @@ public class Zoologico {
     public void comprarAnimal(int index, int recinto, String nombre) {
         listaHabitat[index].comprarAnimal(recinto, nombre);
     }
+
+    public Habitat getHabitat(int index) { return listaHabitat[index]; }
 }
