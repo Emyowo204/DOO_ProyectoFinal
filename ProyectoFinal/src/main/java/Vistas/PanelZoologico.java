@@ -32,32 +32,35 @@ public class PanelZoologico extends JPanel {
         }
     }
 
-    private class InteraccionHabitat implements ActionListener {
+    public void toggleHabitat(PanelHabitat panelHabitat) {
+        this.add(panelHabitat);
+        for(int i=0; i<6; i++) {
+            remove(selectHabitat[i]);
+        }
+    }
 
-        /** Método para realizar una acción al presionarse uno de los botones NumPad
-         * @param event El evento realizado a uno de los botones */
+    private class InteraccionHabitat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            PanelHabitat panelhabitat;
             if(event.getSource()==selectHabitat[0]) {
-                panelhabitat = listaPanelHabitat[0];
+                toggleHabitat(listaPanelHabitat[0]);
             }
             else if(event.getSource()==selectHabitat[1]) {
-                panelhabitat = listaPanelHabitat[1];
+                toggleHabitat(listaPanelHabitat[1]);
             }
             else if(event.getSource()==selectHabitat[2]) {
-                panelhabitat = listaPanelHabitat[2];
+                toggleHabitat(listaPanelHabitat[2]);
             }
             else if(event.getSource()==selectHabitat[3]) {
-                panelhabitat = listaPanelHabitat[3];
+                toggleHabitat(listaPanelHabitat[3]);
             }
             else if(event.getSource()==selectHabitat[4]) {
-                panelhabitat = listaPanelHabitat[4];
+                toggleHabitat(listaPanelHabitat[4]);
             }
             else {
-                panelhabitat = listaPanelHabitat[5];
+                toggleHabitat(listaPanelHabitat[5]);
             }
-            PanelLinker.getPanelPrincipal().toggleHabitat(panelhabitat, true);
+            repaint();
         }
     }
 

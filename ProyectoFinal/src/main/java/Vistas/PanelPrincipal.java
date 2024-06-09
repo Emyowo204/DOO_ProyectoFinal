@@ -20,20 +20,9 @@ public class PanelPrincipal extends JPanel {
         this.setOpaque(true);
         panelZoo = new PanelZoologico(new Zoologico());
         this.add(panelZoo, BorderLayout.CENTER);
-    }
-
-    public void toggleHabitat(PanelHabitat panelhabitat, boolean toggle) {
-
-        panelhabitat.setBackground(Color.GREEN);
-        if(toggle) {
-            this.add(panelhabitat, BorderLayout.CENTER);
-            //this.remove(panelZoo);
-        } else {
-            this.add(panelZoo);
-            //this.remove(panelhabitat);
-        }
-        panelhabitat.setBackground(Color.GREEN);
-        repaint();
+        PanelMenu panelMenu = new PanelMenu();
+        panelMenu.setPreferredSize(new Dimension(200, 720));
+        this.add(panelMenu, BorderLayout.EAST);
     }
 
     /** Método para dibujar los componentes de Swing del panel y los sub paneles
