@@ -21,7 +21,7 @@ public class PanelPrincipal extends JPanel {
         panelZoo = new PanelZoologico(new Zoologico());
         this.add(panelZoo, BorderLayout.CENTER);
         PanelMenu panelMenu = new PanelMenu();
-        panelMenu.setPreferredSize(new Dimension(200, 720));
+        panelMenu.setPreferredSize(new Dimension(280, 720));
         this.add(panelMenu, BorderLayout.EAST);
     }
 

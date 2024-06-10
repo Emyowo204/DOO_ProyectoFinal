@@ -19,16 +19,16 @@ public class PanelHabitat extends JPanel {
         super(null);
         this.habitat = habitat;
         this.setBackground(Color.GREEN);
-        this.setBounds(20,20,800,600);
+        this.setBounds(50,100,900,520);
         listaPanelRecinto = new PanelRecinto[6];
 
         int j=0;
         for(int i=0; i<6; i++) {
             listaPanelRecinto[i] = new PanelRecinto(habitat.getRecinto(i));
-            listaPanelRecinto[i].setBounds(20+80*(i%3),20+80*j,40,40);
+            listaPanelRecinto[i].setBounds(50+275*(i%3),45+j,250,200);
             this.add(listaPanelRecinto[i]);
             if(i==2)
-                j++;
+                j=230;
         }
     }
 
