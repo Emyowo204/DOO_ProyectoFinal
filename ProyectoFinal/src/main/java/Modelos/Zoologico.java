@@ -1,7 +1,5 @@
 package Modelos;
 
-import java.awt.event.HierarchyBoundsAdapter;
-
 public class Zoologico {
     private Habitat[] listaHabitat;
 

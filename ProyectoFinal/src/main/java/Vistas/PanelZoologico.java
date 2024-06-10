@@ -2,15 +2,19 @@ package Vistas;
 
 import Modelos.Zoologico;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class PanelZoologico extends JPanel {
     private Zoologico zoologico;
     private PanelHabitat[] listaPanelHabitat;
+    private PanelHabitat openPanelHabitat;
     private Boton[] selectHabitat;
+    private Boton bVolver;
 
     public PanelZoologico(Zoologico zoo) {
         super(null);
@@ -19,6 +23,11 @@ public class PanelZoologico extends JPanel {
         this.setBackground(Color.BLUE);
         selectHabitat = new Boton[6];
         InteraccionHabitat listenerHabitat = new InteraccionHabitat();
+        bVolver = new Boton(Color.BLACK,true,"imgBack.png");
+        bVolver.setBounds(50,25,90,50);
+        bVolver.addActionListener(listenerHabitat);
+        bVolver.setVisible(false);
+        this.add(bVolver);
 
         for(int i=0; i<6; i++) {
             int x = 60+100*i;
@@ -31,23 +40,26 @@ public class PanelZoologico extends JPanel {
                 y =  450;
             if(i==5)
                 y = 250;
-            listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i));
-            selectHabitat[i] = new Boton(Color.BLACK,true,"imgBoton"+(i+1)+".png");
+            listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i), i);
+            selectHabitat[i] = new Boton(Color.BLACK,true,"imgHabitat"+i+".png");
             selectHabitat[i].addActionListener(listenerHabitat);
             selectHabitat[i].setBounds(x,y,180,120);
             this.add(selectHabitat[i]);
         }
     }
 
-    public void toggleHabitat(PanelHabitat panelHabitat, boolean toggle) {
-        if(toggle) {
-            this.add(panelHabitat);
+    public void toggleHabitat() {
+        openPanelHabitat.toggleVisible();
+        if(openPanelHabitat.getVisible()) {
+            this.add(openPanelHabitat);
+            bVolver.setVisible(true);
             for(int i=0; i<6; i++)
-                this.remove(selectHabitat[i]);
+                selectHabitat[i].setVisible(false);
         } else {
             for(int i=0; i<6; i++)
-                this.add(selectHabitat[i]);
-            this.remove(panelHabitat);
+                selectHabitat[i].setVisible(true);
+            bVolver.setVisible(false);
+            this.remove(openPanelHabitat);
         }
     }
 
@@ -55,23 +67,24 @@ public class PanelZoologico extends JPanel {
         @Override
         public void actionPerformed(ActionEvent event) {
             if(event.getSource()==selectHabitat[0]) {
-                toggleHabitat(listaPanelHabitat[0], true);
+                openPanelHabitat = listaPanelHabitat[0];
             }
             else if(event.getSource()==selectHabitat[1]) {
-                toggleHabitat(listaPanelHabitat[1], true);
+                openPanelHabitat = listaPanelHabitat[1];
             }
             else if(event.getSource()==selectHabitat[2]) {
-                toggleHabitat(listaPanelHabitat[2], true);
+                openPanelHabitat = listaPanelHabitat[2];
             }
             else if(event.getSource()==selectHabitat[3]) {
-                toggleHabitat(listaPanelHabitat[3], true);
+                openPanelHabitat = listaPanelHabitat[3];
             }
             else if(event.getSource()==selectHabitat[4]) {
-                toggleHabitat(listaPanelHabitat[4], true);
+                openPanelHabitat = listaPanelHabitat[4];
             }
-            else {
-                toggleHabitat(listaPanelHabitat[5], true);
+            else if(event.getSource()==selectHabitat[5]) {
+                openPanelHabitat = listaPanelHabitat[5];
             }
+            toggleHabitat();
             repaint();
         }
     }
