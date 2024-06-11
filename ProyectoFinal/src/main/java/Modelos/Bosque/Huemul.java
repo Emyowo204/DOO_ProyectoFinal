@@ -1,16 +1,18 @@
-package Modelos;
+package Modelos.Bosque;
 
+import Modelos.Animal;
+import Modelos.TipoAnimal;
 import Vistas.ImageLoader;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Leon extends Animal {
+public class Huemul extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Leon(String nombre) {
-        super(nombre, TipoAnimal.Leon);
+    public Huemul(String nombre) {
+        super(nombre, TipoAnimal.Huemul);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
@@ -18,7 +20,7 @@ public class Leon extends Animal {
 
     @Override
     public int getNumImg() {
-        return 1;
+        return 2;
     }
 
     public void moveInPath(){

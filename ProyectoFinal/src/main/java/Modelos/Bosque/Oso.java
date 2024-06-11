@@ -1,16 +1,18 @@
-package Modelos;
+package Modelos.Bosque;
 
+import Modelos.Animal;
+import Modelos.TipoAnimal;
 import Vistas.ImageLoader;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Mono extends Animal {
+public class Oso extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Mono(String nombre) {
-        super(nombre, TipoAnimal.Mono);
+    public Oso(String nombre) {
+        super(nombre, TipoAnimal.Oso);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);

@@ -1,12 +1,12 @@
 package Modelos;
 
 public enum TipoHabitat {
-    Bosque(2000, 1000,0, new TipoAnimal[]{TipoAnimal.Mono,TipoAnimal.Leon,TipoAnimal.Delfin,TipoAnimal.Mono1,TipoAnimal.Leon1,TipoAnimal.Delfin1}),
-    Sabana(2000, 1000,1, new TipoAnimal[]{TipoAnimal.Mono,TipoAnimal.Leon,TipoAnimal.Delfin,TipoAnimal.Mono1,TipoAnimal.Leon1,TipoAnimal.Delfin1}),
-    Selva(2000, 1000,2, new TipoAnimal[]{TipoAnimal.Mono,TipoAnimal.Leon,TipoAnimal.Delfin,TipoAnimal.Mono1,TipoAnimal.Leon1,TipoAnimal.Delfin1}),
-    Acuatico(2000, 100,3, new TipoAnimal[]{TipoAnimal.Mono,TipoAnimal.Leon,TipoAnimal.Delfin,TipoAnimal.Mono1,TipoAnimal.Leon1,TipoAnimal.Delfin1}),
-    Desierto(2000, 1000,4, new TipoAnimal[]{TipoAnimal.Mono,TipoAnimal.Leon,TipoAnimal.Delfin,TipoAnimal.Mono1,TipoAnimal.Leon1,TipoAnimal.Delfin1}),
-    Artico(2000, 1000,5, new TipoAnimal[]{TipoAnimal.Mono,TipoAnimal.Leon,TipoAnimal.Delfin,TipoAnimal.Mono1,TipoAnimal.Leon1,TipoAnimal.Delfin1});
+    Bosque(2000, 1000,0, new TipoAnimal[]{TipoAnimal.Oso,TipoAnimal.Zorro,TipoAnimal.Carpintero,TipoAnimal.Puma,TipoAnimal.Huemul,TipoAnimal.Pudu}),
+    Sabana(2000, 1000,1, new TipoAnimal[]{TipoAnimal.Oso,TipoAnimal.Zorro,TipoAnimal.Carpintero,TipoAnimal.Puma,TipoAnimal.Huemul,TipoAnimal.Pudu}),
+    Selva(2000, 1000,2, new TipoAnimal[]{TipoAnimal.Oso,TipoAnimal.Zorro,TipoAnimal.Carpintero,TipoAnimal.Puma,TipoAnimal.Huemul,TipoAnimal.Pudu}),
+    Acuatico(2000, 100,3, new TipoAnimal[]{TipoAnimal.Delfin,TipoAnimal.Tiburon,TipoAnimal.LoboMarino,TipoAnimal.Foca,TipoAnimal.Coipo,TipoAnimal.Tortuga}),
+    Desierto(2000, 1000,4, new TipoAnimal[]{TipoAnimal.Oso,TipoAnimal.Zorro,TipoAnimal.Carpintero,TipoAnimal.Puma,TipoAnimal.Huemul,TipoAnimal.Pudu}),
+    Artico(2000, 1000,5, new TipoAnimal[]{TipoAnimal.Oso,TipoAnimal.Zorro,TipoAnimal.Carpintero,TipoAnimal.Puma,TipoAnimal.Huemul,TipoAnimal.Pudu});
     private int precio;
     private int precioRecinto;
     private int value;

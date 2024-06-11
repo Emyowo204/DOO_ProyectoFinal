@@ -1,16 +1,18 @@
-package Modelos;
+package Modelos.Bosque;
 
+import Modelos.Animal;
+import Modelos.TipoAnimal;
 import Vistas.ImageLoader;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Delfin extends Animal {
+public class Carpintero extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Delfin(String nombre) {
-        super(nombre, TipoAnimal.Delfin);
+    public Carpintero(String nombre) {
+        super(nombre, TipoAnimal.Carpintero);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
@@ -18,7 +20,7 @@ public class Delfin extends Animal {
 
     @Override
     public int getNumImg() {
-        return 0;
+        return 2;
     }
 
     public void moveInPath(){

@@ -66,7 +66,7 @@ public class PanelRecinto extends JPanel implements Runnable{
             }
             for(int i=0; i<6; i++) {
                 if(event.getSource()==selectButtons[i]) {
-                    recinto.asignarAnimal(TipoAnimal.values()[i]);
+                    recinto.asignarAnimal(recinto.getHabitat().getTotal().get(i));
                     PanelLinker.getPanelPrincipal().getMenu().updatePopup();
                     togglePanelSelect();
                     break;
