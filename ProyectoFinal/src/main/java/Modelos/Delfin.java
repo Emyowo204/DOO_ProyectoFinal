@@ -6,7 +6,6 @@ import java.awt.*;
 import java.util.Random;
 
 public class Delfin extends Animal {
-
     private int moveTime;
     private int moveSpeed = 1;
 
@@ -28,7 +27,7 @@ public class Delfin extends Animal {
         }
 
         moveTime+=moveSpeed;
-        this.setPosition(moveTime,50 - (int) ((Math.sin((double) moveTime /(2*Math.PI)))*50));
+        this.setPosition(moveTime,70 - (int) ((Math.sin((double) moveTime /(4*Math.PI)))*70));
     }
 
     @Override

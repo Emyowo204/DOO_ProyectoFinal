@@ -20,11 +20,11 @@ public class ImageLoader {
     /** Constructor privado donde se cargan las Imágenes */
     private ImageLoader() {
 
-        int cantidadProd = 1;
+        int cantidadAnimales = 3;
 
-        imagenAnimal = new BufferedImage[cantidadProd];
+        imagenAnimal = new BufferedImage[cantidadAnimales];
 
-        for(int i=0; i<cantidadProd; i++){
+        for(int i=0; i<cantidadAnimales; i++){
             try{
             imagenAnimal[i] = ImageIO.read(getClass().getClassLoader().getResource("animal"+ i +".png"));
             }catch (IOException e){

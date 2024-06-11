@@ -42,6 +42,7 @@ public class PanelHabitat extends JPanel {
 
     public void toggleVisible() { visible=!visible; }
     public boolean getVisible() { return visible; }
+    public Habitat getHabitat() { return habitat; }
 
     /** Método para dibujar los componentes de Swing del panel
      * @param g El objeto grafico que dibuja los componentes */

@@ -1,8 +1,19 @@
 package Modelos;
 
+import Vistas.ImageLoader;
+
+import java.awt.*;
+import java.util.Random;
+
 public class Leon extends Animal {
-    public Leon(String nombre){
+    private int moveTime;
+    private int moveSpeed = 1;
+
+    public Leon(String nombre) {
         super(nombre, TipoAnimal.Leon);
+        super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
+        Random random = new Random();
+        moveTime = random.nextInt(200);
     }
 
     @Override
@@ -10,8 +21,17 @@ public class Leon extends Animal {
         return 1;
     }
 
-    @Override
-    public void moveInPath() {
+    public void moveInPath(){
+        if(moveTime>200||moveTime<0){
+            moveSpeed=-moveSpeed;
+        }
 
+        moveTime+=moveSpeed;
+        this.setPosition(moveTime,70 - (int) ((Math.sin((double) moveTime /(4*Math.PI)))*70));
+    }
+
+    @Override
+    public void paintComponent(Graphics g, Component observer) {
+        super.paintComponent(g,observer);
     }
 }

@@ -15,6 +15,7 @@ public class PanelPrincipal extends JPanel {
 
     Zoologico zoologico;
     PanelZoologico panelZoo;
+    PanelMenu panelMenu;
 
     public PanelPrincipal() {
         super(new BorderLayout());
@@ -22,10 +23,12 @@ public class PanelPrincipal extends JPanel {
         zoologico = new Zoologico();
         panelZoo = new PanelZoologico(zoologico);
         this.add(panelZoo, BorderLayout.CENTER);
-        PanelMenu panelMenu = new PanelMenu(zoologico);
+        panelMenu = new PanelMenu(zoologico);
         panelMenu.setPreferredSize(new Dimension(280, 720));
         this.add(panelMenu, BorderLayout.EAST);
     }
+
+    public PanelMenu getMenu() { return panelMenu; }
 
     /** Método para dibujar los componentes de Swing del panel y los sub paneles
      * @param g El objeto grafico que dibuja los componentes */

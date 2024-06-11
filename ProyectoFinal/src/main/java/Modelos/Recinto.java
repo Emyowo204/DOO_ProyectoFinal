@@ -6,9 +6,11 @@ public class Recinto {
     private TipoAnimal tipo;
     private ArrayList<Animal> listaAnimales;
     private boolean adquirido;
+    private Habitat habitat;
 
-    public Recinto() {
+    public Recinto(Habitat habitat) {
         tipo = null;
+        this.habitat = habitat;
         listaAnimales = new ArrayList<>();
         adquirido =  false;
     }
@@ -17,6 +19,7 @@ public class Recinto {
         if(tipo == null)
             tipo = animal;
         adquirido = true;
+        habitat.addAnimal(tipo);
     }
 
     public void comprarAnimal(String nombre) {
@@ -28,4 +31,5 @@ public class Recinto {
         }
     }
     public ArrayList<Animal> getListaAnimales() { return listaAnimales; }
+    public TipoAnimal getTipo() { return tipo; }
 }
