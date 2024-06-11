@@ -6,7 +6,7 @@ public class Habitat {
     private TipoHabitat tipo;
     private Recinto[] listaRecintos;
     private ArrayList<TipoAnimal> UnlockAni;
-    private ArrayList<TipoAnimal> LockAni;
+    private ArrayList<TipoAnimal> TotalAni;
     private boolean adquirido;
     private boolean comprando;
 
@@ -16,10 +16,10 @@ public class Habitat {
         comprando = false;
         listaRecintos = new Recinto[6];
         UnlockAni = new ArrayList<>();
-        LockAni = new ArrayList<>();
+        TotalAni = new ArrayList<>();
         for(int i=0; i<6; i++) {
             listaRecintos[i] = new Recinto(this);
-            LockAni.add(tipo.getAnimales()[i]);
+            TotalAni.add(tipo.getAnimales()[i]);
         }
     }
 
@@ -40,8 +40,8 @@ public class Habitat {
     public ArrayList<TipoAnimal> getUnlocked() {
         return UnlockAni;
     }
-    public ArrayList<TipoAnimal> getLocked() {
-        return LockAni;
+    public ArrayList<TipoAnimal> getTotal() {
+        return TotalAni;
     }
     public boolean isComprando() { return comprando; }
     public void setComprando(boolean comprando) { this.comprando = comprando; }

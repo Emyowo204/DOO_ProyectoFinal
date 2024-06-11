@@ -57,6 +57,7 @@ public class PanelZoologico extends JPanel {
             for(int i=0; i<6; i++)
                 selectHabitat[i].setVisible(false);
         } else {
+            PanelLinker.getPanelPrincipal().getMenu().exitHabitat();
             for(int i=0; i<6; i++)
                 selectHabitat[i].setVisible(true);
             bVolver.setVisible(false);

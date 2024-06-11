@@ -34,7 +34,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         botonComprar.setBounds(25,50,200,100);
         botonComprar.addActionListener(listenerRecinto);
         this.add(botonComprar);
-        panelSelect = new PanelSelect(25,50,200,100,recinto.getHabitat().getLocked());
+        panelSelect = new PanelSelect(25,50,200,100,recinto.getHabitat().getTotal());
         panelSelect.addBotones(selectButtons = new JButton[6]);
         for(int i=0; i<6; i++)
             selectButtons[i].addActionListener(listenerRecinto);

@@ -12,7 +12,7 @@ public class PanelMenu extends JPanel {
     private Zoologico zoologico;
     private Habitat habitat;
     private PopupSelect addAnimal;
-    private ArrayList<JMenuItem> selectAnimal;
+    private ArrayList<ArrayList<JMenuItem>> selectAnimal;
     private Boton comprarAnimal;
     private TipoAnimal tipoAnimal;
     private SelectAnimal listenerAnimal;
@@ -23,10 +23,13 @@ public class PanelMenu extends JPanel {
         this.zoologico = zoo;
         listenerAnimal = new SelectAnimal();
         selectAnimal = new ArrayList<>();
-        addAnimal = new PopupSelect(" Animal:", Color.WHITE, Color.BLACK, "Arial");
-        addAnimal.setBounds(10,80,150,20);
+        for(int i=0; i<6; i++)
+            selectAnimal.add(new ArrayList<>());
+        addAnimal = new PopupSelect(" Seleccione un Habitat", Color.WHITE, Color.BLACK, "Arial");
+        addAnimal.setUse(false);
+        addAnimal.setBounds(20,20,240,20);
         comprarAnimal = new Boton(Color.BLACK, true, "animal0.png");
-        comprarAnimal.setBounds(10,10,50,50);
+        comprarAnimal.setBounds(20,200,50,50);
         comprarAnimal.addActionListener(new MenuOptions());
         this.add(comprarAnimal);
         this.add(addAnimal);
@@ -34,23 +37,33 @@ public class PanelMenu extends JPanel {
 
     public void changeHabitat(Habitat habitat) {
         this.habitat = habitat;
+        addAnimal.setUse(true);
+        addAnimal.setText(" Seleccione un Animal:");
+        addAnimal.setIndex(habitat.getTipo().getValue());
         updatePopup();
     }
+    public void exitHabitat() {
+        this.habitat = null;
+        addAnimal.setText(" Seleccione un Habitat");
+        addAnimal.setUse(false);
+    }
     public void updatePopup() {
-        for(int i=selectAnimal.size(); i<habitat.getUnlocked().size(); i++) {
-            selectAnimal.add(new JMenuItem(habitat.getUnlocked().get(i).toString()));
-            addAnimal.addMenuItem(selectAnimal.get(i));
-            selectAnimal.get(i).addActionListener(listenerAnimal);
+        int index = habitat.getTipo().getValue();
+        for(int i=selectAnimal.get(index).size(); i<habitat.getUnlocked().size(); i++) {
+            selectAnimal.get(index).add(new JMenuItem(habitat.getUnlocked().get(i).toString()));
+            addAnimal.addMenuItem(selectAnimal.get(index).get(i), index);
+            selectAnimal.get(index).get(i).addActionListener(listenerAnimal);
         }
     }
 
     private class SelectAnimal implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            for(int i=0; i<selectAnimal.size(); i++) {
-                if(event.getSource() == selectAnimal.get(i)) {
+            int index = habitat.getTipo().getValue();
+            for(int i=0; i<selectAnimal.get(index).size(); i++) {
+                if(event.getSource() == selectAnimal.get(index).get(i)) {
                     tipoAnimal = habitat.getUnlocked().get(i);
-                    addAnimal.setText(tipoAnimal.toString());
+                    addAnimal.setText(" "+tipoAnimal.toString());
                 }
             }
         }
