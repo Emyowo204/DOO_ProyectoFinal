@@ -6,7 +6,7 @@ public class Zoologico {
     public Zoologico() {
         listaHabitat = new Habitat[6];
         for(int i=0; i<6; i++) {
-            listaHabitat[i] = new Habitat(TipoHabitat.values()[i]);
+            listaHabitat[i] = new Habitat(TipoHabitat.values()[i], ListaAnimales.values()[i]);
         }
     }
 

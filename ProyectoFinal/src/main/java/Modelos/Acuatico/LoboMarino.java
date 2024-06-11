@@ -12,7 +12,7 @@ public class LoboMarino extends Animal {
     private int moveSpeed = 1;
 
     public LoboMarino(String nombre) {
-        super(nombre, TipoAnimal.LoboMarino);
+        super(nombre, TipoAnimal.Carpintero);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
@@ -20,7 +20,7 @@ public class LoboMarino extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 9;
     }
 
     public void moveInPath(){

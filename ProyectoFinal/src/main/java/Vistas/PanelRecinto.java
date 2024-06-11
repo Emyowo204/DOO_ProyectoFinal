@@ -22,7 +22,7 @@ public class PanelRecinto extends JPanel implements Runnable{
     private ArrayList<Animal> animales;
     private PanelSelect panelSelect;
     private JButton[] selectButtons;
-    private JButton botonComprar;
+    private Boton botonComprar;
 
     public PanelRecinto(Recinto recinto) {
         super(null);
@@ -30,7 +30,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         animales = this.recinto.getListaAnimales();
         this.setBackground(Color.WHITE);
         InteraccionRecinto listenerRecinto = new InteraccionRecinto();
-        botonComprar = new JButton("COMPRAR");
+        botonComprar = new Boton(Color.BLACK, true, "imgComprarRecinto.png");
         botonComprar.setBounds(25,50,200,100);
         botonComprar.addActionListener(listenerRecinto);
         this.add(botonComprar);
@@ -82,7 +82,7 @@ public class PanelRecinto extends JPanel implements Runnable{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for(int i=0; i<animales.size(); i++)
-            animales.get(i).paintComponent(g,this);
+            animales.get(i).paintComponent(g, this);
     }
 
     @Override

@@ -12,7 +12,7 @@ public class Tortuga extends Animal {
     private int moveSpeed = 1;
 
     public Tortuga(String nombre) {
-        super(nombre, TipoAnimal.Tortuga);
+        super(nombre, TipoAnimal.Carpintero);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
@@ -20,7 +20,7 @@ public class Tortuga extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 11;
     }
 
     public void moveInPath(){

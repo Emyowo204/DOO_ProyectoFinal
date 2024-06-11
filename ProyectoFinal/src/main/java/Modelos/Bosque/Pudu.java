@@ -20,7 +20,7 @@ public class Pudu extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 3;
     }
 
     public void moveInPath(){

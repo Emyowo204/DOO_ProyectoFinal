@@ -20,7 +20,7 @@ public class Puma extends Animal {
 
     @Override
     public int getNumImg() {
-        return 1;
+        return 4;
     }
 
     public void moveInPath(){

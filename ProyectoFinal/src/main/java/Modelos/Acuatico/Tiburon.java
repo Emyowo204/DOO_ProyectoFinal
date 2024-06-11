@@ -12,7 +12,7 @@ public class Tiburon extends Animal {
     private int moveSpeed = 1;
 
     public Tiburon(String nombre) {
-        super(nombre, TipoAnimal.Tiburon);
+        super(nombre, TipoAnimal.Carpintero);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
@@ -20,7 +20,7 @@ public class Tiburon extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 10;
     }
 
     public void moveInPath(){

@@ -20,7 +20,7 @@ public class Huemul extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 1;
     }
 
     public void moveInPath(){

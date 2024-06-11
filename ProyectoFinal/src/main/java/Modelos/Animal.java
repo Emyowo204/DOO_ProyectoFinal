@@ -19,6 +19,7 @@ public abstract class Animal implements Visible {
     }
 
     public abstract void moveInPath();
+    public String getNombre() { return nombre; }
 
     @Override
     public void setImage(BufferedImage image) {

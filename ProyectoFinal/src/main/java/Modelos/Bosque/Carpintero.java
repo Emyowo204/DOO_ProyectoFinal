@@ -20,7 +20,7 @@ public class Carpintero extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 0;
     }
 
     public void moveInPath(){

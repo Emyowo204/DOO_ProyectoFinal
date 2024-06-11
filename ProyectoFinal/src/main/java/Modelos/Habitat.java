@@ -10,7 +10,7 @@ public class Habitat {
     private boolean adquirido;
     private boolean comprando;
 
-    public Habitat(TipoHabitat tipo) {
+    public Habitat(TipoHabitat tipo, ListaAnimales lista) {
         this.tipo = tipo;
         adquirido = false;
         comprando = false;
@@ -19,7 +19,7 @@ public class Habitat {
         TotalAni = new ArrayList<>();
         for(int i=0; i<6; i++) {
             listaRecintos[i] = new Recinto(this);
-            TotalAni.add(tipo.getAnimales()[i]);
+            TotalAni.add(lista.getAnimales()[i]);
         }
     }
 

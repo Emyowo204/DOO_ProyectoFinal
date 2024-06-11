@@ -20,7 +20,7 @@ public class Zorro extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 5;
     }
 
     public void moveInPath(){

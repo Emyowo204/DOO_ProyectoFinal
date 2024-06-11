@@ -12,7 +12,7 @@ public class Delfin extends Animal {
     private int moveSpeed = 1;
 
     public Delfin(String nombre) {
-        super(nombre, TipoAnimal.Delfin);
+        super(nombre, TipoAnimal.Carpintero);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
@@ -20,7 +20,7 @@ public class Delfin extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 7;
     }
 
     public void moveInPath(){

@@ -12,7 +12,7 @@ public class Coipo extends Animal {
     private int moveSpeed = 1;
 
     public Coipo(String nombre) {
-        super(nombre, TipoAnimal.Coipo);
+        super(nombre, TipoAnimal.Carpintero);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
@@ -20,7 +20,7 @@ public class Coipo extends Animal {
 
     @Override
     public int getNumImg() {
-        return 1;
+        return 6;
     }
 
     public void moveInPath(){

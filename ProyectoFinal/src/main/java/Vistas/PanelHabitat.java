@@ -16,7 +16,6 @@ public class PanelHabitat extends JPanel {
     private Habitat habitat;
     private PanelRecinto[] listaPanelRecinto;
     private boolean visible;
-
     private BufferedImage ImgBackground;
 
     public PanelHabitat(Habitat habitat, int index) {

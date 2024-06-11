@@ -12,7 +12,7 @@ public class Foca extends Animal {
     private int moveSpeed = 1;
 
     public Foca(String nombre) {
-        super(nombre, TipoAnimal.Foca);
+        super(nombre, TipoAnimal.Carpintero);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
@@ -20,7 +20,7 @@ public class Foca extends Animal {
 
     @Override
     public int getNumImg() {
-        return 2;
+        return 8;
     }
 
     public void moveInPath(){
