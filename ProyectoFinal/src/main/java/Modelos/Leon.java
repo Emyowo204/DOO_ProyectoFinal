@@ -9,4 +9,9 @@ public class Leon extends Animal {
     public int getNumImg() {
         return 1;
     }
+
+    @Override
+    public void moveInPath() {
+
+    }
 }

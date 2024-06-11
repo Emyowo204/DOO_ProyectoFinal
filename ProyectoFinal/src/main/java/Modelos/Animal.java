@@ -18,6 +18,8 @@ public abstract class Animal implements Visible {
         comida = tipo.getComida();
     }
 
+    public abstract void moveInPath();
+
     @Override
     public void setImage(BufferedImage image) {
         img = image;

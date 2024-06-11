@@ -8,7 +8,7 @@ import java.util.Random;
 public class Delfin extends Animal {
 
     private int moveTime;
-    private int moveSpeed = 2;
+    private int moveSpeed = 1;
 
     public Delfin(String nombre) {
         super(nombre, TipoAnimal.Delfin);
@@ -28,12 +28,11 @@ public class Delfin extends Animal {
         }
 
         moveTime+=moveSpeed;
-        this.setPosition(moveTime,20 - (int) ((Math.sin((double) moveTime /(2*Math.PI)))*20));
+        this.setPosition(moveTime,50 - (int) ((Math.sin((double) moveTime /(2*Math.PI)))*50));
     }
 
     @Override
     public void paintComponent(Graphics g, Component observer) {
-        moveInPath();
         super.paintComponent(g,observer);
     }
 }

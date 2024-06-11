@@ -9,4 +9,9 @@ public class Mono extends Animal {
     public int getNumImg() {
         return 2;
     }
+
+    @Override
+    public void moveInPath() {
+
+    }
 }
