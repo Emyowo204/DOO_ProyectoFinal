@@ -14,8 +14,8 @@ public class Zoologico {
        listaHabitat[index].desbloquear();
    }
 
-    public void comprarRecinto(int index, int recinto, TipoAnimal animal) {
-        listaHabitat[index].desbloquearRecinto(recinto, animal);
+    public void comprarRecinto(int index, int recinto) {
+        listaHabitat[index].desbloquearRecinto(recinto);
     }
 
     public void comprarAnimal(int index, int recinto, String nombre) {

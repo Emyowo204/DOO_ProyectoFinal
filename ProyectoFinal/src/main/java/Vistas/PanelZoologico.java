@@ -67,23 +67,11 @@ public class PanelZoologico extends JPanel {
     private class InteraccionHabitat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            if(event.getSource()==selectHabitat[0]) {
-                openPanelHabitat = listaPanelHabitat[0];
-            }
-            else if(event.getSource()==selectHabitat[1]) {
-                openPanelHabitat = listaPanelHabitat[1];
-            }
-            else if(event.getSource()==selectHabitat[2]) {
-                openPanelHabitat = listaPanelHabitat[2];
-            }
-            else if(event.getSource()==selectHabitat[3]) {
-                openPanelHabitat = listaPanelHabitat[3];
-            }
-            else if(event.getSource()==selectHabitat[4]) {
-                openPanelHabitat = listaPanelHabitat[4];
-            }
-            else if(event.getSource()==selectHabitat[5]) {
-                openPanelHabitat = listaPanelHabitat[5];
+            for(int i=0; i<6; i++) {
+                if(event.getSource()==selectHabitat[i]) {
+                    openPanelHabitat = listaPanelHabitat[i];
+                    break;
+                }
             }
             toggleHabitat();
             repaint();

@@ -15,21 +15,19 @@ public class Recinto {
         adquirido =  false;
     }
 
-    public void desbloquear(TipoAnimal animal) {
+    public void desbloquear() { adquirido = true; }
+
+    public void asignarAnimal(TipoAnimal animal) {
         if(tipo == null)
             tipo = animal;
-        adquirido = true;
         habitat.addAnimal(tipo);
     }
 
     public void comprarAnimal(String nombre) {
-        if (tipo == null) {
-            // error
-        }
-        else {
-            listaAnimales.add(new AnimalFactory().crearAnimal(tipo, nombre));
-        }
+        listaAnimales.add(new AnimalFactory().crearAnimal(tipo, nombre));
     }
     public ArrayList<Animal> getListaAnimales() { return listaAnimales; }
     public TipoAnimal getTipo() { return tipo; }
+    public boolean getLock() { return adquirido; }
+    public Habitat getHabitat() { return habitat; }
 }

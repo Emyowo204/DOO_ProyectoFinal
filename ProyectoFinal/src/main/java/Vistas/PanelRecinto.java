@@ -4,6 +4,8 @@ import Modelos.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -15,40 +17,64 @@ import java.util.ArrayList;
 
 public class PanelRecinto extends JPanel implements Runnable{
     private BufferedImage ImgBackground;
-    private boolean visible;
     private Recinto recinto;
     private Thread thread;
     private ArrayList<Animal> animales;
+    private PanelSelect panelSelect;
+    private JButton[] selectButtons;
+    private JButton botonComprar;
 
-    /** Constructor se crea el panel, su fondo y sus cuadros de texto */
     public PanelRecinto(Recinto recinto) {
         super(null);
         this.recinto = recinto;
         animales = this.recinto.getListaAnimales();
-        visible = false;
         this.setBackground(Color.WHITE);
-        this.addMouseListener(new PanelListener());
+        InteraccionRecinto listenerRecinto = new InteraccionRecinto();
+        botonComprar = new JButton("COMPRAR");
+        botonComprar.setBounds(25,50,200,100);
+        botonComprar.addActionListener(listenerRecinto);
+        this.add(botonComprar);
+        panelSelect = new PanelSelect(25,50,200,100,recinto.getHabitat().getLocked());
+        panelSelect.addBotones(selectButtons = new JButton[6]);
+        for(int i=0; i<6; i++)
+            selectButtons[i].addActionListener(listenerRecinto);
+        panelSelect.setVisible(false);
+        this.add(panelSelect);
         thread = new Thread(this);
         thread.start();
     }
-    private class PanelListener implements MouseListener {
-        @Override
-        public void mouseClicked(MouseEvent event) {}
 
-        @Override
-        public void mouseEntered(MouseEvent event) {}
-
-        @Override
-        public void mouseExited(MouseEvent event) {}
-
-        @Override
-        public void mousePressed(MouseEvent event) {
-            recinto.desbloquear(TipoAnimal.Delfin);
-            PanelLinker.getPanelPrincipal().getMenu().updatePopup();
+    public void togglePanelSelect() {
+        if(recinto.getTipo() == null) {
+            recinto.getHabitat().setComprando(true);
+            panelSelect.setVisible(true);
+            panelSelect.updatePanel(recinto.getHabitat().getUnlocked());
+            this.remove(botonComprar);
+        } else {
+            recinto.getHabitat().setComprando(false);
+            this.remove(panelSelect);
         }
-        @Override
-        public void mouseReleased(MouseEvent event) {}
     }
+
+    private class InteraccionRecinto implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            if(event.getSource() == botonComprar && !(recinto.getHabitat().isComprando())){
+                togglePanelSelect();
+                recinto.desbloquear();
+                return;
+            }
+            for(int i=0; i<6; i++) {
+                if(event.getSource()==selectButtons[i]) {
+                    recinto.asignarAnimal(TipoAnimal.values()[i]);
+                    PanelLinker.getPanelPrincipal().getMenu().updatePopup();
+                    togglePanelSelect();
+                    break;
+                }
+            }
+        }
+    }
+
 
     /** Método para dibujar la imagen del fondo del panel y sus componentes
      * @param g El objeto grafico que dibuja los componentes */

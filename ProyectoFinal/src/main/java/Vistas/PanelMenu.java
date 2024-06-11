@@ -59,8 +59,10 @@ public class PanelMenu extends JPanel {
         @Override
         public void actionPerformed(ActionEvent event) {
             for(int i=0; i<6; i++) {
-                if(habitat.getRecinto(i).getTipo() == tipoAnimal)
-                    zoologico.comprarAnimal(habitat.getTipo().getValue(),i, "Juan");
+                if(habitat.getRecinto(i).getTipo() != null && habitat.getRecinto(i).getTipo() == tipoAnimal) {
+                    zoologico.comprarAnimal(habitat.getTipo().getValue(), i, "Juan");
+                    return;
+                }
             }
         }
     }
