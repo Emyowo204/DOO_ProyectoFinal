@@ -32,6 +32,5 @@ public abstract class Animal implements Visible {
     @Override
     public void paintComponent(Graphics g, Component observer) {
         g.drawImage(img,x,y,observer);
-
     }
 }

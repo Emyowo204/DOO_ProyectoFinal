@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -15,7 +13,7 @@ import java.util.ArrayList;
  * @author Chloe Yañez Lavin
  * @author Emily Osvaldo Gaete Bobadilla */
 
-public class PanelRecinto extends JPanel implements ActionListener {
+public class PanelRecinto extends JPanel {
     private BufferedImage ImgBackground;
     private boolean visible;
     private Recinto recinto;
@@ -27,13 +25,13 @@ public class PanelRecinto extends JPanel implements ActionListener {
 
         super(null);
 
-        timer = new Timer(0,this);
+        timer = new Timer(16,new TimerListener());
         timer.start();
         this.recinto = recinto;
         animales = this.recinto.getListaAnimales();
         visible = false;
-        this.setBounds(30, 80,603,550);
         this.setBackground(Color.WHITE);
+
     }
 
     /** Método para dibujar la imagen del fondo del panel y sus componentes
@@ -45,10 +43,13 @@ public class PanelRecinto extends JPanel implements ActionListener {
             animales.get(i).paintComponent(g,this);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        repaint();
 
+    private class TimerListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            repaint();
+
+        }
     }
 
 }
