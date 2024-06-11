@@ -1,6 +1,8 @@
 package Vistas;
 
 import javax.imageio.ImageIO;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -15,6 +17,7 @@ public class ImageLoader {
 
     /** Imágenes de los Productos */
     private static BufferedImage[] imagenAnimal;
+    private static BufferedImage[] imagenAnimalFlipped;
 
 
     /** Constructor privado donde se cargan las Imágenes */
@@ -23,6 +26,7 @@ public class ImageLoader {
         int cantidadAnimales = 12;
 
         imagenAnimal = new BufferedImage[cantidadAnimales];
+        imagenAnimalFlipped = new BufferedImage[cantidadAnimales];
 
         for(int i=0; i<cantidadAnimales; i++){
             try{
@@ -30,6 +34,10 @@ public class ImageLoader {
             }catch (IOException e){
                 System.out.println(e.getMessage());
             }
+            AffineTransform transform = AffineTransform.getScaleInstance(-1, 1);
+            transform.translate(-imagenAnimal[i].getWidth(null), 0);
+            AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+            imagenAnimalFlipped[i] = op.filter(imagenAnimal[i], null);
         }
     }
 
@@ -45,5 +53,9 @@ public class ImageLoader {
     public BufferedImage getImagenAnimal(int index){
         return imagenAnimal[index];
     }
+    public BufferedImage getImagenAnimalFlipped(int index){
+        return imagenAnimalFlipped[index];
+    }
+
 
 }

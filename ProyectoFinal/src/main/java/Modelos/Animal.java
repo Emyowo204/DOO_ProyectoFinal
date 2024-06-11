@@ -1,6 +1,8 @@
 package Modelos;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public abstract class Animal implements Visible {
@@ -12,6 +14,7 @@ public abstract class Animal implements Visible {
     private int x;
     private int y;
     private BufferedImage img;
+    private BufferedImage imgFlipped;
 
     public Animal(String nombre, TipoAnimal tipo){
         habitat = tipo.getHabitat();
@@ -24,6 +27,16 @@ public abstract class Animal implements Visible {
     @Override
     public void setImage(BufferedImage image) {
         img = image;
+    }
+
+    public void setFlippedImage(BufferedImage image) {
+        imgFlipped = image;
+    }
+
+    public void swapFlipped(){
+        BufferedImage aux = img;
+        img = imgFlipped;
+        imgFlipped = aux;
     }
 
     @Override

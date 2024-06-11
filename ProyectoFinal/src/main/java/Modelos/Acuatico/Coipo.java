@@ -13,7 +13,8 @@ public class Coipo extends Animal {
 
     public Coipo(String nombre) {
         super(nombre, TipoAnimal.Carpintero);
-        super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
+        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
+        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveTime = random.nextInt(200);
     }
@@ -26,6 +27,7 @@ public class Coipo extends Animal {
     public void moveInPath(){
         if(moveTime>200||moveTime<0){
             moveSpeed=-moveSpeed;
+            swapFlipped();
         }
 
         moveTime+=moveSpeed;
