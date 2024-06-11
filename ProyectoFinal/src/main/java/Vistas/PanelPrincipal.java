@@ -13,14 +13,16 @@ import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
 
+    Zoologico zoologico;
     PanelZoologico panelZoo;
 
     public PanelPrincipal() {
         super(new BorderLayout());
         this.setOpaque(true);
-        panelZoo = new PanelZoologico(new Zoologico());
+        zoologico = new Zoologico();
+        panelZoo = new PanelZoologico(zoologico);
         this.add(panelZoo, BorderLayout.CENTER);
-        PanelMenu panelMenu = new PanelMenu();
+        PanelMenu panelMenu = new PanelMenu(zoologico);
         panelMenu.setPreferredSize(new Dimension(280, 720));
         this.add(panelMenu, BorderLayout.EAST);
     }

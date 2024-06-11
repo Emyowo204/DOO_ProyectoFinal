@@ -10,6 +10,8 @@ public class Habitat {
         this.tipo = tipo;
         adquirido = false;
         listaRecintos = new Recinto[6];
+        for(int i=0; i<6; i++)
+            listaRecintos[i] = new Recinto();
     }
 
     public void desbloquear() {

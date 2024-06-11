@@ -7,7 +7,7 @@ public class PanelLinker {
     private static PanelPrincipal panelPrincipal;
 
     private PanelLinker() {
-        panelLinker = null;
+        panelLinker = this;
         panelPrincipal = null;
     }
 

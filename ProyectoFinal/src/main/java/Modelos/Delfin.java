@@ -10,7 +10,7 @@ public class Delfin extends Animal {
     private int moveTime;
     private int moveSpeed = 2;
 
-    public Delfin(String nombre, TipoAnimal delfin) {
+    public Delfin(String nombre) {
         super(nombre, TipoAnimal.Delfin);
         super.setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         Random random = new Random();

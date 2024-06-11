@@ -27,4 +27,5 @@ public class Recinto {
             listaAnimales.add(new AnimalFactory().crearAnimal(tipo, nombre));
         }
     }
+    public ArrayList<Animal> getListaAnimales() { return listaAnimales; }
 }

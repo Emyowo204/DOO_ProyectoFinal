@@ -1,9 +1,6 @@
 package Vistas;
 
-import Modelos.Animal;
-import Modelos.Delfin;
-import Modelos.Recinto;
-import Modelos.TipoAnimal;
+import Modelos.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,14 +29,11 @@ public class PanelRecinto extends JPanel implements ActionListener {
 
         timer = new Timer(0,this);
         timer.start();
-        animales = new ArrayList<>();
-        animales.add(new Delfin("Juan", TipoAnimal.Delfin));
-        visible = false;
         this.recinto = recinto;
+        animales = this.recinto.getListaAnimales();
+        visible = false;
         this.setBounds(30, 80,603,550);
         this.setBackground(Color.WHITE);
-
-
     }
 
     /** Método para dibujar la imagen del fondo del panel y sus componentes
@@ -47,7 +41,8 @@ public class PanelRecinto extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        animales.get(0).paintComponent(g,this);
+        for(int i=0; i<animales.size(); i++)
+            animales.get(i).paintComponent(g,this);
     }
 
     @Override

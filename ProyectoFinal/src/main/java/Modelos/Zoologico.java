@@ -8,10 +8,9 @@ public class Zoologico {
         for(int i=0; i<6; i++) {
             listaHabitat[i] = new Habitat(TipoHabitat.values()[i]);
         }
-
     }
 
-   public void comprarHabitat(int index) {
+    public void comprarHabitat(int index) {
        listaHabitat[index].desbloquear();
    }
 
