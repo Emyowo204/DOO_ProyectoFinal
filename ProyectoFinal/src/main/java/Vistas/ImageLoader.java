@@ -14,41 +14,19 @@ public class ImageLoader {
     private static ImageLoader imageLoader;
 
     /** Imágenes de los Productos */
-    private static BufferedImage[] imagenProducto;
+    private static BufferedImage[] imagenAnimal;
 
-    /** Imágenes especiales de los Productos */
-    private static BufferedImage[] imagenProductoEspecial;
-
-    /** Imágen de las Monedas */
-    private static BufferedImage[] imagenMoneda;
 
     /** Constructor privado donde se cargan las Imágenes */
     private ImageLoader() {
 
-        int cantidadProd = 16;
-        int cantidadProdEsp = 3;
-        int cantidadMon = 3;
+        int cantidadProd = 1;
 
-        imagenProducto = new BufferedImage[cantidadProd];
-        imagenProductoEspecial = new BufferedImage[cantidadProdEsp];
-        imagenMoneda = new BufferedImage[cantidadMon];
+        imagenAnimal = new BufferedImage[cantidadProd];
+
         for(int i=0; i<cantidadProd; i++){
             try{
-            imagenProducto[i] = ImageIO.read(getClass().getClassLoader().getResource("imgProducto"+ i +".png"));
-            }catch (IOException e){
-                System.out.println(e.getMessage());
-            }
-        }
-        for(int i=0; i<cantidadProdEsp; i++){
-            try{
-                imagenProductoEspecial[i] = ImageIO.read(getClass().getClassLoader().getResource("imgProductoEspecial"+ i +".png"));
-            }catch (IOException e){
-                System.out.println(e.getMessage());
-            }
-        }
-        for(int i = 0; i<cantidadMon; i++){
-            try{
-                imagenMoneda[i] = ImageIO.read(getClass().getClassLoader().getResource("imgMoneda"+ i +".png"));
+            imagenAnimal[i] = ImageIO.read(getClass().getClassLoader().getResource("animal"+ i +".png"));
             }catch (IOException e){
                 System.out.println(e.getMessage());
             }
@@ -64,18 +42,8 @@ public class ImageLoader {
     }
 
     /** Método para devolver las imágenes de los Productos */
-    public BufferedImage getImagenProducto(int index){
-        return imagenProducto[index];
-    }
-
-    /** Método para devolver las imágenes especiales de los Productos */
-    public BufferedImage getImagenProductoEspecial(int index){
-        return imagenProductoEspecial[index];
-    }
-
-    /** Método para devolver las imágenes de las Monedas */
-    public BufferedImage getImagenMoneda(int index){
-        return imagenMoneda[index];
+    public BufferedImage getImagenAnimal(int index){
+        return imagenAnimal[index];
     }
 
 }

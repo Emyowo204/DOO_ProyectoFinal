@@ -9,6 +9,6 @@ public class AnimalFactory {
             return new Leon(nombre);
         }
 
-        return new Delfin(nombre);
+        return new Delfin(nombre, TipoAnimal.Delfin);
     }
 }
