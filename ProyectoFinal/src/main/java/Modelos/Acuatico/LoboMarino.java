@@ -21,7 +21,7 @@ public class LoboMarino extends Animal {
 
     @Override
     public int getNumImg() {
-        return 21;
+        return 20;
     }
 
     public void moveInPath(){

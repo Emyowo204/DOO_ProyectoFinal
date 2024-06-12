@@ -21,7 +21,7 @@ public class Loro extends Animal {
 
     @Override
     public int getNumImg() {
-        return 14;
+        return 13;
     }
 
     public void moveInPath(){

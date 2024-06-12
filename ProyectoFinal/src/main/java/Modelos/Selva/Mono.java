@@ -21,7 +21,7 @@ public class Mono extends Animal {
 
     @Override
     public int getNumImg() {
-        return 15;
+        return 14;
     }
 
     public void moveInPath(){

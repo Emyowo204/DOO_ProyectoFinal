@@ -21,7 +21,7 @@ public class Orca extends Animal {
 
     @Override
     public int getNumImg() {
-        return 20;
+        return 21;
     }
 
     public void moveInPath(){

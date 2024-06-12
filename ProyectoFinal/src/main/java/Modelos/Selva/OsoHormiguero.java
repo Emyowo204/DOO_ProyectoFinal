@@ -21,7 +21,7 @@ public class OsoHormiguero extends Animal {
 
     @Override
     public int getNumImg() {
-        return 16;
+        return 15;
     }
 
     public void moveInPath(){

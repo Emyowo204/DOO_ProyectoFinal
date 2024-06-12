@@ -86,6 +86,7 @@ public class PanelMenu extends JPanel {
                 if(event.getSource() == selectAnimal.get(index).get(i)) {
                     tipoAnimal = habitat.getUnlocked().get(i);
                     addAnimal.setText(" "+tipoAnimal.getNombre());
+                    insertText.setText(tipoAnimal.getNombre());
                 }
             }
         }
@@ -98,7 +99,7 @@ public class PanelMenu extends JPanel {
             for(int i=0; i<6; i++) {
                 if(habitat.getRecinto(i).getTipo() != null && habitat.getRecinto(i).getTipo() == tipoAnimal) {
                     zoologico.comprarAnimal(habitat.getTipo().getValue(), i, insertText.getText());
-                    insertText.setText("");
+                    insertText.setText(tipoAnimal.getNombre());
                     return;
                 }
             }

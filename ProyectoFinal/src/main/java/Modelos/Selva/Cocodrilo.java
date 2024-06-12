@@ -21,7 +21,7 @@ public class Cocodrilo extends Animal {
 
     @Override
     public int getNumImg() {
-        return 13;
+        return 12;
     }
 
     public void moveInPath(){

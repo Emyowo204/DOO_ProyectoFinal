@@ -21,7 +21,7 @@ public class Pantera extends Animal {
 
     @Override
     public int getNumImg() {
-        return 12;
+        return 16;
     }
 
     public void moveInPath(){
