@@ -5,10 +5,10 @@ import Modelos.Enumeration.TipoAnimal;
 public enum ListaAnimales {
     Bosque(new TipoAnimal[]{TipoAnimal.Carpintero,TipoAnimal.Huemul,TipoAnimal.Oso,TipoAnimal.Pudu,TipoAnimal.Puma,TipoAnimal.Zorro}),
     Sabana(new TipoAnimal[]{TipoAnimal.Cebra,TipoAnimal.Elefante,TipoAnimal.Hienas,TipoAnimal.Hipopotamo,TipoAnimal.Jirafa,TipoAnimal.Leon}),
-    Selva(new TipoAnimal[]{TipoAnimal.Carpintero,TipoAnimal.Huemul,TipoAnimal.Oso,TipoAnimal.Pudu,TipoAnimal.Puma,TipoAnimal.Zorro}),
-    Acuatico(new TipoAnimal[]{TipoAnimal.Coipo,TipoAnimal.Delfin,TipoAnimal.Foca,TipoAnimal.LoboMarino,TipoAnimal.Tiburon,TipoAnimal.Tortuga}),
-    Desierto(new TipoAnimal[]{TipoAnimal.Carpintero,TipoAnimal.Huemul,TipoAnimal.Oso,TipoAnimal.Pudu,TipoAnimal.Puma,TipoAnimal.Zorro}),
-    Artico(new TipoAnimal[]{TipoAnimal.Carpintero,TipoAnimal.Huemul,TipoAnimal.Oso,TipoAnimal.Pudu,TipoAnimal.Puma,TipoAnimal.Zorro});
+    Selva(new TipoAnimal[]{TipoAnimal.Capibara,TipoAnimal.Cocodrilo,TipoAnimal.Loro,TipoAnimal.Mono,TipoAnimal.OsoHormiguero,TipoAnimal.Serpiente}),
+    Acuatico(new TipoAnimal[]{TipoAnimal.Coipo,TipoAnimal.Delfin,TipoAnimal.LoboMarino,TipoAnimal.Orca,TipoAnimal.Tiburon,TipoAnimal.Tortuga}),
+    Desierto(new TipoAnimal[]{TipoAnimal.Avestruz,TipoAnimal.Camello,TipoAnimal.Canguro,TipoAnimal.Coyote,TipoAnimal.Lagarto,TipoAnimal.Suricata}),
+    Artico(new TipoAnimal[]{TipoAnimal.Alce,TipoAnimal.BuhoNival,TipoAnimal.Morsa,TipoAnimal.OsoPolar,TipoAnimal.Pinguino,TipoAnimal.ZorroArtico});
     private TipoAnimal[] animales;
     private ListaAnimales(TipoAnimal[] animales) {
         this.animales = animales;

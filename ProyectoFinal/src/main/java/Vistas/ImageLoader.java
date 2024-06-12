@@ -23,7 +23,7 @@ public class ImageLoader {
     /** Constructor privado donde se cargan las Imágenes */
     private ImageLoader() {
 
-        int cantidadAnimales = 18;
+        int cantidadAnimales = 36;
 
         imagenAnimal = new BufferedImage[cantidadAnimales];
         imagenAnimalFlipped = new BufferedImage[cantidadAnimales];

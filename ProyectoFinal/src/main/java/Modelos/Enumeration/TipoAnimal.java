@@ -24,8 +24,8 @@ public enum TipoAnimal {
 
     Coipo(1000, TipoHabitat.Acuatico, TipoComida.Vegetacion),
     Delfin(1000, TipoHabitat.Acuatico, TipoComida.Pescado),
-    Foca(1000, TipoHabitat.Acuatico, TipoComida.Pescado),
     LoboMarino(1000, TipoHabitat.Acuatico, TipoComida.Pescado),
+    Orca(1000, TipoHabitat.Acuatico, TipoComida.CarneRoja),
     Tiburon(1000, TipoHabitat.Acuatico, TipoComida.Pescado),
     Tortuga(1000, TipoHabitat.Acuatico, TipoComida.Vegetacion),
 

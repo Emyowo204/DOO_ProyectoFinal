@@ -40,8 +40,8 @@ public class AnimalFactory {
                 return new Coipo(nombre);
             } else if (tipo == TipoAnimal.Delfin) {
                 return new Delfin(nombre);
-            } else if (tipo == TipoAnimal.Foca) {
-                return new Foca(nombre);
+            } else if (tipo == TipoAnimal.Orca) {
+                return new Orca(nombre);
             } else if (tipo == TipoAnimal.LoboMarino) {
                 return new LoboMarino(nombre);
             } else if (tipo == TipoAnimal.Tiburon) {

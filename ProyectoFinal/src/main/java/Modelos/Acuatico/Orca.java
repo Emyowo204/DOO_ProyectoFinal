@@ -7,12 +7,12 @@ import Vistas.ImageLoader;
 import java.awt.*;
 import java.util.Random;
 
-public class Foca extends Animal {
+public class Orca extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Foca(String nombre) {
-        super(nombre, TipoAnimal.Foca);
+    public Orca(String nombre) {
+        super(nombre, TipoAnimal.Orca);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
