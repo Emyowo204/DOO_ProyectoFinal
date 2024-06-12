@@ -36,12 +36,12 @@ public enum TipoAnimal {
     Lagarto(1000, TipoHabitat.Desierto, TipoComida.Insectos,"Lagarto"),
     Suricata(1000, TipoHabitat.Desierto, TipoComida.Insectos,"Suricata"),
 
-    Alce(1000, TipoHabitat.Acuatico, TipoComida.Vegetacion,"Alce"),
-    BuhoNival(1000, TipoHabitat.Acuatico, TipoComida.Pescado,"Búho nival"),
-    Morsa(1000, TipoHabitat.Acuatico, TipoComida.Pescado,"Morsa"),
-    OsoPolar(1000, TipoHabitat.Acuatico, TipoComida.CarneRoja,"Oso polar"),
-    Pinguino(1000, TipoHabitat.Acuatico, TipoComida.Pescado,"Pingüino"),
-    ZorroArtico(1000, TipoHabitat.Acuatico, TipoComida.CarneRoja,"Zorro ártico");
+    Alce(1000, TipoHabitat.Artico, TipoComida.Vegetacion,"Alce"),
+    BuhoNival(1000, TipoHabitat.Artico, TipoComida.Pescado,"Búho nival"),
+    Morsa(1000, TipoHabitat.Artico, TipoComida.Pescado,"Morsa"),
+    OsoPolar(1000, TipoHabitat.Artico, TipoComida.CarneRoja,"Oso polar"),
+    Pinguino(1000, TipoHabitat.Artico, TipoComida.Pescado,"Pingüino"),
+    ZorroArtico(1000, TipoHabitat.Artico, TipoComida.CarneRoja,"Zorro ártico");
 
 
     private int precio;
