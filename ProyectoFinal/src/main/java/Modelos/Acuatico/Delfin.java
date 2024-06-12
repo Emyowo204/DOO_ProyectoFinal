@@ -1,6 +1,6 @@
 package Modelos.Acuatico;
 
-import Modelos.Animal;
+import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
 import Vistas.ImageLoader;
 
@@ -21,7 +21,7 @@ public class Delfin extends Animal {
 
     @Override
     public int getNumImg() {
-        return 13;
+        return 19;
     }
 
     public void moveInPath(){

@@ -1,4 +1,4 @@
-package Modelos.Sabana;
+package Modelos.Artico;
 
 import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
@@ -7,12 +7,12 @@ import Vistas.ImageLoader;
 import java.awt.*;
 import java.util.Random;
 
-public class Jirafa extends Animal {
+public class BuhoNival extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Jirafa(String nombre) {
-        super(nombre, TipoAnimal.Jirafa);
+    public BuhoNival(String nombre) {
+        super(nombre, TipoAnimal.BuhoNival);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
@@ -21,7 +21,7 @@ public class Jirafa extends Animal {
 
     @Override
     public int getNumImg() {
-        return 10;
+        return 31;
     }
 
     public void moveInPath(){

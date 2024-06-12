@@ -1,6 +1,7 @@
 package Vistas.Paneles;
 
-import Modelos.*;
+import Modelos.Utils.Animal;
+import Modelos.Utils.Recinto;
 import Vistas.Boton;
 
 import javax.swing.*;

@@ -1,7 +1,7 @@
 package Modelos.Enumeration;
 
 public enum TipoComida {
-    Fruta,
+    Frutos,
     Pescado,
     CarneRoja,
     Insectos,

@@ -1,6 +1,6 @@
 package Vistas.Paneles;
 
-import Modelos.Zoologico;
+import Modelos.Utils.Zoologico;
 import Vistas.Boton;
 
 import javax.swing.*;

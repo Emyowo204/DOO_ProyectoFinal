@@ -1,6 +1,6 @@
 package Modelos.Bosque;
 
-import Modelos.Animal;
+import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
 import Vistas.ImageLoader;
 

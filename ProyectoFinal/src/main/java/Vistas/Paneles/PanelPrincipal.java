@@ -1,6 +1,6 @@
 package Vistas.Paneles;
 
-import Modelos.Zoologico;
+import Modelos.Utils.Zoologico;
 
 import javax.swing.JPanel;
 import java.awt.*;

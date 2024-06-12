@@ -1,7 +1,8 @@
 package Vistas.Paneles;
 
-import Modelos.*;
 import Modelos.Enumeration.TipoAnimal;
+import Modelos.Utils.Habitat;
+import Modelos.Utils.Zoologico;
 import Vistas.Boton;
 import Vistas.PopupSelect;
 
@@ -31,7 +32,7 @@ public class PanelMenu extends JPanel {
         addAnimal = new PopupSelect(" Seleccione un Habitat", Color.WHITE, Color.BLACK, "Arial");
         addAnimal.setUse(false);
         addAnimal.setBounds(20,20,240,20);
-        comprarAnimal = new Boton(Color.BLACK, true, "Animales/imgAnimal0.png");
+        comprarAnimal = new Boton(Color.BLACK, true, "imgBack.png");
         comprarAnimal.setBounds(20,200,50,50);
         comprarAnimal.addActionListener(new MenuOptions());
         this.add(comprarAnimal);
@@ -40,6 +41,7 @@ public class PanelMenu extends JPanel {
 
     public void changeHabitat(Habitat habitat) {
         this.habitat = habitat;
+        tipoAnimal = null;
         addAnimal.setUse(true);
         addAnimal.setText(" Seleccione un Animal:");
         addAnimal.setIndex(habitat.getTipo().getValue());

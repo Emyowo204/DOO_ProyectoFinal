@@ -1,6 +1,6 @@
 package Vistas.Paneles;
 
-import Modelos.Habitat;
+import Modelos.Utils.Habitat;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

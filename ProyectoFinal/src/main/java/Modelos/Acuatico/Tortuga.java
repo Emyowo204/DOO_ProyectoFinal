@@ -1,6 +1,6 @@
 package Modelos.Acuatico;
 
-import Modelos.Animal;
+import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
 import Vistas.ImageLoader;
 
@@ -21,7 +21,7 @@ public class Tortuga extends Animal {
 
     @Override
     public int getNumImg() {
-        return 17;
+        return 23;
     }
 
     public void moveInPath(){

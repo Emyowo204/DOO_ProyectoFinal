@@ -1,6 +1,6 @@
 package Modelos.Acuatico;
 
-import Modelos.Animal;
+import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
 import Vistas.ImageLoader;
 
@@ -21,7 +21,7 @@ public class Tiburon extends Animal {
 
     @Override
     public int getNumImg() {
-        return 16;
+        return 22;
     }
 
     public void moveInPath(){

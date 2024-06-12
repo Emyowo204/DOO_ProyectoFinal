@@ -1,4 +1,4 @@
-package Modelos.Sabana;
+package Modelos.Selva;
 
 import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
@@ -7,12 +7,12 @@ import Vistas.ImageLoader;
 import java.awt.*;
 import java.util.Random;
 
-public class Jirafa extends Animal {
+public class Cocodrilo extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Jirafa(String nombre) {
-        super(nombre, TipoAnimal.Jirafa);
+    public Cocodrilo(String nombre) {
+        super(nombre, TipoAnimal.Cocodrilo);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
@@ -21,7 +21,7 @@ public class Jirafa extends Animal {
 
     @Override
     public int getNumImg() {
-        return 10;
+        return 13;
     }
 
     public void moveInPath(){

@@ -1,4 +1,4 @@
-package Modelos;
+package Modelos.Utils;
 
 import Modelos.Bosque.*;
 import Modelos.Acuatico.*;

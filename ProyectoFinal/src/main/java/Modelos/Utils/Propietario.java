@@ -1,4 +1,4 @@
-package Modelos;
+package Modelos.Utils;
 
 public class Propietario {
     int dinero;
