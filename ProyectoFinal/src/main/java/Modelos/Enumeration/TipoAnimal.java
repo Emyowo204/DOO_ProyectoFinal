@@ -15,11 +15,11 @@ public enum TipoAnimal {
     Jirafa(1000, TipoHabitat.Sabana, TipoComida.Vegetacion),
     Leon(1000, TipoHabitat.Sabana, TipoComida.CarneRoja),
 
-    Capibara(1000, TipoHabitat.Selva, TipoComida.Vegetacion),
     Cocodrilo(1000, TipoHabitat.Selva, TipoComida.Pescado),
     Loro(1000, TipoHabitat.Selva, TipoComida.Frutos),
     Mono(1000, TipoHabitat.Selva, TipoComida.Frutos),
     OsoHormiguero(1000, TipoHabitat.Selva, TipoComida.Insectos),
+    Pantera(1000, TipoHabitat.Selva, TipoComida.CarneRoja),
     Serpiente(1000, TipoHabitat.Selva, TipoComida.Insectos),
 
     Coipo(1000, TipoHabitat.Acuatico, TipoComida.Vegetacion),

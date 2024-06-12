@@ -39,8 +39,8 @@ public class AnimalFactory {
                 return new Leon(nombre);
             }
         } else if(tipo.getHabitat() == TipoHabitat.Selva) {
-            if (tipo == TipoAnimal.Capibara) {
-                return new Capibara(nombre);
+            if (tipo == TipoAnimal.Pantera) {
+                return new Pantera(nombre);
             } else if (tipo == TipoAnimal.Cocodrilo) {
                 return new Cocodrilo(nombre);
             } else if (tipo == TipoAnimal.Loro) {
