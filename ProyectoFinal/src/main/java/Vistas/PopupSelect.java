@@ -12,8 +12,8 @@ public class PopupSelect extends CuadroTexto {
     private int index;
     private boolean usable;
 
-    public PopupSelect(String texto, Color bg, Color color, String fuente) {
-        super(texto, bg, color, fuente);
+    public PopupSelect(String texto, Color bg, Color color, String fuente, int estilo) {
+        super(texto, bg, color, fuente, estilo);
         this.fuente = fuente;
         this.addMouseListener(new LabelListener());
         usable = true;

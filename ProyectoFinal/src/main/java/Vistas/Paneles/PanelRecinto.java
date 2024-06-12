@@ -21,7 +21,7 @@ public class PanelRecinto extends JPanel implements Runnable{
     private Thread thread;
     private ArrayList<Animal> animales;
     private PanelSelect panelSelect;
-    private JButton[] selectButtons;
+    private Boton[] selectButtons;
     private Boton botonComprar;
 
     public PanelRecinto(Recinto recinto) {
@@ -35,7 +35,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         botonComprar.addActionListener(listenerRecinto);
         this.add(botonComprar);
         panelSelect = new PanelSelect(25,50,200,100,recinto.getHabitat().getTotal());
-        panelSelect.addBotones(selectButtons = new JButton[6]);
+        panelSelect.addBotones(selectButtons = new Boton[6], recinto.getHabitat().getTipo().getValue()*6);
         for(int i=0; i<6; i++)
             selectButtons[i].addActionListener(listenerRecinto);
         panelSelect.setVisible(false);

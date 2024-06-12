@@ -4,7 +4,9 @@ import Modelos.Enumeration.TipoAnimal;
 import Modelos.Utils.Habitat;
 import Modelos.Utils.Zoologico;
 import Vistas.Boton;
+import Vistas.CuadroTexto;
 import Vistas.PopupSelect;
+import Vistas.ZonaTexto;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +22,7 @@ public class PanelMenu extends JPanel {
     private Boton comprarAnimal;
     private TipoAnimal tipoAnimal;
     private SelectAnimal listenerAnimal;
+    private ZonaTexto insertText;
 
     public PanelMenu(Zoologico zoo) {
         super(null);
@@ -29,21 +32,33 @@ public class PanelMenu extends JPanel {
         selectAnimal = new ArrayList<>();
         for(int i=0; i<6; i++)
             selectAnimal.add(new ArrayList<>());
-        addAnimal = new PopupSelect(" Seleccione un Habitat", Color.WHITE, Color.BLACK, "Arial");
+        CuadroTexto cuadroAnimal = new CuadroTexto(" v Seleccione Animal:", Color.WHITE, Color.BLACK, "Arial", 1);
+        cuadroAnimal.setBounds(20,20,240,20);
+        addAnimal = new PopupSelect(" Seleccione un Habitat", Color.WHITE, Color.BLACK, "Arial", 0);
         addAnimal.setUse(false);
-        addAnimal.setBounds(20,20,240,20);
-        comprarAnimal = new Boton(Color.BLACK, true, "imgBack.png");
-        comprarAnimal.setBounds(20,200,50,50);
+        addAnimal.setBounds(20,45,240,20);
+        comprarAnimal = new Boton(Color.BLACK, true, "imgComprarRecinto.png");
+        comprarAnimal.setBounds(20,200,100,50);
         comprarAnimal.addActionListener(new MenuOptions());
+        CuadroTexto cuadroNombre = new CuadroTexto(" v Inserte Nombre:", Color.WHITE, Color.BLACK, "Arial", 1);
+        cuadroNombre.setBounds(20,90,240,20);
+        insertText = new ZonaTexto(" Seleccione un Habitat", Color.WHITE, Color.BLACK, "Arial", 0);
+        insertText.setBounds(20,115,240,20);
+        insertText.setEnabled(false);
+        this.add(cuadroAnimal);
         this.add(comprarAnimal);
         this.add(addAnimal);
+        this.add(cuadroNombre);
+        this.add(insertText);
     }
 
     public void changeHabitat(Habitat habitat) {
         this.habitat = habitat;
         tipoAnimal = null;
         addAnimal.setUse(true);
-        addAnimal.setText(" Seleccione un Animal:");
+        insertText.setText("");
+        insertText.setEnabled(true);
+        addAnimal.setText(" > Presione Panel <");
         addAnimal.setIndex(habitat.getTipo().getValue());
         updatePopup();
     }
@@ -51,11 +66,13 @@ public class PanelMenu extends JPanel {
         this.habitat = null;
         addAnimal.setText(" Seleccione un Habitat");
         addAnimal.setUse(false);
+        insertText.setText(" Seleccione un Habitat");
+        insertText.setEnabled(false);
     }
     public void updatePopup() {
         int index = habitat.getTipo().getValue();
         for(int i=selectAnimal.get(index).size(); i<habitat.getUnlocked().size(); i++) {
-            selectAnimal.get(index).add(new JMenuItem(habitat.getUnlocked().get(i).toString()));
+            selectAnimal.get(index).add(new JMenuItem(habitat.getUnlocked().get(i).getNombre()));
             addAnimal.addMenuItem(selectAnimal.get(index).get(i), index);
             selectAnimal.get(index).get(i).addActionListener(listenerAnimal);
         }
@@ -68,7 +85,7 @@ public class PanelMenu extends JPanel {
             for(int i=0; i<selectAnimal.get(index).size(); i++) {
                 if(event.getSource() == selectAnimal.get(index).get(i)) {
                     tipoAnimal = habitat.getUnlocked().get(i);
-                    addAnimal.setText(" "+tipoAnimal.toString());
+                    addAnimal.setText(" "+tipoAnimal.getNombre());
                 }
             }
         }
@@ -76,9 +93,12 @@ public class PanelMenu extends JPanel {
     private class MenuOptions implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
+            if(insertText.getText().isEmpty())
+                return;
             for(int i=0; i<6; i++) {
                 if(habitat.getRecinto(i).getTipo() != null && habitat.getRecinto(i).getTipo() == tipoAnimal) {
-                    zoologico.comprarAnimal(habitat.getTipo().getValue(), i, "Juan");
+                    zoologico.comprarAnimal(habitat.getTipo().getValue(), i, insertText.getText());
+                    insertText.setText("");
                     return;
                 }
             }

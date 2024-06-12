@@ -14,11 +14,11 @@ public class CuadroTexto extends JLabel {
      * @param bg El color del fondo del cuadro de texto
      * @param color El color de las letras, primer plano, del texto
      * @param fuente La fuente del texto del cuadro */
-    public CuadroTexto(String texto, Color bg, Color color, String fuente) {
+    public CuadroTexto(String texto, Color bg, Color color, String fuente, int estilo) {
         super(texto);
         this.setOpaque(true);
         this.setBackground(bg);
         this.setForeground(color);
-        this.setFont(new Font(fuente, Font.BOLD, 15));
+        this.setFont(new Font(fuente, estilo, 15));
     }
 }
