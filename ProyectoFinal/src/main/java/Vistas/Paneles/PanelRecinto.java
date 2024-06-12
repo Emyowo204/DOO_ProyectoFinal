@@ -2,8 +2,7 @@ package Vistas.Paneles;
 
 import Modelos.Utils.Animal;
 import Modelos.Utils.Recinto;
-import Vistas.Boton;
-
+import Vistas.Utils.Boton;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -60,8 +59,9 @@ public class PanelRecinto extends JPanel implements Runnable{
         @Override
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == botonComprar && !(recinto.getHabitat().isComprando())){
-                togglePanelSelect();
-                recinto.desbloquear();
+                PanelLinker.getPanelPrincipal().getZoologico().comprarRecinto(recinto);
+                if(recinto.getAdquirido())
+                    togglePanelSelect();
                 return;
             }
             for(int i=0; i<6; i++) {

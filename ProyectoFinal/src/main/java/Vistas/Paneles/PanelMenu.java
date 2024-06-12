@@ -1,13 +1,8 @@
 package Vistas.Paneles;
 
 import Modelos.Enumeration.TipoAnimal;
-import Modelos.Utils.Habitat;
-import Modelos.Utils.Zoologico;
-import Vistas.Boton;
-import Vistas.CuadroTexto;
-import Vistas.PopupSelect;
-import Vistas.ZonaTexto;
-
+import Modelos.Utils.*;
+import Vistas.Utils.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -98,7 +93,7 @@ public class PanelMenu extends JPanel {
                 return;
             for(int i=0; i<6; i++) {
                 if(habitat.getRecinto(i).getTipo() != null && habitat.getRecinto(i).getTipo() == tipoAnimal) {
-                    zoologico.comprarAnimal(habitat.getTipo().getValue(), i, insertText.getText());
+                    zoologico.comprarAnimal(habitat.getRecinto(i), insertText.getText());
                     insertText.setText(tipoAnimal.getNombre());
                     return;
                 }

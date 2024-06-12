@@ -1,8 +1,7 @@
 package Vistas.Paneles;
 
 import Modelos.Enumeration.TipoAnimal;
-import Vistas.Boton;
-
+import Vistas.Utils.Boton;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;

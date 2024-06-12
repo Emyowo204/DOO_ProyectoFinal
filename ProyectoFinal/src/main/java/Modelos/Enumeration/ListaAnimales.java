@@ -1,7 +1,5 @@
 package Modelos.Enumeration;
 
-import Modelos.Enumeration.TipoAnimal;
-
 public enum ListaAnimales {
     Bosque(new TipoAnimal[]{TipoAnimal.Carpintero,TipoAnimal.Huemul,TipoAnimal.Oso,TipoAnimal.Pudu,TipoAnimal.Puma,TipoAnimal.Zorro}),
     Sabana(new TipoAnimal[]{TipoAnimal.Cebra,TipoAnimal.Elefante,TipoAnimal.Hiena,TipoAnimal.Hipopotamo,TipoAnimal.Jirafa,TipoAnimal.Leon}),

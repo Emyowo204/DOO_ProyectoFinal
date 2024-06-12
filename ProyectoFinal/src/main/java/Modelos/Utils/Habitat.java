@@ -28,14 +28,7 @@ public class Habitat {
     public void desbloquear() {
         adquirido = true;
     }
-
-    public void desbloquearRecinto(int index) { listaRecintos[index].desbloquear(); }
     public void addAnimal(TipoAnimal animal) { UnlockAni.add(animal); }
-
-    public void comprarAnimal(int index, String nombre) {
-        listaRecintos[index].comprarAnimal(nombre);
-    }
-
     public Recinto getRecinto(int index) {
         return listaRecintos[index];
     }
@@ -46,6 +39,7 @@ public class Habitat {
         return TotalAni;
     }
     public boolean isComprando() { return comprando; }
+    public boolean isAdquirido() { return adquirido; }
     public void setComprando(boolean comprando) { this.comprando = comprando; }
     public TipoHabitat getTipo() {
         return tipo;

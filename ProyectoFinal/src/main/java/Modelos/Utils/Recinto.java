@@ -30,6 +30,6 @@ public class Recinto {
     }
     public ArrayList<Animal> getListaAnimales() { return listaAnimales; }
     public TipoAnimal getTipo() { return tipo; }
-    public boolean getLock() { return adquirido; }
+    public boolean getAdquirido() { return adquirido; }
     public Habitat getHabitat() { return habitat; }
 }

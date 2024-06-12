@@ -2,7 +2,7 @@ package Modelos.Sabana;
 
 import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
-import Vistas.ImageLoader;
+import Vistas.Utils.ImageLoader;
 
 import java.awt.*;
 import java.util.Random;

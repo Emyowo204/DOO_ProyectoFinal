@@ -1,7 +1,6 @@
 package Vistas.Paneles;
 
 import Modelos.Utils.Zoologico;
-
 import javax.swing.JPanel;
 import java.awt.*;
 
@@ -27,6 +26,7 @@ public class PanelPrincipal extends JPanel {
     }
 
     public PanelMenu getMenu() { return panelMenu; }
+    public Zoologico getZoologico() { return zoologico; }
 
     /** Método para dibujar los componentes de Swing del panel y los sub paneles
      * @param g El objeto grafico que dibuja los componentes */

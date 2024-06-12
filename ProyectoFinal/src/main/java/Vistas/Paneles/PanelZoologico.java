@@ -1,8 +1,7 @@
 package Vistas.Paneles;
 
 import Modelos.Utils.Zoologico;
-import Vistas.Boton;
-
+import Vistas.Utils.Boton;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +39,7 @@ public class PanelZoologico extends JPanel {
             if(i==5)
                 y = 250;
             listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i), i);
-            selectHabitat[i] = new Boton(Color.BLACK,true,"imgHabitat"+i+".png");
+            selectHabitat[i] = new Boton(Color.BLACK,true,"imgHabitatLock"+i+".png");
             selectHabitat[i].addActionListener(listenerHabitat);
             selectHabitat[i].setBounds(x,y,180,120);
             this.add(selectHabitat[i]);
@@ -69,6 +68,12 @@ public class PanelZoologico extends JPanel {
         public void actionPerformed(ActionEvent event) {
             for(int i=0; i<6; i++) {
                 if(event.getSource()==selectHabitat[i]) {
+                    if(!listaPanelHabitat[i].getHabitat().isAdquirido()) {
+                        zoologico.comprarHabitat(i);
+                        if(listaPanelHabitat[i].getHabitat().isAdquirido())
+                            selectHabitat[i].changeImage("imgHabitat"+i+".png");
+                        return;
+                    }
                     openPanelHabitat = listaPanelHabitat[i];
                     break;
                 }

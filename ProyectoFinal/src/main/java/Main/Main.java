@@ -1,6 +1,6 @@
 package Main;
 
-import Vistas.Ventana;
+import Vistas.Utils.Ventana;
 
 /** El main en donde se realiza el programa
  * @author Chloe Yañez Lavin

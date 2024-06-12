@@ -1,4 +1,4 @@
-package Vistas;
+package Vistas.Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;
