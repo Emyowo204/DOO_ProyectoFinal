@@ -10,7 +10,7 @@ public enum TipoAnimal {
 
     Cebra(1000, TipoHabitat.Sabana, TipoComida.Vegetacion,"Cebra"),
     Elefante(1000, TipoHabitat.Sabana, TipoComida.Frutos,"Elefante"),
-    Hienas(1000, TipoHabitat.Sabana, TipoComida.CarneRoja,"Hienas"),
+    Hiena(1000, TipoHabitat.Sabana, TipoComida.CarneRoja,"Hiena"),
     Hipopotamo(1000, TipoHabitat.Sabana, TipoComida.Vegetacion,"Hipopótamo"),
     Jirafa(1000, TipoHabitat.Sabana, TipoComida.Vegetacion,"Jirafa"),
     Leon(1000, TipoHabitat.Sabana, TipoComida.CarneRoja,"León"),

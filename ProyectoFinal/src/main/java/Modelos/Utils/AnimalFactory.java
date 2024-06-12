@@ -29,8 +29,8 @@ public class AnimalFactory {
                 return new Cebra(nombre);
             } else if (tipo == TipoAnimal.Elefante) {
                 return new Elefante(nombre);
-            } else if (tipo == TipoAnimal.Hienas) {
-                return new Hienas(nombre);
+            } else if (tipo == TipoAnimal.Hiena) {
+                return new Hiena(nombre);
             } else if (tipo == TipoAnimal.Hipopotamo) {
                 return new Hipopotamo(nombre);
             } else if (tipo == TipoAnimal.Jirafa) {
