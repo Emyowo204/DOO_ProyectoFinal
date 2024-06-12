@@ -1,4 +1,4 @@
-package Modelos;
+package Modelos.Enumeration;
 
 public enum TipoComida {
     Fruta,

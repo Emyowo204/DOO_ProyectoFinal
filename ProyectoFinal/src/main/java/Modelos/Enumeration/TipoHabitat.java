@@ -1,4 +1,4 @@
-package Modelos;
+package Modelos.Enumeration;
 
 public enum TipoHabitat {
     Bosque(2000, 1000,0),

@@ -1,5 +1,7 @@
 package Modelos;
 
+import Modelos.Enumeration.TipoAnimal;
+
 import java.util.ArrayList;
 
 public class Recinto {

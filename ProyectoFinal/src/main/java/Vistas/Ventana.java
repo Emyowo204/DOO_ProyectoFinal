@@ -1,5 +1,8 @@
 package Vistas;
 
+import Vistas.Paneles.PanelLinker;
+import Vistas.Paneles.PanelPrincipal;
+
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 

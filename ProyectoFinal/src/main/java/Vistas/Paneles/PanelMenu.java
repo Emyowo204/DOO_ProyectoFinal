@@ -1,6 +1,9 @@
-package Vistas;
+package Vistas.Paneles;
 
 import Modelos.*;
+import Modelos.Enumeration.TipoAnimal;
+import Vistas.Boton;
+import Vistas.PopupSelect;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +31,7 @@ public class PanelMenu extends JPanel {
         addAnimal = new PopupSelect(" Seleccione un Habitat", Color.WHITE, Color.BLACK, "Arial");
         addAnimal.setUse(false);
         addAnimal.setBounds(20,20,240,20);
-        comprarAnimal = new Boton(Color.BLACK, true, "imgAnimal0.png");
+        comprarAnimal = new Boton(Color.BLACK, true, "Animales/imgAnimal0.png");
         comprarAnimal.setBounds(20,200,50,50);
         comprarAnimal.addActionListener(new MenuOptions());
         this.add(comprarAnimal);
@@ -62,7 +65,7 @@ public class PanelMenu extends JPanel {
             int index = habitat.getTipo().getValue();
             for(int i=0; i<selectAnimal.get(index).size(); i++) {
                 if(event.getSource() == selectAnimal.get(index).get(i)) {
-                    tipoAnimal = habitat.getTotal().get(i);
+                    tipoAnimal = habitat.getUnlocked().get(i);
                     addAnimal.setText(" "+tipoAnimal.toString());
                 }
             }

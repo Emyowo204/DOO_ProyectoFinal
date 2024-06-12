@@ -1,5 +1,7 @@
 package Modelos;
 
+import Modelos.Enumeration.*;
+
 public class Zoologico {
     private Habitat[] listaHabitat;
 

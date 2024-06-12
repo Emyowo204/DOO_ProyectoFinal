@@ -1,4 +1,4 @@
-package Modelos;
+package Modelos.Enumeration;
 
 public enum TipoAnimal {
     Carpintero(1000, TipoHabitat.Bosque, TipoComida.Insectos),
@@ -13,7 +13,14 @@ public enum TipoAnimal {
     Foca(1000, TipoHabitat.Acuatico, TipoComida.Pescado),
     LoboMarino(1000, TipoHabitat.Acuatico, TipoComida.Pescado),
     Tiburon(1000, TipoHabitat.Acuatico, TipoComida.Pescado),
-    Tortuga(1000, TipoHabitat.Acuatico, TipoComida.Vegetacion);
+    Tortuga(1000, TipoHabitat.Acuatico, TipoComida.Vegetacion),
+
+    Cebra(1000, TipoHabitat.Sabana, TipoComida.Vegetacion),
+    Elefante(1000, TipoHabitat.Sabana, TipoComida.Fruta),
+    Hienas(1000, TipoHabitat.Sabana, TipoComida.CarneRoja),
+    Hipopotamo(1000, TipoHabitat.Sabana, TipoComida.Vegetacion),
+    Jirafa(1000, TipoHabitat.Sabana, TipoComida.Vegetacion),
+    Leon(1000, TipoHabitat.Sabana, TipoComida.CarneRoja);
 
     private int precio;
     private TipoHabitat tipoHabitat;

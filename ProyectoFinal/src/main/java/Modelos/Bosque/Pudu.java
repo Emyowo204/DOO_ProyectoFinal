@@ -1,7 +1,7 @@
 package Modelos.Bosque;
 
 import Modelos.Animal;
-import Modelos.TipoAnimal;
+import Modelos.Enumeration.TipoAnimal;
 import Vistas.ImageLoader;
 
 import java.awt.*;

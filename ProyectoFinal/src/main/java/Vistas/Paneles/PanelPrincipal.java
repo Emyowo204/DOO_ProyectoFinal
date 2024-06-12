@@ -1,7 +1,5 @@
-package Vistas;
+package Vistas.Paneles;
 
-import Modelos.Habitat;
-import Modelos.TipoHabitat;
 import Modelos.Zoologico;
 
 import javax.swing.JPanel;

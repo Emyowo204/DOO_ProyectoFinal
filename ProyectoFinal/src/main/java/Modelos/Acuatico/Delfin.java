@@ -1,11 +1,10 @@
 package Modelos.Acuatico;
 
 import Modelos.Animal;
-import Modelos.TipoAnimal;
+import Modelos.Enumeration.TipoAnimal;
 import Vistas.ImageLoader;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Delfin extends Animal {
@@ -13,7 +12,7 @@ public class Delfin extends Animal {
     private int moveSpeed = 1;
 
     public Delfin(String nombre) {
-        super(nombre, TipoAnimal.Carpintero);
+        super(nombre, TipoAnimal.Delfin);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
@@ -22,7 +21,7 @@ public class Delfin extends Animal {
 
     @Override
     public int getNumImg() {
-        return 7;
+        return 13;
     }
 
     public void moveInPath(){

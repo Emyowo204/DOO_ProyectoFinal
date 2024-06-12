@@ -1,7 +1,6 @@
-package Vistas;
+package Vistas.Paneles;
 
-import Modelos.Recinto;
-import Modelos.TipoAnimal;
+import Modelos.Enumeration.TipoAnimal;
 
 import javax.swing.*;
 import java.awt.*;

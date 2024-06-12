@@ -1,7 +1,7 @@
 package Modelos.Acuatico;
 
 import Modelos.Animal;
-import Modelos.TipoAnimal;
+import Modelos.Enumeration.TipoAnimal;
 import Vistas.ImageLoader;
 
 import java.awt.*;
@@ -12,7 +12,7 @@ public class LoboMarino extends Animal {
     private int moveSpeed = 1;
 
     public LoboMarino(String nombre) {
-        super(nombre, TipoAnimal.Carpintero);
+        super(nombre, TipoAnimal.LoboMarino);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
@@ -21,7 +21,7 @@ public class LoboMarino extends Animal {
 
     @Override
     public int getNumImg() {
-        return 9;
+        return 15;
     }
 
     public void moveInPath(){

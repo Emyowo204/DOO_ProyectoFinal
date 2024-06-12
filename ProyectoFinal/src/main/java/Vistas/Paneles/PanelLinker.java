@@ -1,4 +1,4 @@
-package Vistas;
+package Vistas.Paneles;
 
 
 public class PanelLinker {

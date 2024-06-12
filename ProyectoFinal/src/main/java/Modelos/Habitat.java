@@ -1,5 +1,7 @@
 package Modelos;
 
+import Modelos.Enumeration.*;
+
 import java.util.ArrayList;
 
 public class Habitat {

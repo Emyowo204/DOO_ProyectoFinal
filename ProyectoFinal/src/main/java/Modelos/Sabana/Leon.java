@@ -1,4 +1,4 @@
-package Modelos.Acuatico;
+package Modelos.Sabana;
 
 import Modelos.Animal;
 import Modelos.Enumeration.TipoAnimal;
@@ -7,12 +7,12 @@ import Vistas.ImageLoader;
 import java.awt.*;
 import java.util.Random;
 
-public class Foca extends Animal {
+public class Leon extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Foca(String nombre) {
-        super(nombre, TipoAnimal.Foca);
+    public Leon(String nombre) {
+        super(nombre, TipoAnimal.Leon);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
@@ -21,7 +21,7 @@ public class Foca extends Animal {
 
     @Override
     public int getNumImg() {
-        return 14;
+        return 11;
     }
 
     public void moveInPath(){

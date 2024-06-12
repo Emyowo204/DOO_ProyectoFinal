@@ -1,8 +1,8 @@
 package Modelos;
 
+import Modelos.Enumeration.*;
+
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public abstract class Animal implements Visible {
