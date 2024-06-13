@@ -39,6 +39,7 @@ public class PanelMenu extends JPanel {
         addComp(comprarAnimal,20,200,100,50);
         comprarAnimal.addActionListener(new MenuOptions());
         addAnimal.setUse(false);
+        comprarAnimal.setEnabled(false);
         insertText.setEnabled(false);
     }
 
@@ -56,6 +57,7 @@ public class PanelMenu extends JPanel {
         addAnimal.setUse(true);
         insertText.setText("");
         insertText.setEnabled(true);
+        comprarAnimal.setEnabled(true);
         addAnimal.setText(" > Presione Panel <");
         addAnimal.setIndex(habitat.getTipo().getValue());
         updatePopup();
@@ -66,6 +68,7 @@ public class PanelMenu extends JPanel {
         addAnimal.setUse(false);
         insertText.setText(" Seleccione un Habitat");
         insertText.setEnabled(false);
+        comprarAnimal.setEnabled(false);
     }
     public void updatePopup() {
         int index = habitat.getTipo().getValue();
