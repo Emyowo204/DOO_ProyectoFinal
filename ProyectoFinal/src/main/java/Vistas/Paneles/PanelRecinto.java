@@ -60,8 +60,11 @@ public class PanelRecinto extends JPanel implements Runnable{
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == botonComprar && !(recinto.getHabitat().isComprando())){
                 PanelLinker.getPanelPrincipal().getZoologico().comprarRecinto(recinto);
-                if(recinto.getAdquirido())
+                if(recinto.getAdquirido()) {
+                    PanelPrincipal panelP = PanelLinker.getPanelPrincipal();
+                    panelP.getMenu().updateDinero(panelP.getZoologico().getDinero());
                     togglePanelSelect();
+                }
                 return;
             }
             for(int i=0; i<6; i++) {

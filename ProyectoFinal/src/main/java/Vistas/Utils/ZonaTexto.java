@@ -11,4 +11,11 @@ public class ZonaTexto extends JTextField {
         this.setForeground(color);
         this.setFont(new Font(fuente, estilo, 15));
     }
+    public ZonaTexto(String texto, String fuente, int estilo) {
+        super(texto);
+        this.setOpaque(true);
+        this.setBackground(Color.WHITE);
+        this.setForeground(Color.BLACK);
+        this.setFont(new Font(fuente, estilo, 15));
+    }
 }

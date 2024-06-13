@@ -8,7 +8,7 @@ public class Zoologico {
 
     public Zoologico() {
         listaHabitat = new Habitat[6];
-        dinero = 5000;
+        dinero = 10000;
         for(int i=0; i<6; i++) {
             listaHabitat[i] = new Habitat(TipoHabitat.values()[i], ListaAnimales.values()[i]);
         }
@@ -24,9 +24,11 @@ public class Zoologico {
             recinto.desbloquear();
     }
 
-    public void comprarAnimal(Recinto recinto, String nombre) {
-        if(transaccion(recinto.getTipo().getPrecio()))
+    public boolean comprarAnimal(Recinto recinto, String nombre) {
+        boolean compra = transaccion(recinto.getTipo().getPrecio());
+        if(compra)
             recinto.comprarAnimal(nombre);
+        return compra;
     }
 
     public boolean transaccion(int precio) {
@@ -39,5 +41,6 @@ public class Zoologico {
         }
     }
 
+    public int getDinero() { return dinero; }
     public Habitat getHabitat(int index) { return listaHabitat[index]; }
 }

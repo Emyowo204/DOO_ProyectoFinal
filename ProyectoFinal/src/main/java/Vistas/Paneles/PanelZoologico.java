@@ -70,8 +70,10 @@ public class PanelZoologico extends JPanel {
                 if(event.getSource()==selectHabitat[i]) {
                     if(!listaPanelHabitat[i].getHabitat().isAdquirido()) {
                         zoologico.comprarHabitat(i);
-                        if(listaPanelHabitat[i].getHabitat().isAdquirido())
-                            selectHabitat[i].changeImage("imgHabitat"+i+".png");
+                        if(listaPanelHabitat[i].getHabitat().isAdquirido()) {
+                            PanelLinker.getPanelPrincipal().getMenu().updateDinero(zoologico.getDinero());
+                            selectHabitat[i].changeImage("imgHabitat" + i + ".png");
+                        }
                         return;
                     }
                     openPanelHabitat = listaPanelHabitat[i];

@@ -16,15 +16,17 @@ public class PanelPrincipal extends JPanel {
 
     public PanelPrincipal() {
         super(new BorderLayout());
+
         this.setOpaque(true);
         zoologico = new Zoologico();
         panelZoo = new PanelZoologico(zoologico);
         this.add(panelZoo, BorderLayout.CENTER);
-        panelMenu = new PanelMenu(zoologico);
+        panelMenu = new PanelMenu();
         panelMenu.setPreferredSize(new Dimension(280, 720));
         this.add(panelMenu, BorderLayout.EAST);
     }
 
+    public PanelZoologico getPanelZoo() { return panelZoo; }
     public PanelMenu getMenu() { return panelMenu; }
     public Zoologico getZoologico() { return zoologico; }
 

@@ -1,6 +1,8 @@
 package Vistas.Paneles;
 
 
+import Modelos.Utils.Zoologico;
+
 public class PanelLinker {
 
     private static PanelLinker panelLinker;
@@ -16,7 +18,6 @@ public class PanelLinker {
             panelLinker = new PanelLinker();
         }
     }
-
     public static PanelPrincipal getPanelPrincipal() {
         if(panelPrincipal==null)
             panelPrincipal = new PanelPrincipal();
