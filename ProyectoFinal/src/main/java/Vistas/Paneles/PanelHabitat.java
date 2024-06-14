@@ -22,7 +22,7 @@ public class PanelHabitat extends JPanel {
         super(null);
         this.habitat = habitat;
         visible = false;
-        this.setBackground(Color.BLACK);
+        this.setBackground(new Color(207,163,44));
         this.setBounds(50,100,900,520);
         listaPanelRecinto = new PanelRecinto[6];
         int j=0;

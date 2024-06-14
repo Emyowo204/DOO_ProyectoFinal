@@ -18,15 +18,18 @@ public class ImageLoader {
     /** Imágenes de los Productos */
     private static BufferedImage[] imagenAnimal;
     private static BufferedImage[] imagenAnimalFlipped;
+    private static BufferedImage[] fondosZoologico;
 
 
     /** Constructor privado donde se cargan las Imágenes */
     private ImageLoader() {
 
         int cantidadAnimales = 36;
+        int cantidadHabitats = 7;
 
         imagenAnimal = new BufferedImage[cantidadAnimales];
         imagenAnimalFlipped = new BufferedImage[cantidadAnimales];
+        fondosZoologico = new BufferedImage[cantidadHabitats];
 
         for(int i=0; i<cantidadAnimales; i++){
             try{
@@ -39,6 +42,15 @@ public class ImageLoader {
             AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
             imagenAnimalFlipped[i] = op.filter(imagenAnimal[i], null);
         }
+
+        for(int i=0; i<cantidadHabitats; i++) {
+            try{
+                fondosZoologico[i] = ImageIO.read(getClass().getClassLoader().getResource("imgFondoZoo"+ i +".png"));
+            }catch (IOException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     /** Método para devolver la instancia unica de ImageLoader */
@@ -56,6 +68,7 @@ public class ImageLoader {
     public BufferedImage getImagenAnimalFlipped(int index){
         return imagenAnimalFlipped[index];
     }
-
-
+    public BufferedImage getImagenFondoZoo(int index){
+        return fondosZoologico[index];
+    }
 }

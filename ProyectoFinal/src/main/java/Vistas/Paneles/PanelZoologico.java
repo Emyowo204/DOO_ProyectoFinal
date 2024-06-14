@@ -1,7 +1,10 @@
 package Vistas.Paneles;
 
+import Modelos.Enumeration.TipoAnimal;
+import Modelos.Utils.Habitat;
 import Modelos.Utils.Zoologico;
 import Vistas.Utils.Boton;
+import Vistas.Utils.ImageLoader;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,6 +19,7 @@ public class PanelZoologico extends JPanel {
     private PanelHabitat[] listaPanelHabitat;
     private PanelHabitat openPanelHabitat;
     private Boton[] selectHabitat;
+    private Boton[] bTiendas;
     private Boton bVolver;
     private BufferedImage ImgBackground;
 
@@ -25,49 +29,51 @@ public class PanelZoologico extends JPanel {
         zoologico = zoo;
         this.setBackground(new Color(25,155,57));
         selectHabitat = new Boton[6];
+        bTiendas = new Boton[4];
         InteraccionHabitat listenerHabitat = new InteraccionHabitat();
+        InteraccionTienda listenerTienda = new InteraccionTienda();
+        ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
         bVolver = new Boton(Color.BLACK,true,"imgBack.png");
-        bVolver.setBounds(50,25,100,50);
         bVolver.addActionListener(listenerHabitat);
         bVolver.setVisible(false);
-        this.add(bVolver);
+        addComp(bVolver,50,25,100,50);
 
-        try {
-            ImgBackground = ImageIO.read(getClass().getClassLoader().getResource("imgFondoZoo.png"));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-
+        int[] yPos = new int[]{250,450,50,50,450,250};
         for(int i=0; i<6; i++) {
             int x = 50+100*i;
-            int y = 250+200*i;
             if(i>2)
                 x += 205;
-            if(i==2 || i==3)
-                y = 50;
-            if(i==4)
-                y =  450;
-            if(i==5)
-                y = 250;
             listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i), i);
             selectHabitat[i] = new Boton(Color.BLACK,true,"imgHabitatLock"+i+".png");
             selectHabitat[i].addActionListener(listenerHabitat);
-            selectHabitat[i].setBounds(x,y,180,120);
-            this.add(selectHabitat[i]);
+            addComp(selectHabitat[i],x,yPos[i],180,120);
         }
+
+        int[] yTPos = new int[]{217,353,353,217};
+        for(int i=0; i<4; i++) {
+            bTiendas[i] = new Boton(Color.BLACK, true, "imgTienda" + i + ".png");
+            bTiendas[i].addActionListener(listenerTienda);
+            addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
+        }
+    }
+
+    public void addComp(Component comp, int x, int y, int width, int height) {
+        comp.setBounds(x,y,width,height);
+        this.add(comp);
     }
 
     public void toggleHabitat() {
         openPanelHabitat.toggleVisible();
         if(openPanelHabitat.getVisible()) {
             PanelLinker.getPanelPrincipal().getMenu().changeHabitat(openPanelHabitat.getHabitat());
+            ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(openPanelHabitat.getHabitat().getTipo().getValue());
             this.add(openPanelHabitat);
             bVolver.setVisible(true);
             for(int i=0; i<6; i++)
                 selectHabitat[i].setVisible(false);
         } else {
             PanelLinker.getPanelPrincipal().getMenu().exitHabitat();
+            ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
             for(int i=0; i<6; i++)
                 selectHabitat[i].setVisible(true);
             bVolver.setVisible(false);
@@ -96,12 +102,16 @@ public class PanelZoologico extends JPanel {
             repaint();
         }
     }
+    private class InteraccionTienda implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+        }
+    }
 
     /** Método para dibujar los componentes de Swing del panel y los sub paneles
      * @param g El objeto grafico que dibuja los componentes */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        if(!bVolver.isVisible())
-            g.drawImage(ImgBackground, 0, 0, this);
+        g.drawImage(ImgBackground, 0, 0, this);
     }
 }
