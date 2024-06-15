@@ -16,7 +16,6 @@ public class PanelHabitat extends JPanel {
     private Habitat habitat;
     private PanelRecinto[] listaPanelRecinto;
     private boolean visible;
-    private BufferedImage ImgBackground;
 
     public PanelHabitat(Habitat habitat, int index) {
         super(null);
@@ -33,11 +32,6 @@ public class PanelHabitat extends JPanel {
             if(i==2)
                 j=230;
         }
-        try {
-            ImgBackground = ImageIO.read(getClass().getClassLoader().getResource("imgHabitat"+index+".png"));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     public void toggleVisible() {
@@ -52,6 +46,5 @@ public class PanelHabitat extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(ImgBackground, 0, 0, this);
     }
 }

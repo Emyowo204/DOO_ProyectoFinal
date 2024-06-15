@@ -1,4 +1,4 @@
-package Modelos.Acuatico;
+package Modelos.Oceano;
 
 import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
@@ -6,12 +6,12 @@ import Vistas.Utils.ImageLoader;
 import java.awt.*;
 import java.util.Random;
 
-public class Orca extends Animal {
+public class Tortuga extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Orca(String nombre) {
-        super(nombre, TipoAnimal.Orca);
+    public Tortuga(String nombre) {
+        super(nombre, TipoAnimal.Tortuga);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
@@ -20,7 +20,7 @@ public class Orca extends Animal {
 
     @Override
     public int getNumImg() {
-        return 21;
+        return 23;
     }
 
     public void moveInPath(){

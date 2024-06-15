@@ -68,19 +68,18 @@ public class PanelZoologico extends JPanel {
 
     public void toggleHabitat() {
         openPanelHabitat.toggleVisible();
+        bVolver.setVisible(openPanelHabitat.getVisible());
+        for(int i=0; i<6; i++)
+            selectHabitat[i].setVisible(!openPanelHabitat.getVisible());
+        for(int j=0; j<4; j++)
+            bTiendas[j].setVisible(!openPanelHabitat.getVisible());
         if(openPanelHabitat.getVisible()) {
             PanelLinker.getPanelPrincipal().getMenu().changeHabitat(openPanelHabitat.getHabitat());
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(openPanelHabitat.getHabitat().getTipo().getValue());
             this.add(openPanelHabitat);
-            bVolver.setVisible(true);
-            for(int i=0; i<6; i++)
-                selectHabitat[i].setVisible(false);
         } else {
             PanelLinker.getPanelPrincipal().getMenu().exitHabitat();
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
-            for(int i=0; i<6; i++)
-                selectHabitat[i].setVisible(true);
-            bVolver.setVisible(false);
             this.remove(openPanelHabitat);
         }
     }

@@ -4,7 +4,7 @@ public enum TipoHabitat {
     Bosque(2000, 1000,0),
     Sabana(2000, 1000,1),
     Selva(2000, 1000,2),
-    Acuatico(2000, 1000,3),
+    Oceano(2000, 1000,3),
     Desierto(2000, 1000,4),
     Artico(2000, 1000,5);
     private int precio;
