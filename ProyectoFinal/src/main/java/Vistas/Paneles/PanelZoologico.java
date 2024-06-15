@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class PanelZoologico extends JPanel {
+
+    private Timer timer;
     private Zoologico zoologico;
     private PanelHabitat[] listaPanelHabitat;
     private PanelHabitat openPanelHabitat;
@@ -25,6 +27,8 @@ public class PanelZoologico extends JPanel {
 
     public PanelZoologico(Zoologico zoo) {
         super(null);
+        timer = new Timer(5000,new EscucharPaga());
+        timer.start();
         listaPanelHabitat = new PanelHabitat[6];
         zoologico = zoo;
         this.setBackground(new Color(25,155,57));
@@ -113,5 +117,14 @@ public class PanelZoologico extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(ImgBackground, 0, 0, this);
+    }
+
+    private class EscucharPaga implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            zoologico.getPaga();
+            PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico.getDinero());
+        }
     }
 }

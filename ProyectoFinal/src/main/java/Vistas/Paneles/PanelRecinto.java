@@ -90,9 +90,7 @@ public class PanelRecinto extends JPanel implements Runnable{
 
     @Override
     public void run() {
-        boolean running = true;
-
-        while(running) {
+        while(true) {
             long startTime = System.currentTimeMillis();
 
             for(int i=0; i< animales.size(); i++){

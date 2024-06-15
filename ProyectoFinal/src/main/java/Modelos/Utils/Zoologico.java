@@ -26,11 +26,11 @@ public class Zoologico {
             recinto.desbloquear();
     }
 
-    public boolean comprarAnimal(Recinto recinto, String nombre) {
-        boolean compra = transaccion(recinto.getTipo().getPrecio(),5);
-        if(compra)
-            recinto.comprarAnimal(nombre);
-        return compra;
+    public void comprarAnimal(Recinto recinto, String nombre) {
+        if(recinto.getCantidadAnimal()<10) {
+            if (transaccion(recinto.getTipo().getPrecio(), 5))
+                recinto.comprarAnimal(nombre);
+        }
     }
 
     public boolean transaccion(int precio, int add) {
@@ -43,7 +43,15 @@ public class Zoologico {
             return false;
         }
     }
-    public int getBonus() { return bonus; }
+    public int getBonus() {
+        return bonus;
+    }
+
+    public void getPaga(){
+        dinero+=bonus;
+    }
     public int getDinero() { return dinero; }
     public Habitat getHabitat(int index) { return listaHabitat[index]; }
+
+
 }

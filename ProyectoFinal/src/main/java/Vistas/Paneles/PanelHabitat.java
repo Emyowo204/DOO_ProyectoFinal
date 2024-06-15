@@ -40,7 +40,9 @@ public class PanelHabitat extends JPanel {
         }
     }
 
-    public void toggleVisible() { visible=!visible; }
+    public void toggleVisible() {
+        visible=!visible;
+    }
     public boolean getVisible() { return visible; }
     public Habitat getHabitat() { return habitat; }
 

@@ -32,4 +32,7 @@ public class Recinto {
     public TipoAnimal getTipo() { return tipo; }
     public boolean getAdquirido() { return adquirido; }
     public Habitat getHabitat() { return habitat; }
+    public int getCantidadAnimal(){
+        return listaAnimales.size();
+    }
 }
