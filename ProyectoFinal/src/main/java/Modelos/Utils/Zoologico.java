@@ -28,7 +28,7 @@ public class Zoologico {
 
     public void comprarAnimal(Recinto recinto, String nombre) {
         if(recinto.getCantidadAnimal()<10) {
-            if (transaccion(recinto.getTipo().getPrecio(), 5))
+            if (transaccion(recinto.getTipo().getPrecio(), recinto.getTipo().getPrecio()*5/100))
                 recinto.comprarAnimal(nombre);
         }
     }

@@ -51,7 +51,7 @@ public class PanelMenu extends JPanel {
         this.add(comp);
     }
     public void updateDinero(int dinero) {
-        cuadroDinero[0].setText(" Dinero: "+dinero+" $");
+        cuadroDinero[0].setText(" Dinero: "+dinero+" $ + "+PanelLinker.getPanelPrincipal().zoologico.getBonus() + " $ in 5 sec");
     }
 
     public void changeHabitat(Habitat habitat) {

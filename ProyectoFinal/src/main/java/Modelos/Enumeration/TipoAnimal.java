@@ -2,11 +2,11 @@ package Modelos.Enumeration;
 
 public enum TipoAnimal {
     Carpintero(100, TipoHabitat.Bosque, TipoComida.Insectos,"Carpintero"),
-    Huemul(100, TipoHabitat.Bosque, TipoComida.Arbustos,"Huemul"),
-    Oso(100, TipoHabitat.Bosque, TipoComida.Pescado,"Oso"),
-    Pudu(100, TipoHabitat.Bosque, TipoComida.Arbustos,"Pudú"),
-    Puma(100, TipoHabitat.Bosque, TipoComida.CarneRoja,"Puma"),
-    Zorro(100, TipoHabitat.Bosque, TipoComida.Roedor,"Zorro"),
+    Huemul(200, TipoHabitat.Bosque, TipoComida.Arbustos,"Huemul"),
+    Oso(250, TipoHabitat.Bosque, TipoComida.Pescado,"Oso"),
+    Pudu(350, TipoHabitat.Bosque, TipoComida.Arbustos,"Pudú"),
+    Puma(350, TipoHabitat.Bosque, TipoComida.CarneRoja,"Puma"),
+    Zorro(450, TipoHabitat.Bosque, TipoComida.Roedor,"Zorro"),
 
     Cebra(100, TipoHabitat.Sabana, TipoComida.Vegetacion,"Cebra"),
     Elefante(100, TipoHabitat.Sabana, TipoComida.Arbustos,"Elefante"),
