@@ -11,8 +11,10 @@ public class Habitat {
     private ArrayList<TipoAnimal> TotalAni;
     private boolean adquirido;
     private boolean comprando;
+    private int penalizacionHabitat;
 
     public Habitat(TipoHabitat tipo, ListaAnimales lista) {
+        penalizacionHabitat = 0;
         this.tipo = tipo;
         adquirido = false;
         comprando = false;
@@ -24,7 +26,19 @@ public class Habitat {
             TotalAni.add(lista.getAnimales()[i]);
         }
     }
+    public void gettingHungry(){
+        for (int i = 0; i < 6; i++) {
+            listaRecintos[i].addHambre();
+        }
+    }
 
+    public int getPenalizacionHabitat(){
+        penalizacionHabitat = 0;
+        for (int i = 0; i < 6; i++) {
+            penalizacionHabitat+=listaRecintos[i].getPenalizacion();
+        }
+        return penalizacionHabitat;
+    }
     public void desbloquear() {
         adquirido = true;
     }

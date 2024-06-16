@@ -5,12 +5,14 @@ import Modelos.Enumeration.*;
 public class Zoologico {
     private Habitat[] listaHabitat;
     private int dinero;
-    private int bonus;
+    private int ganancia;
+    private int penalizacion;
 
     public Zoologico() {
         listaHabitat = new Habitat[6];
         dinero = 10000;
-        bonus = 0;
+        ganancia = 0;
+        penalizacion = 0;
         for(int i=0; i<6; i++) {
             listaHabitat[i] = new Habitat(TipoHabitat.values()[i], ListaAnimales.values()[i]);
         }
@@ -36,19 +38,23 @@ public class Zoologico {
     public boolean transaccion(int precio, int add) {
         if(dinero >= precio) {
             dinero -= precio;
-            bonus += add;
+            ganancia += add;
             return true;
         } else {
             System.out.println("No hay plata xd");
             return false;
         }
     }
-    public int getBonus() {
-        return bonus;
+    public int getGanancia() {
+        return ganancia -penalizacion;
     }
 
     public void getPaga(){
-        dinero+=bonus;
+        dinero+= ganancia -penalizacion;
+    }
+
+    public void setPenalizacion(int x){
+        penalizacion=x;
     }
     public int getDinero() { return dinero; }
     public Habitat getHabitat(int index) { return listaHabitat[index]; }

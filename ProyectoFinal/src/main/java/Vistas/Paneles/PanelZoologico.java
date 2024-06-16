@@ -1,18 +1,14 @@
 package Vistas.Paneles;
 
-import Modelos.Enumeration.TipoAnimal;
-import Modelos.Utils.Habitat;
 import Modelos.Utils.Zoologico;
 import Vistas.Utils.Boton;
 import Vistas.Utils.ImageLoader;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class PanelZoologico extends JPanel {
 
@@ -27,7 +23,7 @@ public class PanelZoologico extends JPanel {
 
     public PanelZoologico(Zoologico zoo) {
         super(null);
-        timer = new Timer(5000,new EscucharPaga());
+        timer = new Timer(5000,new EscucharTiempo());
         timer.start();
         listaPanelHabitat = new PanelHabitat[6];
         zoologico = zoo;
@@ -118,10 +114,17 @@ public class PanelZoologico extends JPanel {
         g.drawImage(ImgBackground, 0, 0, this);
     }
 
-    private class EscucharPaga implements ActionListener{
+    private class EscucharTiempo implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            int penalizacion = 0;
+            for (int i = 0; i < 6; i++) {
+                zoologico.getHabitat(i).gettingHungry();
+                penalizacion += zoologico.getHabitat(i).getPenalizacionHabitat();
+            }
+            zoologico.setPenalizacion(penalizacion);
             zoologico.getPaga();
             PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico.getDinero());
         }
