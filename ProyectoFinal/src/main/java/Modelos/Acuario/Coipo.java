@@ -1,4 +1,4 @@
-package Modelos.Oceano;
+package Modelos.Acuario;
 
 import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;

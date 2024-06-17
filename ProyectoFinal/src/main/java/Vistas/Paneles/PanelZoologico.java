@@ -51,7 +51,7 @@ public class PanelZoologico extends JPanel {
 
         int[] yTPos = new int[]{217,353,353,217};
         for(int i=0; i<4; i++) {
-            bTiendas[i] = new Boton(Color.BLACK, true, "imgTienda" + i + ".png");
+            bTiendas[i] = new Boton(Color.BLACK, true, "imgTiendaLock" + i + ".png");
             bTiendas[i].addActionListener(listenerTienda);
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
         }
@@ -70,7 +70,7 @@ public class PanelZoologico extends JPanel {
         for(int j=0; j<4; j++)
             bTiendas[j].setVisible(!openPanelHabitat.getVisible());
         if(openPanelHabitat.getVisible()) {
-            PanelLinker.getPanelPrincipal().getMenu().changeHabitat(openPanelHabitat.getHabitat());
+            PanelLinker.getPanelPrincipal().getMenu().enterHabitat(openPanelHabitat.getHabitat());
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(openPanelHabitat.getHabitat().getTipo().getValue());
             this.add(openPanelHabitat);
         } else {
@@ -104,6 +104,14 @@ public class PanelZoologico extends JPanel {
     private class InteraccionTienda implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
+            for(int i=0; i<4; i++) {
+                if(event.getSource() == bTiendas[i]) {
+                    zoologico.comprarTienda(i);
+                    PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico.getDinero());
+                }
+                if(zoologico.getTienda(i))
+                    bTiendas[i].changeImage("imgTienda"+i+".png");
+            }
         }
     }
 

@@ -24,22 +24,24 @@ public class PanelMenu extends JPanel {
         this.setBackground(Color.LIGHT_GRAY);
         listenerAnimal = new SelectAnimal();
         selectAnimal = new ArrayList<>();
-        cuadroDinero = new CuadroTexto[2];
+        cuadroDinero = new CuadroTexto[3];
         for(int i=0; i<6; i++)
             selectAnimal.add(new ArrayList<>());
 
         cuadroDinero[0] = new CuadroTexto(" Dinero: "+new Zoologico().getDinero()+ "$", "Arial", 1);
-        cuadroDinero[1] = new CuadroTexto("", "Arial", 1);
+        cuadroDinero[1] = new CuadroTexto(" Ganancias: 0", "Arial", 1);
+        cuadroDinero[2] = new CuadroTexto("", "Arial", 1);
         addComp(cuadroDinero[0],20,20,240,20);
-        addComp(new CuadroTexto(" v Seleccione Animal:", "Arial", 1), 20,60,240,20);
+        addComp(cuadroDinero[1],20,45,240,20);
+        addComp(new CuadroTexto(" v Seleccione Animal:", "Arial", 1), 20,90,240,20);
         addAnimal = new PopupSelect(" Seleccione un Habitat", Color.WHITE, Color.BLACK, "Arial", 0);
-        addComp(addAnimal,20,85,240,20);
-        addComp(new CuadroTexto(" v Inserte Nombre:","Arial", 1), 20,130,240,20);
+        addComp(addAnimal,20,115,240,20);
+        addComp(new CuadroTexto(" v Inserte Nombre:","Arial", 1), 20,160,240,20);
         insertText = new ZonaTexto(" Seleccione un Habitat","Arial", 0);
-        addComp(insertText,20,155,240,20);
-        addComp(cuadroDinero[1],  20,200,240,20);
+        addComp(insertText,20,185,240,20);
+        addComp(cuadroDinero[2],  20,230,240,20);
         comprarAnimal = new Boton(Color.BLACK, true, "imgAdoptar.png");
-        addComp(comprarAnimal,20,225,240,50);
+        addComp(comprarAnimal,20,255,240,50);
         comprarAnimal.addActionListener(new MenuOptions());
         addAnimal.setUse(false);
         comprarAnimal.setEnabled(false);
@@ -51,10 +53,11 @@ public class PanelMenu extends JPanel {
         this.add(comp);
     }
     public void updateDinero(int dinero) {
-        cuadroDinero[0].setText(" Dinero: "+dinero+" $ + "+PanelLinker.getPanelPrincipal().zoologico.getGanancia() + " $ in 5 sec");
+        cuadroDinero[0].setText(" Dinero: "+dinero+" $");
+        cuadroDinero[1].setText(" Ganancias: +"+PanelLinker.getPanelPrincipal().zoologico.getGanancia() + " $ /5 seg");
     }
 
-    public void changeHabitat(Habitat habitat) {
+    public void enterHabitat(Habitat habitat) {
         this.habitat = habitat;
         tipoAnimal = null;
         addAnimal.setUse(true);
@@ -70,7 +73,7 @@ public class PanelMenu extends JPanel {
         addAnimal.setUse(false);
         insertText.setText(" Seleccione un Habitat");
         insertText.setEnabled(false);
-        cuadroDinero[1].setText("");
+        cuadroDinero[2].setText("");
         comprarAnimal.setEnabled(false);
     }
     public void updatePopup() {
@@ -91,7 +94,7 @@ public class PanelMenu extends JPanel {
                     tipoAnimal = habitat.getUnlocked().get(i);
                     addAnimal.setText(" "+tipoAnimal.getNombre());
                     insertText.setText(tipoAnimal.getNombre());
-                    cuadroDinero[1].setText(" Precio: "+tipoAnimal.getPrecio()+" $");
+                    cuadroDinero[2].setText(" Precio: "+tipoAnimal.getPrecio()+" $");
                     comprarAnimal.setEnabled(true);
                 }
             }

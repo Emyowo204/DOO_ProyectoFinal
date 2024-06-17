@@ -22,12 +22,12 @@ public enum TipoAnimal {
     Pantera(100, TipoHabitat.Selva, TipoComida.CarneRoja,"Pantera"),
     Serpiente(100, TipoHabitat.Selva, TipoComida.Roedor,"Serpiente"),
 
-    Coipo(100, TipoHabitat.Oceano, TipoComida.Arbustos,"Coipo"),
-    Delfin(100, TipoHabitat.Oceano, TipoComida.Pescado,"Delfín"),
-    LoboMarino(100, TipoHabitat.Oceano, TipoComida.Pescado,"Lobo marino"),
-    Orca(100, TipoHabitat.Oceano, TipoComida.CarneRoja,"Orca"),
-    Tiburon(100, TipoHabitat.Oceano, TipoComida.Pescado,"Tiburón"),
-    Tortuga(100, TipoHabitat.Oceano, TipoComida.Vegetacion,"Tortuga"),
+    Coipo(100, TipoHabitat.Acuario, TipoComida.Arbustos,"Coipo"),
+    Delfin(100, TipoHabitat.Acuario, TipoComida.Pescado,"Delfín"),
+    LoboMarino(100, TipoHabitat.Acuario, TipoComida.Pescado,"Lobo marino"),
+    Orca(100, TipoHabitat.Acuario, TipoComida.CarneRoja,"Orca"),
+    Tiburon(100, TipoHabitat.Acuario, TipoComida.Pescado,"Tiburón"),
+    Tortuga(100, TipoHabitat.Acuario, TipoComida.Vegetacion,"Tortuga"),
 
     Avestruz(100, TipoHabitat.Desierto, TipoComida.Frutos,"Avestruz"),
     Camello(100, TipoHabitat.Desierto, TipoComida.Vegetacion,"Camello"),

@@ -3,7 +3,7 @@ package Modelos.Utils;
 import Modelos.Bosque.*;
 import Modelos.Sabana.*;
 import Modelos.Selva.*;
-import Modelos.Oceano.*;
+import Modelos.Acuario.*;
 import Modelos.Desierto.*;
 import Modelos.Artico.*;
 import Modelos.Enumeration.*;
@@ -52,7 +52,7 @@ public class AnimalFactory {
             } else {
                 return new Serpiente(nombre);
             }
-        } else if(tipo.getHabitat() == TipoHabitat.Oceano) {
+        } else if(tipo.getHabitat() == TipoHabitat.Acuario) {
             if (tipo == TipoAnimal.Coipo) {
                 return new Coipo(nombre);
             } else if (tipo == TipoAnimal.Delfin) {

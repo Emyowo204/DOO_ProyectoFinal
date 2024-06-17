@@ -20,7 +20,6 @@ public class ImageLoader {
     private static BufferedImage[] imagenAnimalFlipped;
     private static BufferedImage[] fondosZoologico;
 
-
     /** Constructor privado donde se cargan las Imágenes */
     private ImageLoader() {
 

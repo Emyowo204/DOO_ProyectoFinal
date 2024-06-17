@@ -1,4 +1,4 @@
-package Modelos.Oceano;
+package Modelos.Acuario;
 
 import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
@@ -6,12 +6,12 @@ import Vistas.Utils.ImageLoader;
 import java.awt.*;
 import java.util.Random;
 
-public class Delfin extends Animal {
+public class LoboMarino extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Delfin(String nombre) {
-        super(nombre, TipoAnimal.Delfin);
+    public LoboMarino(String nombre) {
+        super(nombre, TipoAnimal.LoboMarino);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
@@ -20,14 +20,13 @@ public class Delfin extends Animal {
 
     @Override
     public int getNumImg() {
-        return 19;
+        return 20;
     }
 
     public void moveInPath(){
         if(moveTime>200||moveTime<0){
             moveSpeed=-moveSpeed;
             swapFlipped();
-
         }
 
         moveTime+=moveSpeed;

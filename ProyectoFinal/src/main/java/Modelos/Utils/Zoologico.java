@@ -7,15 +7,25 @@ public class Zoologico {
     private int dinero;
     private int ganancia;
     private int penalizacion;
+    private boolean[] tiendas;
 
     public Zoologico() {
         listaHabitat = new Habitat[6];
+        tiendas = new boolean[4];
         dinero = 10000;
         ganancia = 0;
         penalizacion = 0;
         for(int i=0; i<6; i++) {
             listaHabitat[i] = new Habitat(TipoHabitat.values()[i], ListaAnimales.values()[i]);
         }
+        for(int i=0; i<4; i++) {
+            tiendas[i] = false;
+        }
+    }
+
+    public void comprarTienda(int index) {
+        if(transaccion(3000,30))
+            tiendas[index] = true;
     }
 
     public void comprarHabitat(int index) {
@@ -58,6 +68,7 @@ public class Zoologico {
     }
     public int getDinero() { return dinero; }
     public Habitat getHabitat(int index) { return listaHabitat[index]; }
+    public boolean getTienda(int index) { return tiendas[index]; }
 
 
 }
