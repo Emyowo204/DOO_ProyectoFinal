@@ -17,17 +17,17 @@ public class PanelHabitat extends JPanel {
     private PanelRecinto[] listaPanelRecinto;
     private boolean visible;
 
-    public PanelHabitat(Habitat habitat, int index) {
+    public PanelHabitat(Habitat habitat) {
         super(null);
         this.habitat = habitat;
         visible = false;
-        this.setBackground(new Color(207,163,44));
-        this.setBounds(50,100,900,520);
+        this.setOpaque(false);
+        this.setBounds(43,100,914,522);
         listaPanelRecinto = new PanelRecinto[6];
         int j=0;
         for(int i=0; i<6; i++) {
             listaPanelRecinto[i] = new PanelRecinto(habitat.getRecinto(i));
-            listaPanelRecinto[i].setBounds(50+275*(i%3),45+j,250,200);
+            listaPanelRecinto[i].setBounds(51+279*(i%3),46+j,254,200);
             this.add(listaPanelRecinto[i]);
             if(i==2)
                 j=230;

@@ -11,14 +11,13 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class PanelZoologico extends JPanel {
-
     private Timer timer;
     private Zoologico zoologico;
     private PanelHabitat[] listaPanelHabitat;
     private PanelHabitat openPanelHabitat;
     private Boton[] selectHabitat;
     private Boton[] bTiendas;
-    private Boton bVolver;
+    private Boton[] bOpciones;
     private BufferedImage ImgBackground;
 
     public PanelZoologico(Zoologico zoo) {
@@ -30,20 +29,21 @@ public class PanelZoologico extends JPanel {
         this.setBackground(new Color(25,155,57));
         selectHabitat = new Boton[6];
         bTiendas = new Boton[4];
+        bOpciones = new Boton[2];
         InteraccionHabitat listenerHabitat = new InteraccionHabitat();
         InteraccionTienda listenerTienda = new InteraccionTienda();
         ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
-        bVolver = new Boton(Color.BLACK,true,"imgBack.png");
-        bVolver.addActionListener(listenerHabitat);
-        bVolver.setVisible(false);
-        addComp(bVolver,50,25,100,50);
-
+        bOpciones[0] = new Boton(Color.BLACK,true,"imgBack.png");
+        bOpciones[1] = new Boton(Color.BLACK,true,"imgOpDinero.png");
+        bOpciones[0].addActionListener(listenerHabitat);
+        bOpciones[1].addActionListener(listenerTienda);
+        bOpciones[0].setVisible(false);
         int[] yPos = new int[]{250,450,50,50,450,250};
         for(int i=0; i<6; i++) {
             int x = 50+100*i;
             if(i>2)
                 x += 205;
-            listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i), i);
+            listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i));
             selectHabitat[i] = new Boton(Color.BLACK,true,"imgHabitatLock"+i+".png");
             selectHabitat[i].addActionListener(listenerHabitat);
             addComp(selectHabitat[i],x,yPos[i],180,120);
@@ -51,6 +51,8 @@ public class PanelZoologico extends JPanel {
 
         int[] yTPos = new int[]{217,353,353,217};
         for(int i=0; i<4; i++) {
+            if(i<2)
+                addComp(bOpciones[i],43+813*i,25,100,50);
             bTiendas[i] = new Boton(Color.BLACK, true, "imgTiendaLock" + i + ".png");
             bTiendas[i].addActionListener(listenerTienda);
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
@@ -64,7 +66,7 @@ public class PanelZoologico extends JPanel {
 
     public void toggleHabitat() {
         openPanelHabitat.toggleVisible();
-        bVolver.setVisible(openPanelHabitat.getVisible());
+        bOpciones[0].setVisible(openPanelHabitat.getVisible());
         for(int i=0; i<6; i++)
             selectHabitat[i].setVisible(!openPanelHabitat.getVisible());
         for(int j=0; j<4; j++)
@@ -104,6 +106,11 @@ public class PanelZoologico extends JPanel {
     private class InteraccionTienda implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
+            if(event.getSource()==bOpciones[1]){
+                zoologico.addPaga(1000);
+                PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico.getDinero());
+                return;
+            }
             for(int i=0; i<4; i++) {
                 if(event.getSource() == bTiendas[i]) {
                     zoologico.comprarTienda(i);
