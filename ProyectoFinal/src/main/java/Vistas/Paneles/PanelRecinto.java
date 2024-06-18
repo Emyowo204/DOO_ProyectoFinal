@@ -15,13 +15,13 @@ import java.util.ArrayList;
  * @author Emily Osvaldo Gaete Bobadilla */
 
 public class PanelRecinto extends JPanel implements Runnable{
-    private BufferedImage ImgBackground;
     private Recinto recinto;
     private Thread thread;
     private ArrayList<Animal> animales;
     private PanelSelect panelSelect;
     private Boton[] selectButtons;
     private Boton botonComprar;
+    private Boton botonInfo;
 
     public PanelRecinto(Recinto recinto) {
         super(null);
@@ -30,9 +30,10 @@ public class PanelRecinto extends JPanel implements Runnable{
         this.setBackground(Color.WHITE);
         InteraccionRecinto listenerRecinto = new InteraccionRecinto();
         botonComprar = new Boton(Color.BLACK, true, "imgComprarRecinto.png");
-        botonComprar.setBounds(25,50,200,100);
         botonComprar.addActionListener(listenerRecinto);
-        this.add(botonComprar);
+        addComp(botonComprar,25,50,200,100);
+        botonInfo = new Boton(Color.BLACK, true, "imgBotonInfo.png");
+        botonInfo.addActionListener(new InformacionAnimal());
         panelSelect = new PanelSelect(25,50,200,100,recinto.getHabitat().getTotal());
         panelSelect.addBotones(selectButtons = new Boton[6], recinto.getHabitat().getTipo().getValue()*6);
         for(int i=0; i<6; i++)
@@ -41,6 +42,11 @@ public class PanelRecinto extends JPanel implements Runnable{
         this.add(panelSelect);
         thread = new Thread(this);
         thread.start();
+    }
+
+    public void addComp(Component comp, int x, int y, int width, int height) {
+        comp.setBounds(x,y,width,height);
+        this.add(comp);
     }
 
     public void togglePanelSelect() {
@@ -52,6 +58,13 @@ public class PanelRecinto extends JPanel implements Runnable{
         } else {
             recinto.getHabitat().setComprando(false);
             this.remove(panelSelect);
+        }
+    }
+
+    private class InformacionAnimal implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            System.out.println("Info");
         }
     }
 
@@ -71,6 +84,7 @@ public class PanelRecinto extends JPanel implements Runnable{
                 if(event.getSource()==selectButtons[i]) {
                     recinto.asignarAnimal(recinto.getHabitat().getTotal().get(i));
                     PanelLinker.getPanelPrincipal().getMenu().updatePopup();
+                    addComp(botonInfo,5,5,40,40);
                     togglePanelSelect();
                     break;
                 }
