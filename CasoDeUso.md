@@ -1,0 +1,3 @@
+Crear un “Simulador de zoológico” donde puedas comprar distintos hábitats con recintos donde puedas poner animales.El zoológico generará ingresos al expandirlo, comprando hábitats, recintos, animales y otros negocios.
+Los animales pueden ser alimentados, si no, se descontará de los ingresos multas de maltrato animal.Para adoptar los animales se les debe dar nombre y pagar.
+ Cada tipo de animal tiene su alimento, que se podrá comprar y dar a estos. Además se podrá ver la información de estos.
