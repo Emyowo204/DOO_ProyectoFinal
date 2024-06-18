@@ -43,7 +43,6 @@ public enum TipoAnimal {
     Pinguino(100, TipoHabitat.Artico, TipoComida.Pescado,"Pingüino"),
     ZorroArtico(100, TipoHabitat.Artico, TipoComida.Roedor,"Zorro ártico");
 
-
     private int precio;
     private TipoHabitat tipoHabitat;
     private TipoComida comida;

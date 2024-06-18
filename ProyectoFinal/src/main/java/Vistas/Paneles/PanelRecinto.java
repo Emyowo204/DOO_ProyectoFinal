@@ -22,6 +22,7 @@ public class PanelRecinto extends JPanel implements Runnable{
     private Boton[] selectButtons;
     private Boton botonComprar;
     private Boton botonInfo;
+    private Boton bAlimento;
 
     public PanelRecinto(Recinto recinto) {
         super(null);
@@ -29,11 +30,14 @@ public class PanelRecinto extends JPanel implements Runnable{
         animales = this.recinto.getListaAnimales();
         this.setBackground(Color.WHITE);
         InteraccionRecinto listenerRecinto = new InteraccionRecinto();
+        OpcionesAnimal listenerOpciones = new OpcionesAnimal();
         botonComprar = new Boton(Color.BLACK, true, "imgComprarRecinto.png");
         botonComprar.addActionListener(listenerRecinto);
         addComp(botonComprar,25,50,200,100);
         botonInfo = new Boton(Color.BLACK, true, "imgBotonInfo.png");
-        botonInfo.addActionListener(new InformacionAnimal());
+        botonInfo.addActionListener(listenerOpciones);
+        bAlimento = new Boton(Color.BLACK, true, "imgBotonInfo.png");
+        bAlimento.addActionListener(listenerOpciones);
         panelSelect = new PanelSelect(25,50,200,100,recinto.getHabitat().getTotal());
         panelSelect.addBotones(selectButtons = new Boton[6], recinto.getHabitat().getTipo().getValue()*6);
         for(int i=0; i<6; i++)
@@ -61,10 +65,15 @@ public class PanelRecinto extends JPanel implements Runnable{
         }
     }
 
-    private class InformacionAnimal implements ActionListener {
+    private class OpcionesAnimal implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            System.out.println("Info");
+            if(event.getSource() == botonInfo)
+                System.out.println("Info");
+            else {
+                PanelLinker.getPanelPrincipal().getZoologico().alimentar(recinto);
+                PanelLinker.getPanelPrincipal().getMenu().getPanelComida().updateTexto(recinto.getTipo().getComida());
+            }
         }
     }
 
@@ -85,6 +94,7 @@ public class PanelRecinto extends JPanel implements Runnable{
                     recinto.asignarAnimal(recinto.getHabitat().getTotal().get(i));
                     PanelLinker.getPanelPrincipal().getMenu().updatePopup();
                     addComp(botonInfo,5,5,40,40);
+                    addComp(bAlimento,209,5,40,40);
                     togglePanelSelect();
                     break;
                 }

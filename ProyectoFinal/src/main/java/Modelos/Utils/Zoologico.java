@@ -9,10 +9,12 @@ public class Zoologico {
     private int penalizacion;
     private boolean[] tiendas;
     private int multTiendas;
+    private Almacen almacen;
 
     public Zoologico() {
         listaHabitat = new Habitat[6];
         tiendas = new boolean[4];
+        almacen = new Almacen();
         dinero = 10000;
         ganancia = 0;
         penalizacion = 0;
@@ -32,6 +34,20 @@ public class Zoologico {
         }
     }
 
+    public void comprarAlimento(TipoComida comida) {
+        if(transaccion(comida.getPrecio(),0))
+            almacen.addComida(comida);
+    }
+
+    public void alimentar(Recinto recinto) {
+        TipoComida comida = recinto.getTipo().getComida();
+        if(almacen.getCantidad(comida) > 0) {
+            almacen.removeComida(comida);
+            recinto.alimentarAnimales();
+        } else
+            System.out.println("No hay comida");
+    }
+
     public void comprarHabitat(int index) {
         if(transaccion(listaHabitat[index].getTipo().getPrecio(),20))
             listaHabitat[index].desbloquear();
@@ -49,10 +65,10 @@ public class Zoologico {
         }
     }
 
-    public boolean transaccion(int precio, int add) {
+    public boolean transaccion(int precio, int bonus) {
         if(dinero >= precio) {
             dinero -= precio;
-            ganancia += add;
+            ganancia += bonus;
             return true;
         } else {
             System.out.println("No hay plata xd");
@@ -73,8 +89,8 @@ public class Zoologico {
     public int getDinero() { return dinero; }
     public Habitat getHabitat(int index) { return listaHabitat[index]; }
     public boolean getTienda(int index) { return tiendas[index]; }
-
     public void addPaga(int pago) { dinero+=pago; }
+    public Almacen getAlmacen() { return almacen; }
 
 
 }

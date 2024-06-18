@@ -18,6 +18,7 @@ public class PanelMenu extends JPanel {
     private SelectAnimal listenerAnimal;
     private ZonaTexto insertText;
     private CuadroTexto[] cuadroDinero;
+    private PanelComida panelComida;
 
     public PanelMenu() {
         super(null);
@@ -28,8 +29,10 @@ public class PanelMenu extends JPanel {
         for(int i=0; i<6; i++)
             selectAnimal.add(new ArrayList<>());
 
+        panelComida = new PanelComida();
+        addComp(panelComida,20,320,240,360);
         cuadroDinero[0] = new CuadroTexto(" Dinero: "+new Zoologico().getDinero()+" $", "Arial", 1);
-        cuadroDinero[1] = new CuadroTexto(" Ganancias: 0 $ /5 seg", "Arial", 1);
+        cuadroDinero[1] = new CuadroTexto(" Ganancias: +0 $ /5 seg", "Arial", 1);
         cuadroDinero[2] = new CuadroTexto("", "Arial", 1);
         addComp(cuadroDinero[0],20,20,240,20);
         addComp(cuadroDinero[1],20,45,240,20);
@@ -84,6 +87,8 @@ public class PanelMenu extends JPanel {
             selectAnimal.get(index).get(i).addActionListener(listenerAnimal);
         }
     }
+
+    public PanelComida getPanelComida() { return panelComida; }
 
     private class SelectAnimal implements ActionListener {
         @Override
