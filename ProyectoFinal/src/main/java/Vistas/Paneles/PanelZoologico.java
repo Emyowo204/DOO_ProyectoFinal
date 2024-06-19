@@ -127,13 +127,15 @@ public class PanelZoologico extends JPanel {
                 return;
             }
             for(int i=0; i<4; i++) {
-                if(event.getSource() == bTiendas[i]) {
+                if(event.getSource() == bTiendas[i] && !zoologico.getTienda(i)) {
                     zoologico.comprarTienda(i);
                     PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
-                }
-                if(zoologico.getTienda(i)) {
-                    bTiendas[i].changeImage("Tienda/imgTienda" + i + ".png");
-                    precioTiendas.setText(" Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
+                    if(zoologico.getTienda(i)) {
+                        bTiendas[i].changeImage("Tienda/imgTienda" + i + ".png");
+                        precioTiendas.setText(" Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
+                        if(zoologico.getCantidadTiendas()==4)
+                            precioTiendas.setText("Tiendas compradas");
+                    }
                 }
             }
         }

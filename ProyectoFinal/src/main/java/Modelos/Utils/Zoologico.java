@@ -30,12 +30,10 @@ public class Zoologico {
     }
 
     public void comprarTienda(int index) {
-        if(!tiendas[index]) {
-            if (transaccion(precioTienda, 5)) {
-                tiendas[index] = true;
-                multTiendas++;
-                precioTienda = precioTienda + (1500 * multTiendas / 4);
-            }
+        if (transaccion(precioTienda, 5)) {
+            tiendas[index] = true;
+            multTiendas++;
+            precioTienda = precioTienda + (1500 * multTiendas / 4);
         }
     }
 
@@ -95,6 +93,7 @@ public class Zoologico {
     public void addPaga(int pago) { dinero+=pago; }
     public Almacen getAlmacen() { return almacen; }
     public int getPrecioTienda() { return precioTienda; }
+    public int getCantidadTiendas() { return multTiendas; }
 
 
 }
