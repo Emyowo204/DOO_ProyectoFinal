@@ -31,8 +31,7 @@ public class PanelMenu extends JPanel {
         for(int i=0; i<6; i++)
             selectAnimal.add(new ArrayList<>());
 
-        panelComida = new PanelComida();
-        addComp(panelComida,20,325,240,400);
+        panelComida = null;
         cuadroDinero[0] = new CuadroTexto(" Dinero: "+new Zoologico().getDinero()+" $", "Arial", 1);
         cuadroDinero[1] = new CuadroTexto(" Ganancias: +0 $ /5 seg", "Arial", 1);
         cuadroDinero[2] = new CuadroTexto("", "Arial", 1);
@@ -61,6 +60,14 @@ public class PanelMenu extends JPanel {
     public void updateDinero(Zoologico zoo) {
         cuadroDinero[0].setText(" Dinero: "+zoo.getDinero()+" $");
         cuadroDinero[1].setText(" Ganancias: +"+zoo.getGanancia() + " $ /5 seg");
+    }
+
+    public void addPanelComida() {
+        if(panelComida==null) {
+            panelComida = new PanelComida();
+            addComp(panelComida, 20, 325, 240, 400);
+            repaint();
+        }
     }
 
     public void enterHabitat(Habitat habitat) {

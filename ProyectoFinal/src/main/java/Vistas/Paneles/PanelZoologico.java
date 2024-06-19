@@ -2,6 +2,7 @@ package Vistas.Paneles;
 
 import Modelos.Utils.Zoologico;
 import Vistas.Utils.Boton;
+import Vistas.Utils.CuadroTexto;
 import Vistas.Utils.ImageLoader;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class PanelZoologico extends JPanel {
     private Boton[] selectHabitat;
     private Boton[] bTiendas;
     private Boton[] bOpciones;
+    private CuadroTexto precioTiendas;
     private BufferedImage ImgBackground;
 
     public PanelZoologico(Zoologico zoo) {
@@ -59,6 +61,8 @@ public class PanelZoologico extends JPanel {
             bTiendas[i].addActionListener(listenerTienda);
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
         }
+        precioTiendas = new CuadroTexto(" Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial", 1, false);
+        addComp(precioTiendas,20,601,200,20);
     }
 
     public void addComp(Component comp, int x, int y, int width, int height) {
@@ -101,6 +105,7 @@ public class PanelZoologico extends JPanel {
                         if(listaPanelHabitat[i].getHabitat().isAdquirido()) {
                             PanelLinker.getPanelPrincipal().getMenu().updateDinero(zoologico);
                             selectHabitat[i].changeImage("imgHabitat" + i + ".png");
+                            PanelLinker.getPanelPrincipal().getMenu().addPanelComida();
                         }
                         return;
                     }
@@ -125,8 +130,10 @@ public class PanelZoologico extends JPanel {
                     zoologico.comprarTienda(i);
                     PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
                 }
-                if(zoologico.getTienda(i))
-                    bTiendas[i].changeImage("Tienda/imgTienda"+i+".png");
+                if(zoologico.getTienda(i)) {
+                    bTiendas[i].changeImage("Tienda/imgTienda" + i + ".png");
+                    precioTiendas.setText(" Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
+                }
             }
         }
     }
