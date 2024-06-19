@@ -73,6 +73,7 @@ public class PanelZoologico extends JPanel {
     public void toggleHabitat() {
         openPanelHabitat.toggleVisible();
         bOpciones[0].setVisible(openPanelHabitat.getVisible());
+        precioTiendas.setVisible(!openPanelHabitat.getVisible());
         for(int i=0; i<6; i++)
             selectHabitat[i].setVisible(!openPanelHabitat.getVisible());
         for(int j=0; j<4; j++)
