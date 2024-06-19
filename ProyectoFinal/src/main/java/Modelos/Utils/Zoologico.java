@@ -44,8 +44,7 @@ public class Zoologico {
         if(almacen.getCantidad(comida) > 0) {
             almacen.removeComida(comida);
             recinto.alimentarAnimales();
-        } else
-            System.out.println("No hay comida");
+        }
     }
 
     public void comprarHabitat(int index) {
@@ -71,7 +70,6 @@ public class Zoologico {
             ganancia += bonus;
             return true;
         } else {
-            System.out.println("No hay plata xd");
             return false;
         }
     }
