@@ -26,11 +26,6 @@ public class Habitat {
             TotalAni.add(lista.getAnimales()[i]);
         }
     }
-    public void gettingHungry(){
-        for (int i = 0; i < 6; i++) {
-            listaRecintos[i].addHambre();
-        }
-    }
 
     public int getPenalizacionHabitat(){
         penalizacionHabitat = 0;

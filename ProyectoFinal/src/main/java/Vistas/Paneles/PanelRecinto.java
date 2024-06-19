@@ -64,6 +64,12 @@ public class PanelRecinto extends JPanel implements Runnable{
             this.remove(panelSelect);
         }
     }
+    public void setAlertHambre(boolean alert) {
+        if(alert)
+            bAlimento.changeImage("Comida/imgAliAlert"+recinto.getTipo().getComida().getValue()+".png");
+        else
+            bAlimento.changeImage("Comida/imgAlimento"+recinto.getTipo().getComida().getValue()+".png");
+    }
 
     private class OpcionesAnimal implements ActionListener {
         @Override
@@ -73,6 +79,7 @@ public class PanelRecinto extends JPanel implements Runnable{
             else {
                 PanelLinker.getPanelPrincipal().getZoologico().alimentar(recinto);
                 PanelLinker.getPanelPrincipal().getMenu().getPanelComida().updateTexto(recinto.getTipo().getComida());
+                setAlertHambre(recinto.getPenalizacion()>0);
             }
         }
     }
@@ -84,7 +91,7 @@ public class PanelRecinto extends JPanel implements Runnable{
                 PanelLinker.getPanelPrincipal().getZoologico().comprarRecinto(recinto);
                 if(recinto.getAdquirido()) {
                     PanelPrincipal panelP = PanelLinker.getPanelPrincipal();
-                    panelP.getMenu().updateDinero(panelP.getZoologico().getDinero());
+                    panelP.getMenu().updateDinero(panelP.getZoologico());
                     togglePanelSelect();
                 }
                 return;

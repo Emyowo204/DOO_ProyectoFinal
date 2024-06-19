@@ -40,6 +40,9 @@ public class PanelHabitat extends JPanel {
     public boolean getVisible() { return visible; }
     public Habitat getHabitat() { return habitat; }
 
+    public PanelRecinto getPanelRecinto(int index) {
+        return listaPanelRecinto[index];
+    }
 
     /** Método para dibujar los componentes de Swing del panel
      * @param g El objeto grafico que dibuja los componentes */

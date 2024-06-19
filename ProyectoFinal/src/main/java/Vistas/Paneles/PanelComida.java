@@ -20,7 +20,7 @@ public class PanelComida extends JPanel {
         cTexto = new CuadroTexto[7];
         ComparComida comprarComida = new ComparComida();
 
-        CuadroTexto titulo =  new CuadroTexto(" Comprar Alimento:", "Arial", 1);
+        CuadroTexto titulo =  new CuadroTexto("Comprar Alimento:", "Arial", 1, false);
         titulo.setBounds(0,0,240,20);
         this.add(titulo);
 
@@ -49,7 +49,7 @@ public class PanelComida extends JPanel {
                     Zoologico zoo = PanelLinker.getPanelPrincipal().getZoologico();
                     zoo.comprarAlimento(TipoComida.values()[i]);
                     updateTexto(TipoComida.values()[i]);
-                    PanelLinker.getPanelPrincipal().getMenu().updateDinero(zoo.getDinero());
+                    PanelLinker.getPanelPrincipal().getMenu().updateDinero(zoo);
                 }
             }
         }

@@ -55,7 +55,7 @@ public class PanelZoologico extends JPanel {
         for(int i=0; i<4; i++) {
             if(i<2)
                 addComp(bOpciones[i],43+813*i,25,100,50);
-            bTiendas[i] = new Boton(Color.BLACK, true, "imgTiendaLock" + i + ".png");
+            bTiendas[i] = new Boton(Color.BLACK, true, "Tienda/imgTiendaLock" + i + ".png");
             bTiendas[i].addActionListener(listenerTienda);
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
         }
@@ -84,6 +84,13 @@ public class PanelZoologico extends JPanel {
         }
     }
 
+    public void setAlertHambre(int index, boolean alert) {
+        if(alert)
+            selectHabitat[index].changeImage("imgHabitatAlert"+index+".png");
+        else
+            selectHabitat[index].changeImage("imgHabitat"+index+".png");
+    }
+
     private class InteraccionHabitat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -92,7 +99,7 @@ public class PanelZoologico extends JPanel {
                     if(!listaPanelHabitat[i].getHabitat().isAdquirido()) {
                         zoologico.comprarHabitat(i);
                         if(listaPanelHabitat[i].getHabitat().isAdquirido()) {
-                            PanelLinker.getPanelPrincipal().getMenu().updateDinero(zoologico.getDinero());
+                            PanelLinker.getPanelPrincipal().getMenu().updateDinero(zoologico);
                             selectHabitat[i].changeImage("imgHabitat" + i + ".png");
                         }
                         return;
@@ -110,16 +117,16 @@ public class PanelZoologico extends JPanel {
         public void actionPerformed(ActionEvent event) {
             if(event.getSource()==bOpciones[1]){
                 zoologico.addPaga(1000);
-                PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico.getDinero());
+                PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
                 return;
             }
             for(int i=0; i<4; i++) {
                 if(event.getSource() == bTiendas[i]) {
                     zoologico.comprarTienda(i);
-                    PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico.getDinero());
+                    PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
                 }
                 if(zoologico.getTienda(i))
-                    bTiendas[i].changeImage("imgTienda"+i+".png");
+                    bTiendas[i].changeImage("Tienda/imgTienda"+i+".png");
             }
         }
     }
@@ -138,12 +145,21 @@ public class PanelZoologico extends JPanel {
 
             int penalizacion = 0;
             for (int i = 0; i < 6; i++) {
-                zoologico.getHabitat(i).gettingHungry();
-                penalizacion += zoologico.getHabitat(i).getPenalizacionHabitat();
+                if(zoologico.getHabitat(i).isAdquirido()) {
+                    for (int j = 0; j < 6; j++) {
+                        if (zoologico.getHabitat(i).getRecinto(j).getAdquirido()) {
+                            zoologico.getHabitat(i).getRecinto(j).addHambre();
+                            if (zoologico.getHabitat(i).getRecinto(j).getPenalizacion() == 5)
+                                listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(true);
+                        }
+                    }
+                    setAlertHambre(i,zoologico.getHabitat(i).getPenalizacionHabitat()>0);
+                    penalizacion += zoologico.getHabitat(i).getPenalizacionHabitat();
+                }
             }
             zoologico.setPenalizacion(penalizacion);
             zoologico.getPaga();
-            PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico.getDinero());
+            PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
         }
     }
 }
