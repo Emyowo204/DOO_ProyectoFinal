@@ -24,7 +24,7 @@ public class PanelZoologico extends JPanel {
 
     public PanelZoologico(Zoologico zoo) {
         super(null);
-        timer = new Timer(5000,new EscucharTiempo());
+        timer = new Timer(1000,new EscucharTiempo());
         timer.start();
         listaPanelHabitat = new PanelHabitat[6];
         zoologico = zoo;
@@ -138,11 +138,13 @@ public class PanelZoologico extends JPanel {
         g.drawImage(ImgBackground, 0, 0, this);
     }
 
-    private class EscucharTiempo implements ActionListener{
+    private class EscucharTiempo implements ActionListener {
+        private int second;
+        public EscucharTiempo() { second = 0; }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            second++;
             int penalizacion = 0;
             for (int i = 0; i < 6; i++) {
                 if(zoologico.getHabitat(i).isAdquirido()) {
@@ -158,7 +160,10 @@ public class PanelZoologico extends JPanel {
                 }
             }
             zoologico.setPenalizacion(penalizacion);
-            zoologico.getPaga();
+            if(second==5) {
+                zoologico.getPaga();
+                second = 0;
+            }
             PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
         }
     }

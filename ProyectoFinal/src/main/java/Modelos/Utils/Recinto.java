@@ -10,9 +10,13 @@ public class Recinto {
     private int hambre;
     private boolean adquirido;
     private Habitat habitat;
+    private int cantidadComida;
+    private int penalizacion;
 
     public Recinto(Habitat habitat) {
-        int hambre = 0;
+        hambre = 0;
+        cantidadComida = 0;
+        penalizacion = 0;
         tipo = null;
         this.habitat = habitat;
         listaAnimales = new ArrayList<>();
@@ -27,21 +31,27 @@ public class Recinto {
         habitat.addAnimal(tipo);
     }
 
-    public void alimentarAnimales(){
-        hambre=0;
+    public void alimentarAnimales() {
+        cantidadComida++;
+        penalizacion = 0;
     }
 
-    public void addHambre(){
+    public void addHambre() {
         if(getCantidadAnimal()>0)
             hambre++;
+        if(hambre>(20-getCantidadAnimal())) {
+            if(cantidadComida>0) {
+                cantidadComida--;
+                hambre = 0;
+                penalizacion = 0;
+            } else
+                penalizacion = 5;
+        } else
+            penalizacion = 0;
     }
 
-    public int getPenalizacion(){
-        if(hambre>2){
-            return 5;
-        }else {
-            return 0;
-        }
+    public int getPenalizacion() {
+        return penalizacion;
     }
 
     public void comprarAnimal(String nombre) {
