@@ -28,7 +28,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         super(null);
         this.recinto = recinto;
         animales = this.recinto.getListaAnimales();
-        this.setBackground(Color.WHITE);
+        this.setOpaque(false);
         InteraccionRecinto listenerRecinto = new InteraccionRecinto();
         OpcionesAnimal listenerOpciones = new OpcionesAnimal();
         botonComprar = new Boton(Color.BLACK, true, "imgComprarRecinto.png");
@@ -36,7 +36,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         addComp(botonComprar,25,50,200,100);
         botonInfo = new Boton(Color.BLACK, true, "imgBotonInfo.png");
         botonInfo.addActionListener(listenerOpciones);
-        bAlimento = new Boton(Color.BLACK, true, "imgBotonInfo.png");
+        bAlimento = new Boton(Color.BLACK, true,"imgBotonInfo.png");
         bAlimento.addActionListener(listenerOpciones);
         panelSelect = new PanelSelect(25,50,200,100,recinto.getHabitat().getTotal());
         panelSelect.addBotones(selectButtons = new Boton[6], recinto.getHabitat().getTipo().getValue()*6);
@@ -92,6 +92,7 @@ public class PanelRecinto extends JPanel implements Runnable{
             for(int i=0; i<6; i++) {
                 if(event.getSource()==selectButtons[i]) {
                     recinto.asignarAnimal(recinto.getHabitat().getTotal().get(i));
+                    bAlimento.changeImage("Comida/imgAlimento"+recinto.getTipo().getComida().getValue()+".png");
                     PanelLinker.getPanelPrincipal().getMenu().updatePopup();
                     addComp(botonInfo,5,5,40,40);
                     addComp(bAlimento,209,5,40,40);

@@ -6,12 +6,12 @@ import Vistas.Utils.ImageLoader;
 import java.awt.*;
 import java.util.Random;
 
-public class Coipo extends Animal {
+public class Ajolote extends Animal {
     private int moveTime;
     private int moveSpeed = 1;
 
-    public Coipo(String nombre) {
-        super(nombre, TipoAnimal.Coipo);
+    public Ajolote(String nombre) {
+        super(nombre, TipoAnimal.Ajolote);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();

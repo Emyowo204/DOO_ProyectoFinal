@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class PanelMenu extends JPanel {
@@ -19,6 +20,7 @@ public class PanelMenu extends JPanel {
     private ZonaTexto insertText;
     private CuadroTexto[] cuadroDinero;
     private PanelComida panelComida;
+    private BufferedImage ImgBackground;
 
     public PanelMenu() {
         super(null);
@@ -30,16 +32,16 @@ public class PanelMenu extends JPanel {
             selectAnimal.add(new ArrayList<>());
 
         panelComida = new PanelComida();
-        addComp(panelComida,20,320,240,360);
+        addComp(panelComida,20,330,240,400);
         cuadroDinero[0] = new CuadroTexto(" Dinero: "+new Zoologico().getDinero()+" $", "Arial", 1);
         cuadroDinero[1] = new CuadroTexto(" Ganancias: +0 $ /5 seg", "Arial", 1);
         cuadroDinero[2] = new CuadroTexto("", "Arial", 1);
         addComp(cuadroDinero[0],20,20,240,20);
         addComp(cuadroDinero[1],20,45,240,20);
-        addComp(new CuadroTexto(" v Seleccione Animal:", "Arial", 1), 20,90,240,20);
+        addComp(new CuadroTexto(" Seleccione Animal:", "Arial", 1, false), 20,90,240,20);
         addAnimal = new PopupSelect(" Seleccione un Habitat", Color.WHITE, Color.BLACK, "Arial", 0);
         addComp(addAnimal,20,115,240,20);
-        addComp(new CuadroTexto(" v Inserte Nombre:","Arial", 1), 20,160,240,20);
+        addComp(new CuadroTexto(" Inserte Nombre:","Arial", 1, false), 20,160,240,20);
         insertText = new ZonaTexto(" Seleccione un Habitat","Arial", 0);
         addComp(insertText,20,185,240,20);
         addComp(cuadroDinero[2],  20,230,240,20);
@@ -49,6 +51,7 @@ public class PanelMenu extends JPanel {
         addAnimal.setUse(false);
         comprarAnimal.setEnabled(false);
         insertText.setEnabled(false);
+        ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(7);
     }
 
     public void addComp(Component comp, int x, int y, int width, int height) {
@@ -125,5 +128,6 @@ public class PanelMenu extends JPanel {
      * @param g El objeto grafico que dibuja los componentes */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        g.drawImage(ImgBackground, 0, 0, this);
     }
 }

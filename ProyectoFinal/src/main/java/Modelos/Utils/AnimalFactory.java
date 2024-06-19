@@ -53,8 +53,8 @@ public class AnimalFactory {
                 return new Serpiente(nombre);
             }
         } else if(tipo.getHabitat() == TipoHabitat.Acuario) {
-            if (tipo == TipoAnimal.Coipo) {
-                return new Coipo(nombre);
+            if (tipo == TipoAnimal.Ajolote) {
+                return new Ajolote(nombre);
             } else if (tipo == TipoAnimal.Delfin) {
                 return new Delfin(nombre);
             } else if (tipo == TipoAnimal.Orca) {

@@ -22,7 +22,7 @@ public enum TipoAnimal {
     Pantera(100, TipoHabitat.Selva, TipoComida.CarneRoja,"Pantera"),
     Serpiente(100, TipoHabitat.Selva, TipoComida.Roedor,"Serpiente"),
 
-    Coipo(100, TipoHabitat.Acuario, TipoComida.Arbustos,"Coipo"),
+    Ajolote(100, TipoHabitat.Acuario, TipoComida.Insectos,"Ajolote"),
     Delfin(100, TipoHabitat.Acuario, TipoComida.Pescado,"Delfín"),
     LoboMarino(100, TipoHabitat.Acuario, TipoComida.Pescado,"Lobo marino"),
     Orca(100, TipoHabitat.Acuario, TipoComida.CarneRoja,"Orca"),

@@ -1,6 +1,7 @@
 package Vistas.Utils;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /** Un cuadro de texto que puede ser agregado a una interfaz GUI
@@ -26,6 +27,13 @@ public class CuadroTexto extends JLabel {
         super(texto);
         this.setOpaque(true);
         this.setBackground(Color.WHITE);
+        this.setForeground(Color.BLACK);
+        this.setFont(new Font(fuente, estilo, 15));
+    }
+
+    public CuadroTexto(String texto, String fuente, int estilo, boolean opcaco) {
+        super(texto);
+        this.setOpaque(opcaco);
         this.setForeground(Color.BLACK);
         this.setFont(new Font(fuente, estilo, 15));
     }
