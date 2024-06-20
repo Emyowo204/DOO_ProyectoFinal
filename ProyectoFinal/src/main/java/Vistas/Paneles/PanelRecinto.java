@@ -3,6 +3,8 @@ package Vistas.Paneles;
 import Modelos.Utils.Animal;
 import Modelos.Utils.Recinto;
 import Vistas.Utils.Boton;
+import Vistas.Utils.CuadroTexto;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +24,8 @@ public class PanelRecinto extends JPanel implements Runnable{
     private Boton[] selectButtons;
     private Boton botonComprar;
     private Boton botonInfo;
-    private Boton bAlimento;
+    private Boton[] bAlimento;
+    private CuadroTexto cantidadComida;
 
     public PanelRecinto(Recinto recinto) {
         super(null);
@@ -36,8 +39,14 @@ public class PanelRecinto extends JPanel implements Runnable{
         addComp(botonComprar,25,50,200,100);
         botonInfo = new Boton(Color.BLACK, true, "imgBotonInfo.png");
         botonInfo.addActionListener(listenerOpciones);
-        bAlimento = new Boton(Color.BLACK, true,"imgBotonInfo.png");
-        bAlimento.addActionListener(listenerOpciones);
+        bAlimento = new Boton[2];
+        bAlimento[0] = new Boton(Color.BLACK, true, "imgBotonInfo.png");
+        bAlimento[1] = new Boton(Color.BLACK, true, "imgBotonInfo.png");
+        cantidadComida = new CuadroTexto("N° Comida: 0", "Arial", 1, 12);
+        for(int i=0; i<2; i++) {
+            bAlimento[i].setOpaque(false);
+            bAlimento[i].addActionListener(listenerOpciones);
+        }
         panelSelect = new PanelSelect(25,50,200,100,recinto.getHabitat().getTotal());
         panelSelect.addBotones(selectButtons = new Boton[6], recinto.getHabitat().getTipo().getValue()*6);
         for(int i=0; i<6; i++)
@@ -65,10 +74,19 @@ public class PanelRecinto extends JPanel implements Runnable{
         }
     }
     public void setAlertHambre(boolean alert) {
-        if(alert)
-            bAlimento.changeImage("Comida/imgAliAlert"+recinto.getTipo().getComida().getValue()+".png");
-        else
-            bAlimento.changeImage("Comida/imgAlimento"+recinto.getTipo().getComida().getValue()+".png");
+        if(alert) {
+            cantidadComida.setText("¡Con Hambre!");
+            bAlimento[0].changeImage("Comida/imgAliAlert"+recinto.getTipo().getComida().getValue()+".png");
+            bAlimento[1].changeImage("Comida/img10xAliAlert"+recinto.getTipo().getComida().getValue()+".png");
+        }
+        else {
+            bAlimento[0].changeImage("Comida/imgAlimento"+recinto.getTipo().getComida().getValue() +".png");
+            bAlimento[1].changeImage("Comida/img10xAlimento"+recinto.getTipo().getComida().getValue()+".png");
+        }
+    }
+
+    public void updateCantidad() {
+        cantidadComida.setText("N° Comida: "+recinto.getCantidadComida());
     }
 
     private class OpcionesAnimal implements ActionListener {
@@ -77,7 +95,11 @@ public class PanelRecinto extends JPanel implements Runnable{
             if(event.getSource() == botonInfo)
                 System.out.println("Info");
             else {
-                PanelLinker.getPanelPrincipal().getZoologico().alimentar(recinto);
+                int index = 1;
+                if(event.getSource() == bAlimento[1])
+                    index=10;
+                PanelLinker.getPanelPrincipal().getZoologico().alimentar(recinto,index);
+                updateCantidad();
                 PanelLinker.getPanelPrincipal().getMenu().getPanelComida().updateTexto(recinto.getTipo().getComida());
                 setAlertHambre(recinto.getPenalizacion()>0);
             }
@@ -99,10 +121,13 @@ public class PanelRecinto extends JPanel implements Runnable{
             for(int i=0; i<6; i++) {
                 if(event.getSource()==selectButtons[i]) {
                     recinto.asignarAnimal(recinto.getHabitat().getTotal().get(i));
-                    bAlimento.changeImage("Comida/imgAlimento"+recinto.getTipo().getComida().getValue()+".png");
+                    bAlimento[0].changeImage("Comida/imgAlimento"+recinto.getTipo().getComida().getValue()+".png");
+                    bAlimento[1].changeImage("Comida/img10xAlimento"+recinto.getTipo().getComida().getValue()+".png");
                     PanelLinker.getPanelPrincipal().getMenu().updatePopup();
-                    addComp(botonInfo,5,5,40,40);
-                    addComp(bAlimento,209,5,40,40);
+                    addComp(botonInfo,209,155,40,40);
+                    addComp(bAlimento[0],5,5,40,40);
+                    addComp(bAlimento[1],50,5,40,40);
+                    addComp(cantidadComida,95,5,100,20);
                     togglePanelSelect();
                     break;
                 }

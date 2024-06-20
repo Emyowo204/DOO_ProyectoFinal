@@ -64,4 +64,7 @@ public class Recinto {
     public int getCantidadAnimal(){
         return listaAnimales.size();
     }
+    public int getCantidadComida(){
+        return cantidadComida;
+    }
 }

@@ -161,6 +161,7 @@ public class PanelZoologico extends JPanel {
                     for (int j = 0; j < 6; j++) {
                         if (zoologico.getHabitat(i).getRecinto(j).getAdquirido()) {
                             zoologico.getHabitat(i).getRecinto(j).addHambre();
+                            listaPanelHabitat[i].getPanelRecinto(j).updateCantidad();
                             if (zoologico.getHabitat(i).getRecinto(j).getPenalizacion() == 5)
                                 listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(true);
                         }

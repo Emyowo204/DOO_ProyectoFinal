@@ -37,16 +37,20 @@ public class Zoologico {
         }
     }
 
-    public void comprarAlimento(TipoComida comida) {
-        if(transaccion(comida.getPrecio(),0))
-            almacen.addComida(comida);
+    public void comprarAlimento(TipoComida comida, int index) {
+        if(transaccion(comida.getPrecio()*index,0)) {
+            for (int i = 0; i < index; i++)
+                almacen.addComida(comida);
+        }
     }
 
-    public void alimentar(Recinto recinto) {
+    public void alimentar(Recinto recinto, int index) {
         TipoComida comida = recinto.getTipo().getComida();
-        if(almacen.getCantidad(comida) > 0) {
-            almacen.removeComida(comida);
-            recinto.alimentarAnimales();
+        if(almacen.getCantidad(comida) >= index) {
+            for (int i = 0; i < index; i++) {
+                almacen.removeComida(comida);
+                recinto.alimentarAnimales();
+            }
         }
     }
 
