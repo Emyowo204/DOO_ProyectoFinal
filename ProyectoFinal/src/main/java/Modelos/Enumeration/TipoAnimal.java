@@ -1,66 +1,65 @@
 package Modelos.Enumeration;
 
 public enum TipoAnimal {
-    Carpintero(100, TipoHabitat.Bosque, TipoComida.Insectos,"Carpintero", "info"),
-    Huemul(200, TipoHabitat.Bosque, TipoComida.Arbustos,"Huemul", "info"),
-    Oso(250, TipoHabitat.Bosque, TipoComida.Pescado,"Oso", "info"),
-    Pudu(350, TipoHabitat.Bosque, TipoComida.Arbustos,"Pudú", "info"),
-    Puma(350, TipoHabitat.Bosque, TipoComida.CarneRoja,"Puma", "info"),
-    Zorro(450, TipoHabitat.Bosque, TipoComida.Roedor,"Zorro", "info"),
+    Carpintero(100, TipoHabitat.Bosque, TipoComida.Insectos,"Carpintero",0),
+    Huemul(200, TipoHabitat.Bosque, TipoComida.Arbustos,"Huemul",1),
+    Oso(250, TipoHabitat.Bosque, TipoComida.Pescado,"Oso",2),
+    Pudu(350, TipoHabitat.Bosque, TipoComida.Arbustos,"Pudú",3),
+    Puma(350, TipoHabitat.Bosque, TipoComida.CarneRoja,"Puma",4),
+    Zorro(450, TipoHabitat.Bosque, TipoComida.Roedor,"Zorro",5),
 
-    Cebra(100, TipoHabitat.Sabana, TipoComida.Vegetacion,"Cebra", "info"),
-    Elefante(100, TipoHabitat.Sabana, TipoComida.Arbustos,"Elefante", "info"),
-    Hiena(100, TipoHabitat.Sabana, TipoComida.CarneRoja,"Hiena", "info"),
-    Hipopotamo(100, TipoHabitat.Sabana, TipoComida.Vegetacion,"Hipopótamo", "info"),
-    Jirafa(100, TipoHabitat.Sabana, TipoComida.Arbustos,"Jirafa", "info"),
-    Leon(100, TipoHabitat.Sabana, TipoComida.CarneRoja,"León", "info"),
+    Cebra(100, TipoHabitat.Sabana, TipoComida.Vegetacion,"Cebra",6),
+    Elefante(100, TipoHabitat.Sabana, TipoComida.Arbustos,"Elefante",7),
+    Hiena(100, TipoHabitat.Sabana, TipoComida.CarneRoja,"Hiena",8),
+    Hipopotamo(100, TipoHabitat.Sabana, TipoComida.Vegetacion,"Hipopótamo",9),
+    Jirafa(100, TipoHabitat.Sabana, TipoComida.Arbustos,"Jirafa",10),
+    Leon(100, TipoHabitat.Sabana, TipoComida.CarneRoja,"León",11),
 
-    Cocodrilo(100, TipoHabitat.Selva, TipoComida.Pescado,"Cocodrilo", "info"),
-    Loro(100, TipoHabitat.Selva, TipoComida.Frutos,"Loro", "info"),
-    Mono(100, TipoHabitat.Selva, TipoComida.Frutos,"Mono", "info"),
-    OsoHormiguero(100, TipoHabitat.Selva, TipoComida.Insectos,"Oso hormiguero", "info"),
-    Pantera(100, TipoHabitat.Selva, TipoComida.CarneRoja,"Pantera", "info"),
-    Serpiente(100, TipoHabitat.Selva, TipoComida.Roedor,"Serpiente", "info"),
+    Cocodrilo(100, TipoHabitat.Selva, TipoComida.Pescado,"Cocodrilo",12),
+    Loro(100, TipoHabitat.Selva, TipoComida.Frutos,"Loro",13),
+    Mono(100, TipoHabitat.Selva, TipoComida.Frutos,"Mono",14),
+    OsoHormiguero(100, TipoHabitat.Selva, TipoComida.Insectos,"Oso hormiguero",15),
+    Pantera(100, TipoHabitat.Selva, TipoComida.CarneRoja,"Pantera",16),
+    Serpiente(100, TipoHabitat.Selva, TipoComida.Roedor,"Serpiente",17),
 
-    Ajolote(100, TipoHabitat.Acuario, TipoComida.Insectos,"Ajolote", "info"),
-    Delfin(100, TipoHabitat.Acuario, TipoComida.Pescado,"Delfín", "info"),
-    LoboMarino(100, TipoHabitat.Acuario, TipoComida.Pescado,"Lobo marino", "info"),
-    Orca(100, TipoHabitat.Acuario, TipoComida.CarneRoja,"Orca", "info"),
-    Tiburon(100, TipoHabitat.Acuario, TipoComida.Pescado,"Tiburón", "info"),
-    Tortuga(100, TipoHabitat.Acuario, TipoComida.Vegetacion,"Tortuga", "info"),
+    Ajolote(100, TipoHabitat.Acuario, TipoComida.Insectos,"Ajolote",18),
+    Delfin(100, TipoHabitat.Acuario, TipoComida.Pescado,"Delfín",19),
+    LoboMarino(100, TipoHabitat.Acuario, TipoComida.Pescado,"Lobo marino",20),
+    Orca(100, TipoHabitat.Acuario, TipoComida.CarneRoja,"Orca",21),
+    Tiburon(100, TipoHabitat.Acuario, TipoComida.Pescado,"Tiburón",22),
+    Tortuga(100, TipoHabitat.Acuario, TipoComida.Vegetacion,"Tortuga",23),
 
-    Avestruz(100, TipoHabitat.Desierto, TipoComida.Frutos,"Avestruz", "info"),
-    Camello(100, TipoHabitat.Desierto, TipoComida.Vegetacion,"Camello", "info"),
-    Canguro(100, TipoHabitat.Desierto, TipoComida.Vegetacion,"Canguro", "info"),
-    Coyote(100, TipoHabitat.Desierto, TipoComida.CarneRoja,"Coyote", "info"),
-    Lagarto(100, TipoHabitat.Desierto, TipoComida.Roedor,"Lagarto", "info"),
-    Suricata(100, TipoHabitat.Desierto, TipoComida.Insectos,"Suricata", "info"),
+    Avestruz(100, TipoHabitat.Desierto, TipoComida.Frutos,"Avestruz",24),
+    Camello(100, TipoHabitat.Desierto, TipoComida.Vegetacion,"Camello",25),
+    Canguro(100, TipoHabitat.Desierto, TipoComida.Vegetacion,"Canguro",26),
+    Coyote(100, TipoHabitat.Desierto, TipoComida.CarneRoja,"Coyote",27),
+    Lagarto(100, TipoHabitat.Desierto, TipoComida.Roedor,"Lagarto",28),
+    Suricata(100, TipoHabitat.Desierto, TipoComida.Insectos,"Suricata",29),
 
-    Alce(100, TipoHabitat.Artico, TipoComida.Vegetacion,"Alce", "info"),
-    BuhoNival(100, TipoHabitat.Artico, TipoComida.Roedor,"Búho nival", "info"),
-    Morsa(100, TipoHabitat.Artico, TipoComida.Pescado,"Morsa", "info"),
-    OsoPolar(100, TipoHabitat.Artico, TipoComida.CarneRoja,"Oso polar", "info"),
-    Pinguino(100, TipoHabitat.Artico, TipoComida.Pescado,"Pingüino", "info"),
-    ZorroArtico(100, TipoHabitat.Artico, TipoComida.Roedor,"Zorro ártico", "info");
+    Alce(100, TipoHabitat.Artico, TipoComida.Vegetacion,"Alce",30),
+    BuhoNival(100, TipoHabitat.Artico, TipoComida.Roedor,"Búho nival",31),
+    Morsa(100, TipoHabitat.Artico, TipoComida.Pescado,"Morsa",32),
+    OsoPolar(100, TipoHabitat.Artico, TipoComida.CarneRoja,"Oso polar",33),
+    Pinguino(100, TipoHabitat.Artico, TipoComida.Pescado,"Pingüino",34),
+    ZorroArtico(100, TipoHabitat.Artico, TipoComida.Roedor,"Zorro ártico",35);
 
     private int precio;
     private TipoHabitat tipoHabitat;
     private TipoComida comida;
     private String nombre;
+    private int value;
 
-    private String info;
-
-    private TipoAnimal(int precio, TipoHabitat habitat, TipoComida comida, String nombre, String info) {
+    private TipoAnimal(int precio, TipoHabitat habitat, TipoComida comida, String nombre, int value) {
         this.precio = precio;
         this.tipoHabitat = habitat;
         this.comida = comida;
         this.nombre = nombre;
-        this.info = info;
+        this.value = value;
     }
 
     public int getPrecio() { return precio; }
     public TipoHabitat getHabitat() { return tipoHabitat; }
     public TipoComida getComida() { return comida; }
     public String getNombre() { return nombre; }
-    public String getInfo(){ return info; }
+    public int getValue(){ return value; }
 }

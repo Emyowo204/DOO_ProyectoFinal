@@ -19,6 +19,7 @@ public class ImageLoader {
     private static BufferedImage[] imagenAnimal;
     private static BufferedImage[] imagenAnimalFlipped;
     private static BufferedImage[] fondosZoologico;
+    private static BufferedImage[] fondosInformacion;
 
     /** Constructor privado donde se cargan las Imágenes */
     private ImageLoader() {
@@ -29,11 +30,13 @@ public class ImageLoader {
         imagenAnimal = new BufferedImage[cantidadAnimales];
         imagenAnimalFlipped = new BufferedImage[cantidadAnimales];
         fondosZoologico = new BufferedImage[cantidadHabitats];
+        fondosInformacion = new BufferedImage[cantidadAnimales];
 
         for(int i=0; i<cantidadAnimales; i++){
             try{
-            imagenAnimal[i] = ImageIO.read(getClass().getClassLoader().getResource("Animales/imgAnimal"+ i +".png"));
-            }catch (IOException e){
+                imagenAnimal[i] = ImageIO.read(getClass().getClassLoader().getResource("Animales/imgAnimal"+ i +".png"));
+                fondosInformacion[i] = ImageIO.read(getClass().getClassLoader().getResource("Informacion/imgAnimal"+ i +".png"));
+            }catch (IOException e) {
                 System.out.println(e.getMessage());
             }
             AffineTransform transform = AffineTransform.getScaleInstance(-1, 1);
@@ -41,7 +44,6 @@ public class ImageLoader {
             AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
             imagenAnimalFlipped[i] = op.filter(imagenAnimal[i], null);
         }
-
         for(int i=0; i<cantidadHabitats; i++) {
             try{
                 fondosZoologico[i] = ImageIO.read(getClass().getClassLoader().getResource("imgFondoZoo"+ i +".png"));
@@ -69,5 +71,8 @@ public class ImageLoader {
     }
     public BufferedImage getImagenFondoZoo(int index){
         return fondosZoologico[index];
+    }
+    public BufferedImage getImagenFondoInfo(int index){
+        return fondosInformacion[index];
     }
 }

@@ -59,7 +59,7 @@ public class PanelComida extends JPanel {
                     Zoologico zoo = PanelLinker.getPanelPrincipal().getZoologico();
                     zoo.comprarAlimento(TipoComida.values()[i],1);
                     updateTexto(TipoComida.values()[i]);
-                    PanelLinker.getPanelPrincipal().getMenu().updateDinero(zoo);
+                    PanelLinker.getPanelMenu().updateDinero(zoo);
                 }
             }
         }
@@ -72,7 +72,7 @@ public class PanelComida extends JPanel {
                     Zoologico zoo = PanelLinker.getPanelPrincipal().getZoologico();
                     zoo.comprarAlimento(TipoComida.values()[i],10);
                     updateTexto(TipoComida.values()[i]);
-                    PanelLinker.getPanelPrincipal().getMenu().updateDinero(zoo);
+                    PanelLinker.getPanelMenu().updateDinero(zoo);
                 }
             }
         }

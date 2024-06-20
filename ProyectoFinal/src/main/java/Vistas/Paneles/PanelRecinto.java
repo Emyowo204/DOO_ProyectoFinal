@@ -38,6 +38,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         addComp(botonComprar,25,50,200,100);
         botonInfo = new Boton(Color.BLACK, true, "imgBotonInfo.png");
         botonInfo.addActionListener(listenerOpciones);
+        botonInfo.setOpaque(false);
         bAlimento = new Boton[2];
         bAlimento[0] = new Boton(Color.BLACK, true, "imgBotonInfo.png");
         bAlimento[1] = new Boton(Color.BLACK, true, "imgBotonInfo.png");
@@ -94,8 +95,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         @Override
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == botonInfo) {
-                PanelLinker.getPanelPrincipal().getPanelZoo().setInformation(recinto.getTipo().getInfo());
-                PanelLinker.getPanelPrincipal().getPanelZoo().toggleInfo();
+                PanelLinker.getPanelZoo().toggleInfo(recinto.getTipo().getValue());
             }
             else {
                 int index = 1;
@@ -103,7 +103,7 @@ public class PanelRecinto extends JPanel implements Runnable{
                     index=10;
                 PanelLinker.getPanelPrincipal().getZoologico().alimentar(recinto,index);
                 updateCantidad();
-                PanelLinker.getPanelPrincipal().getMenu().getPanelComida().updateTexto(recinto.getTipo().getComida());
+                PanelLinker.getPanelMenu().getPanelComida().updateTexto(recinto.getTipo().getComida());
                 setAlertHambre(recinto.getPenalizacion()>0);
             }
         }
@@ -115,8 +115,7 @@ public class PanelRecinto extends JPanel implements Runnable{
             if(event.getSource() == botonComprar && !(recinto.getHabitat().isComprando())){
                 PanelLinker.getPanelPrincipal().getZoologico().comprarRecinto(recinto);
                 if(recinto.getAdquirido()) {
-                    PanelPrincipal panelP = PanelLinker.getPanelPrincipal();
-                    panelP.getMenu().updateDinero(panelP.getZoologico());
+                    PanelLinker.getPanelMenu().updateDinero(PanelLinker.getPanelPrincipal().getZoologico());
                     togglePanelSelect();
                 }
                 return;
@@ -126,7 +125,7 @@ public class PanelRecinto extends JPanel implements Runnable{
                     recinto.asignarAnimal(recinto.getHabitat().getTotal().get(i));
                     bAlimento[0].changeImage("Comida/imgAlimento"+recinto.getTipo().getComida().getValue()+".png");
                     bAlimento[1].changeImage("Comida/img10xAlimento"+recinto.getTipo().getComida().getValue()+".png");
-                    PanelLinker.getPanelPrincipal().getMenu().updatePopup();
+                    PanelLinker.getPanelMenu().updatePopup();
                     addComp(botonInfo,209,155,40,40);
                     addComp(bAlimento[0],5,5,40,40);
                     addComp(bAlimento[1],50,5,40,40);

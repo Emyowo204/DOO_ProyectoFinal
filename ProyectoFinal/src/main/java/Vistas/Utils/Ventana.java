@@ -20,8 +20,7 @@ public class Ventana extends JFrame {
 
         this.setSize(1280,757);
         this.setResizable(false);
-        PanelLinker.newPanelLinker();
-        PanelPrincipal panel = PanelLinker.getPanelPrincipal();
+        PanelPrincipal panel = new PanelPrincipal();
         this.add(panel,BorderLayout.CENTER);
         this.setVisible(true);
     }

@@ -24,9 +24,8 @@ public class PanelPrincipal extends JPanel {
         panelMenu = new PanelMenu();
         panelMenu.setPreferredSize(new Dimension(280, 720));
         this.add(panelMenu, BorderLayout.EAST);
+        PanelLinker.newLinker(this, panelZoo, panelMenu);
     }
-    public PanelZoologico getPanelZoo() { return panelZoo; }
-    public PanelMenu getMenu() { return panelMenu; }
     public Zoologico getZoologico() { return zoologico; }
 
     /** Método para dibujar los componentes de Swing del panel y los sub paneles
