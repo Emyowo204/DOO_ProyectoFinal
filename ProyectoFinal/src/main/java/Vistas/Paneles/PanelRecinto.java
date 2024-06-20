@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /** Un panel que muestra las monedas guardadas en un deposito y sus series
@@ -90,10 +89,21 @@ public class PanelRecinto extends JPanel implements Runnable{
     }
 
     private class OpcionesAnimal implements ActionListener {
+
+        Boolean showingInfo = false;
         @Override
         public void actionPerformed(ActionEvent event) {
-            if(event.getSource() == botonInfo)
-                System.out.println("Info");
+            if(event.getSource() == botonInfo) {
+
+                if (!showingInfo) {
+                    PanelLinker.getPanelPrincipal().getPanelZoo().setInformation(recinto.getTipo().getInfo());
+                    PanelLinker.getPanelPrincipal().getPanelZoo().showInfo();
+                    showingInfo = true;
+                }else{
+                    PanelLinker.getPanelPrincipal().getPanelZoo().hideInfo();
+                    showingInfo = false;
+                }
+            }
             else {
                 int index = 1;
                 if(event.getSource() == bAlimento[1])

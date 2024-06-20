@@ -23,11 +23,14 @@ public class PanelZoologico extends JPanel {
     private Boton[] bOpciones;
     private CuadroTexto precioTiendas;
     private BufferedImage ImgBackground;
+    private PanelInformacion panelInformacion;
 
     public PanelZoologico(Zoologico zoo) {
         super(null);
         timer = new Timer(1000,new EscucharTiempo());
         timer.start();
+        panelInformacion = new PanelInformacion();
+        panelInformacion.setBounds(500,700,100,100);
         listaPanelHabitat = new PanelHabitat[6];
         zoologico = zoo;
         this.setBackground(new Color(25,155,57));
@@ -87,6 +90,20 @@ public class PanelZoologico extends JPanel {
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
             this.remove(openPanelHabitat);
         }
+    }
+
+    public void setInformation(String text){
+        panelInformacion.setInfo(text);
+    }
+    public void showInfo(){
+        add(panelInformacion);
+        panelInformacion.repaint();
+        repaint();
+    }
+
+    public void hideInfo(){
+        remove(panelInformacion);
+        repaint();
     }
 
     public void setAlertHambre(int index, boolean alert) {

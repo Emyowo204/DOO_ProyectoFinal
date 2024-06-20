@@ -2,11 +2,8 @@ package Vistas.Paneles;
 
 import Modelos.Utils.Habitat;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 /** Un panel que contiene paneles y botones que muestran visualmente un expendedor
  * @author Chloe Yañez Lavin
@@ -16,7 +13,6 @@ public class PanelHabitat extends JPanel {
     private Habitat habitat;
     private PanelRecinto[] listaPanelRecinto;
     private boolean visible;
-    private PanelInformacion panelInfo;
 
     public PanelHabitat(Habitat habitat) {
         super(null);
@@ -24,8 +20,6 @@ public class PanelHabitat extends JPanel {
         visible = false;
         this.setOpaque(false);
         this.setBounds(43,100,914,522);
-        panelInfo = new PanelInformacion();
-        panelInfo.setBounds(57,11,800,500);
         listaPanelRecinto = new PanelRecinto[6];
         int j=0;
         for(int i=0; i<6; i++) {
