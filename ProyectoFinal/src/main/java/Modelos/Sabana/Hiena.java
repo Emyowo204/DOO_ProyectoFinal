@@ -9,13 +9,16 @@ import java.util.Random;
 
 public class Hiena extends Animal {
     private int moveTime;
-    private int moveSpeed = 1;
+    private int moveSpeed;
+    private final float randomizer;
 
     public Hiena(String nombre) {
         super(nombre, TipoAnimal.Hiena);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
+        moveSpeed=1;
+        randomizer = random.nextInt(1,2);
         moveTime = random.nextInt(200);
     }
 
@@ -31,7 +34,7 @@ public class Hiena extends Animal {
         }
 
         moveTime+=moveSpeed;
-        this.setPosition(moveTime,70 - (int) ((Math.sin((double) moveTime /(4*Math.PI)))*70));
+        this.setPosition(moveTime,70 - (int) ((Math.sin((double) moveTime*randomizer /(4*Math.PI)))*70));
     }
 
     @Override

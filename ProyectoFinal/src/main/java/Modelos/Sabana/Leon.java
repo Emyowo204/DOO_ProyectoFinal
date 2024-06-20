@@ -9,13 +9,16 @@ import java.util.Random;
 
 public class Leon extends Animal {
     private int moveTime;
-    private int moveSpeed = 1;
+    private int moveSpeed;
+    private final float randomizer;
 
     public Leon(String nombre) {
         super(nombre, TipoAnimal.Leon);
         setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
         setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
+        moveSpeed=1;
+        randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(200);
     }
 
@@ -31,7 +34,7 @@ public class Leon extends Animal {
         }
 
         moveTime+=moveSpeed;
-        this.setPosition(moveTime,70 - (int) ((Math.sin((double) moveTime /(4*Math.PI)))*70));
+        this.setPosition(moveTime,70 - (int) ((Math.sin((double) moveTime*randomizer /(4*Math.PI)))*70));
     }
 
     @Override
