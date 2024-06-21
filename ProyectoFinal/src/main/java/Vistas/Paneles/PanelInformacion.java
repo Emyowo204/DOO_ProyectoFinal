@@ -30,7 +30,7 @@ public class PanelInformacion extends JPanel {
         this.add(bCerrar);
         cNombres = new CuadroTexto[5];
         for(int i=0; i<5; i++) {
-            cNombres[i] = new CuadroTexto("", "Arial", 1, 18);
+            cNombres[i] = new CuadroTexto("", "Arial", 0, 18);
             cNombres[i].setBounds(20, 470+23*i, 480, 20);
             this.add(cNombres[i]);
         }
