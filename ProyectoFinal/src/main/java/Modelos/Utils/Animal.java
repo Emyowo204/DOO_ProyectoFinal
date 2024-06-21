@@ -17,8 +17,10 @@ public abstract class Animal implements Visible {
     private BufferedImage imgFlipped;
 
     public Animal(String nombre, TipoAnimal tipo){
+        this.tipo = tipo;
         habitat = tipo.getHabitat();
         comida = tipo.getComida();
+        this.nombre = nombre;
     }
 
     public abstract void moveInPath();

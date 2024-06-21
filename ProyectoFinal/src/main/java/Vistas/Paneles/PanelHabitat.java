@@ -13,6 +13,7 @@ public class PanelHabitat extends JPanel {
     private Habitat habitat;
     private PanelRecinto[] listaPanelRecinto;
     private boolean visible;
+    private int value;
 
     public PanelHabitat(Habitat habitat) {
         super(null);
@@ -29,6 +30,7 @@ public class PanelHabitat extends JPanel {
             if(i==2)
                 j=230;
         }
+        value = habitat.getTipo().getValue();
     }
 
     public void toggleVisible() {
@@ -36,6 +38,7 @@ public class PanelHabitat extends JPanel {
     }
     public boolean getVisible() { return visible; }
     public Habitat getHabitat() { return habitat; }
+    public int getValue() { return value; }
 
     public PanelRecinto getPanelRecinto(int index) {
         return listaPanelRecinto[index];

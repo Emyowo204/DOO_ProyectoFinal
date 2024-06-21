@@ -1,5 +1,6 @@
 package Vistas.Paneles;
 
+import Modelos.Utils.Recinto;
 import Modelos.Utils.Zoologico;
 import Vistas.Utils.Boton;
 import Vistas.Utils.CuadroTexto;
@@ -30,7 +31,7 @@ public class PanelZoologico extends JPanel {
         timer = new Timer(1000,new EscucharTiempo());
         timer.start();
         panelInformacion = new PanelInformacion();
-        panelInformacion.setBounds(100,110,800,500);
+        panelInformacion.setBounds(100,90,800,600);
         listaPanelHabitat = new PanelHabitat[6];
         zoologico = zoo;
         this.setBackground(new Color(25,155,57));
@@ -83,19 +84,19 @@ public class PanelZoologico extends JPanel {
             bTiendas[j].setVisible(!openPanelHabitat.getVisible());
         if(openPanelHabitat.getVisible()) {
             PanelLinker.getPanelMenu().enterHabitat(openPanelHabitat.getHabitat());
-            ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(openPanelHabitat.getHabitat().getTipo().getValue());
+            ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(openPanelHabitat.getValue());
             add(openPanelHabitat);
         } else {
             PanelLinker.getPanelMenu().exitHabitat();
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
             remove(openPanelHabitat);
             if(panelInformacion.getShowing()){
-                toggleInfo(-2);
+                toggleInfo(-2, null);
             }
         }
     }
 
-    public void toggleInfo(int index) {
+    public void toggleInfo(int index, Recinto recinto) {
         if(panelInformacion.getShowing()) {
             panelInformacion.toggleShowing();
             remove(panelInformacion);
@@ -106,8 +107,8 @@ public class PanelZoologico extends JPanel {
             panelInformacion.toggleShowing();
             remove(openPanelHabitat);
             add(panelInformacion);
-            if(index>=0)
-                panelInformacion.setFondo(index);
+            if(index>=0 && recinto!=null)
+                panelInformacion.openInfo(index, recinto.getListaAnimales());
             repaint();
         }
     }

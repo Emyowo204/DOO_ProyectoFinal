@@ -95,7 +95,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         @Override
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == botonInfo) {
-                PanelLinker.getPanelZoo().toggleInfo(recinto.getTipo().getValue());
+                PanelLinker.getPanelZoo().toggleInfo(recinto.getTipo().getValue(), recinto);
             }
             else {
                 int index = 1;
