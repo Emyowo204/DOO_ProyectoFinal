@@ -34,7 +34,9 @@ public class PanelMenu extends JPanel {
         panelComida = null;
         cuadroDinero[0] = new CuadroTexto(" Dinero: "+new Zoologico().getDinero()+" $", "Arial", 1);
         cuadroDinero[1] = new CuadroTexto(" Ganancias: +0 $ /5 seg", "Arial", 1);
-        cuadroDinero[2] = new CuadroTexto("", "Arial", 1);
+        cuadroDinero[2] = new CuadroTexto("", "Arial", 1, 14);
+        cuadroDinero[2].setBackground(Color.WHITE);
+        cuadroDinero[2].setOpaque(true);
         addComp(cuadroDinero[0],20,20,240,20);
         addComp(cuadroDinero[1],20,45,240,20);
         addComp(new CuadroTexto("Seleccione Animal:", "Arial", 1, false), 20,95,240,20);
@@ -109,7 +111,7 @@ public class PanelMenu extends JPanel {
                     tipoAnimal = habitat.getUnlocked().get(i);
                     addAnimal.setText(" "+tipoAnimal.getNombre());
                     insertText.setText(tipoAnimal.getNombre());
-                    cuadroDinero[2].setText(" Precio: "+tipoAnimal.getPrecio()+" $");
+                    cuadroDinero[2].setText(" Precio: "+tipoAnimal.getPrecio()+" $  |  Ganancia: +"+(tipoAnimal.getPrecio()/20)+" $");
                     comprarAnimal.setEnabled(true);
                 }
             }
