@@ -199,7 +199,7 @@ public class PanelZoologico extends JPanel {
                 zoologico.getPaga();
                 second = 0;
             }
-            if(PanelLinker.getPanelPrincipal().panelMenu!=null)
+            if(PanelLinker.getPanelPrincipal()!=null)
                 PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
         }
     }

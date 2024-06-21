@@ -1,13 +1,13 @@
 package Modelos.Enumeration;
 
 public enum TipoComida {
-    Vegetacion(100,"Vegetación",0),
-    Arbustos(100,"Arbustos",1),
+    Vegetacion(50,"Vegetación",0),
+    Arbustos(50,"Arbustos",1),
     Frutos(100,"Frutos",2),
-    CarneRoja(100,"Carne roja",3),
-    Pescado(100,"Pescado",4),
+    CarneRoja(200,"Carne roja",3),
+    Pescado(150,"Pescado",4),
     Roedor(100,"Roedor",5),
-    Insectos(100,"Insectos",6);
+    Insectos(50,"Insectos",6);
 
     private int precio;
     private String nombre;

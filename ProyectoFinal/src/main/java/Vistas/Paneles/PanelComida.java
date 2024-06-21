@@ -37,7 +37,7 @@ public class PanelComida extends JPanel {
             addComp(bComprar[i],0,30+50*i,40,40);
             addComp(bComprarx10[i],50,30+50*i,40,40);
             addComp(cTexto[i],100,30+50*i,140,20);
-            addComp(new CuadroTexto(TipoComida.values()[i].getPrecio()+" $", "Arial", 1, false),100,50+50*i,140,20);
+            addComp(new CuadroTexto(TipoComida.values()[i].getPrecio()+" $ x1", "Arial", 1, false),100,50+50*i,140,20);
         }
     }
 
