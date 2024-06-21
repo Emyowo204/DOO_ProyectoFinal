@@ -47,7 +47,7 @@ public class PanelRecinto extends JPanel implements Runnable{
             bAlimento[i].setOpaque(false);
             bAlimento[i].addActionListener(listenerOpciones);
         }
-        panelSelect = new PanelSelect(25,40,200,120,recinto.getHabitat().getTotal());
+        panelSelect = new PanelSelect(25,30,200,140,recinto.getHabitat().getTotal());
         panelSelect.addBotones(selectButtons = new Boton[6], recinto.getHabitat().getTipo().getValue()*6);
         for(int i=0; i<6; i++)
             selectButtons[i].addActionListener(listenerRecinto);
