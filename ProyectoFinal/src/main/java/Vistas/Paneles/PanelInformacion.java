@@ -39,6 +39,8 @@ public class PanelInformacion extends JPanel {
 
     public void openInfo(int index, ArrayList<Animal> animales) {
         ImgBackground = ImageLoader.getInstancia().getImagenFondoInfo(index);
+        for(int i=0; i<5; i++)
+            cNombres[i].setText("");
         int numCuadro = 0;
         int var = 0;
         String nombres = "";
