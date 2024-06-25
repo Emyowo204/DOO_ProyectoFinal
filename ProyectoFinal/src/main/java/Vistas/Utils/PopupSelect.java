@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class PopupSelect extends CuadroTexto {
-
     private JPopupMenu[] popupSelect;
     private String fuente;
     private int index;

@@ -22,7 +22,7 @@ public class PanelZoologico extends JPanel {
     private Boton[] selectHabitat;
     private Boton[] bTiendas;
     private Boton[] bOpciones;
-    private CuadroTexto precioTiendas;
+    private CuadroTexto[] cuadroInfo;
     private BufferedImage ImgBackground;
     private PanelInformacion panelInformacion;
 
@@ -65,8 +65,15 @@ public class PanelZoologico extends JPanel {
             bTiendas[i].addActionListener(listenerTienda);
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
         }
-        precioTiendas = new CuadroTexto(" Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial", 1, false);
-        addComp(precioTiendas,760,601,200,20);
+        cuadroInfo = new CuadroTexto[4];
+        cuadroInfo[0] = new CuadroTexto("- Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial",1,13);
+        cuadroInfo[0].setOpaque(false);
+        addComp(cuadroInfo[0],650,615,240,20);
+        for(int i=1; i<4; i++) {
+            cuadroInfo[i] = new CuadroTexto("-", "Arial", 1,13);
+            cuadroInfo[i].setOpaque(false);
+            addComp(cuadroInfo[i], 650, 615+25*i, 240, 20);
+        }
     }
 
     public void addComp(Component comp, int x, int y, int width, int height) {
@@ -77,11 +84,13 @@ public class PanelZoologico extends JPanel {
     public void toggleHabitat() {
         openPanelHabitat.toggleVisible();
         bOpciones[0].setVisible(openPanelHabitat.getVisible());
-        precioTiendas.setVisible(!openPanelHabitat.getVisible());
-        for(int i=0; i<6; i++)
+        for(int i=0; i<6; i++) {
             selectHabitat[i].setVisible(!openPanelHabitat.getVisible());
-        for(int j=0; j<4; j++)
-            bTiendas[j].setVisible(!openPanelHabitat.getVisible());
+            if(i<4) {
+                cuadroInfo[i].setVisible(!openPanelHabitat.getVisible());
+                bTiendas[i].setVisible(!openPanelHabitat.getVisible());
+            }
+        }
         if(openPanelHabitat.getVisible()) {
             PanelLinker.getPanelMenu().enterHabitat(openPanelHabitat.getHabitat());
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(openPanelHabitat.getValue());
@@ -115,10 +124,13 @@ public class PanelZoologico extends JPanel {
 
 
     public void setAlertHambre(int index, boolean alert) {
-        if(alert)
-            selectHabitat[index].changeImage("imgHabitatAlert"+index+".png");
-        else
-            selectHabitat[index].changeImage("imgHabitat"+index+".png");
+        if(alert) {
+            cuadroInfo[1].setText("- Animales con hambre");
+            selectHabitat[index].changeImage("imgHabitatAlert" + index + ".png");
+        } else {
+            cuadroInfo[1].setText("- ");
+            selectHabitat[index].changeImage("imgHabitat" + index + ".png");
+        }
     }
 
     private class InteraccionHabitat implements ActionListener {
@@ -148,18 +160,18 @@ public class PanelZoologico extends JPanel {
         public void actionPerformed(ActionEvent event) {
             if(event.getSource()==bOpciones[1]){
                 zoologico.addPaga(1000);
-                PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
+                PanelLinker.getPanelMenu().updateDinero(zoologico);
                 return;
             }
             for(int i=0; i<4; i++) {
                 if(event.getSource() == bTiendas[i] && !zoologico.getTienda(i)) {
                     zoologico.comprarTienda(i);
-                    PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
+                    PanelLinker.getPanelMenu().updateDinero(zoologico);
                     if(zoologico.getTienda(i)) {
                         bTiendas[i].changeImage("Tienda/imgTienda" + i + ".png");
-                        precioTiendas.setText(" Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
-                        if(zoologico.getCantidadTiendas()==4)
-                            precioTiendas.setText("Tiendas compradas");
+                        cuadroInfo[0].setText("- Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
+                        if(zoologico.getGananciaEsp(3)==4)
+                            cuadroInfo[0].setText("Tiendas compradas");
                     }
                 }
             }
@@ -185,10 +197,17 @@ public class PanelZoologico extends JPanel {
                 if(zoologico.getHabitat(i).isAdquirido()) {
                     for (int j = 0; j < 6; j++) {
                         if (zoologico.getHabitat(i).getRecinto(j).getAdquirido()) {
-                            zoologico.getHabitat(i).getRecinto(j).addHambre();
+                            Recinto recinto = zoologico.getHabitat(i).getRecinto(j);
+                            recinto.addHambre();
                             listaPanelHabitat[i].getPanelRecinto(j).updateCantidad();
-                            if (zoologico.getHabitat(i).getRecinto(j).getPenalizacion() == 5)
+                            if(recinto.getPenalizacion() == 5)
                                 listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(true);
+                            if(recinto.getPenalizacion() == 100) {
+                                zoologico.rescateAnimal(i,j);
+                                cuadroInfo[2].setText("- El Recinto '"+recinto.getTipo().getNombre()+"' fue vaciado");
+                                cuadroInfo[3].setText("- Los animales fueron rescatado");
+                                listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(false);
+                            }
                         }
                     }
                     setAlertHambre(i,zoologico.getHabitat(i).getPenalizacionHabitat()>0);
@@ -201,7 +220,7 @@ public class PanelZoologico extends JPanel {
                 second = 0;
             }
             if(PanelLinker.getPanelPrincipal()!=null)
-                PanelLinker.getPanelPrincipal().panelMenu.updateDinero(zoologico);
+                PanelLinker.getPanelMenu().updateDinero(zoologico);
         }
     }
 }

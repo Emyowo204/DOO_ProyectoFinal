@@ -5,10 +5,10 @@ import Modelos.Enumeration.*;
 public class Zoologico {
     private Habitat[] listaHabitat;
     private int dinero;
-    private int ganancia;
-    private int penalizacion;
+    private int gananciaTotal;
+    private int[] gananciaEsp;
+    private int multas;
     private boolean[] tiendas;
-    private int multTiendas;
     private Almacen almacen;
     private int precioTienda;
 
@@ -16,10 +16,10 @@ public class Zoologico {
         listaHabitat = new Habitat[6];
         tiendas = new boolean[4];
         almacen = new Almacen();
-        dinero = 10000;
-        ganancia = 0;
-        penalizacion = 0;
-        multTiendas = 0;
+        dinero = 5000;
+        gananciaTotal = 0;
+        multas = 0;
+        gananciaEsp = new int[4];
         precioTienda = 1500;
         for(int i=0; i<6; i++) {
             listaHabitat[i] = new Habitat(TipoHabitat.values()[i], ListaAnimales.values()[i]);
@@ -32,8 +32,8 @@ public class Zoologico {
     public void comprarTienda(int index) {
         if (transaccion(precioTienda, 5)) {
             tiendas[index] = true;
-            multTiendas++;
-            precioTienda = precioTienda + (1500 * multTiendas / 4);
+            gananciaEsp[3]++;
+            precioTienda = precioTienda + (1500 * gananciaEsp[3] / 4);
         }
     }
 
@@ -55,41 +55,56 @@ public class Zoologico {
     }
 
     public void comprarHabitat(int index) {
-        if(transaccion(listaHabitat[index].getTipo().getPrecio(),20))
+        if(transaccion(listaHabitat[index].getTipo().getPrecio(),listaHabitat[index].getTipo().getPrecio()/100)) {
+            gananciaEsp[0] += 20;
             listaHabitat[index].desbloquear();
+        }
    }
 
     public void comprarRecinto(Recinto recinto) {
-        if(transaccion(recinto.getHabitat().getTipo().getPrecioRecinto(),10))
+        if(transaccion(recinto.getHabitat().getTipo().getPrecioRecinto(),10)) {
+            gananciaEsp[1] += 10;
             recinto.desbloquear();
+        }
     }
 
     public void comprarAnimal(Recinto recinto, String nombre) {
         if(recinto.getCantidadAnimal()<10) {
-            if (transaccion(recinto.getTipo().getPrecio(), recinto.getTipo().getPrecio()*5/100))
+            if (transaccion(recinto.getTipo().getPrecio(), recinto.getTipo().getPrecio()*5/100)) {
+                gananciaEsp[2] += recinto.getTipo().getPrecio()*5/100;
                 recinto.comprarAnimal(nombre);
+            }
         }
     }
 
     public boolean transaccion(int precio, int bonus) {
         if(dinero >= precio) {
             dinero -= precio;
-            ganancia += bonus;
+            gananciaTotal += bonus;
             return true;
         } else {
             return false;
         }
     }
+
+    public void rescateAnimal(int hab, int rec) {
+        int mult = listaHabitat[hab].getRecinto(rec).getTipo().getPrecio()*5/100;
+        int desc = listaHabitat[hab].getRecinto(rec).getCantidadAnimal()*mult;
+        gananciaEsp[2] -= desc;
+        gananciaTotal -=desc;
+        listaHabitat[hab].getRecinto(rec).rescateAnimal();
+    }
+
     public int getGanancia() {
-        return ganancia+(ganancia*multTiendas/4)-penalizacion;
+        return gananciaTotal+(gananciaTotal*gananciaEsp[3]/4)-multas;
     }
 
     public void getPaga(){
-        dinero += ganancia+(ganancia*multTiendas/4)-penalizacion;
+        dinero += gananciaTotal+(gananciaTotal*gananciaEsp[3]/4)-multas;
     }
 
     public void setPenalizacion(int x){
-        penalizacion = x;
+        multas = x;
     }
     public int getDinero() { return dinero; }
     public Habitat getHabitat(int index) { return listaHabitat[index]; }
@@ -97,7 +112,8 @@ public class Zoologico {
     public void addPaga(int pago) { dinero+=pago; }
     public Almacen getAlmacen() { return almacen; }
     public int getPrecioTienda() { return precioTienda; }
-    public int getCantidadTiendas() { return multTiendas; }
+    public int getGananciaEsp(int index) { return gananciaEsp[index]; }
+    public int getMultas() { return multas; }
 
 
 }

@@ -44,10 +44,26 @@ public class Recinto {
                 cantidadComida--;
                 hambre = 0;
                 penalizacion = 0;
-            } else
+            }
+            else if(hambre<(30-getCantidadAnimal()))
                 penalizacion = 5;
+            else if(hambre<(40-getCantidadAnimal()))
+                penalizacion = 10;
+            else if(hambre<(50-getCantidadAnimal()))
+                penalizacion = 15;
+            else {
+                penalizacion = 100;
+            }
         } else
             penalizacion = 0;
+    }
+
+    public void rescateAnimal() {
+        if(!listaAnimales.isEmpty()) {
+            listaAnimales.clear();
+            penalizacion = 0;
+            hambre = 0;
+        }
     }
 
     public int getPenalizacion() {

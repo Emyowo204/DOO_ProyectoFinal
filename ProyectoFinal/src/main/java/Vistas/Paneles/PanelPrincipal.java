@@ -10,9 +10,9 @@ import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
 
-    Zoologico zoologico;
-    PanelZoologico panelZoo;
-    PanelMenu panelMenu;
+    private Zoologico zoologico;
+    private PanelZoologico panelZoo;
+    private PanelMenu panelMenu;
 
     public PanelPrincipal() {
         super(new BorderLayout());
