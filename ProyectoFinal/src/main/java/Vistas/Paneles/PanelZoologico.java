@@ -6,6 +6,7 @@ import Vistas.Utils.Boton;
 import Vistas.Utils.CuadroTexto;
 import Vistas.Utils.ImageLoader;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,12 +14,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class PanelZoologico extends JPanel {
     private Timer timer;
     private Zoologico zoologico;
     private PanelHabitat[] listaPanelHabitat;
-    private PanelHabitat openPanelHabitat;
+    private int openPanelHabitatIndex;
     private Boton[] selectHabitat;
     private Boton[] bTiendas;
     private Boton[] bOpciones;
@@ -31,32 +33,33 @@ public class PanelZoologico extends JPanel {
         timer = new Timer(1000,new EscucharTiempo());
         timer.start();
         panelInformacion = new PanelInformacion();
-        panelInformacion.setBounds(100,90,800,600);
+        addComp(panelInformacion,100,90,800,600);
         listaPanelHabitat = new PanelHabitat[6];
         zoologico = zoo;
+        openPanelHabitatIndex = 0;
         this.setBackground(new Color(25,155,57));
         selectHabitat = new Boton[6];
         bTiendas = new Boton[4];
-        bOpciones = new Boton[2];
+        bOpciones = new Boton[3];
+        cuadroInfo = new CuadroTexto[4];
         InteraccionHabitat listenerHabitat = new InteraccionHabitat();
         InteraccionTienda listenerTienda = new InteraccionTienda();
         ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
         bOpciones[0] = new Boton(Color.BLACK,true,"imgBack.png");
         bOpciones[1] = new Boton(Color.BLACK,true,"imgOpDinero.png");
+        bOpciones[2] = new Boton(Color.BLACK,true,"imgInfoZoo.png");
         bOpciones[0].addActionListener(listenerHabitat);
         bOpciones[1].addActionListener(listenerTienda);
+        bOpciones[2].addActionListener(listenerTienda);
+        addComp(bOpciones[2],56,641,100,50);
         bOpciones[0].setVisible(false);
-        int[] yPos = new int[]{250,450,50,50,450,250};
+        int[] habPos = new int[]{50,150,250,555,655,755,250,450,50,50,450,250};
         for(int i=0; i<6; i++) {
-            int x = 50+100*i;
-            if(i>2)
-                x += 205;
             listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i));
             selectHabitat[i] = new Boton(Color.BLACK,true,"imgHabitatLock"+i+".png");
             selectHabitat[i].addActionListener(listenerHabitat);
-            addComp(selectHabitat[i],x,yPos[i],180,120);
+            addComp(selectHabitat[i],habPos[i],habPos[i+6],180,120);
         }
-
         int[] yTPos = new int[]{217,353,353,217};
         for(int i=0; i<4; i++) {
             if(i<2)
@@ -64,16 +67,11 @@ public class PanelZoologico extends JPanel {
             bTiendas[i] = new Boton(Color.BLACK, true, "Tienda/imgTiendaLock" + i + ".png");
             bTiendas[i].addActionListener(listenerTienda);
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
-        }
-        cuadroInfo = new CuadroTexto[4];
-        cuadroInfo[0] = new CuadroTexto("- Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial",1,13);
-        cuadroInfo[0].setOpaque(false);
-        addComp(cuadroInfo[0],650,615,240,20);
-        for(int i=1; i<4; i++) {
             cuadroInfo[i] = new CuadroTexto("-", "Arial", 1,13);
             cuadroInfo[i].setOpaque(false);
             addComp(cuadroInfo[i], 650, 615+25*i, 240, 20);
         }
+        cuadroInfo[0].setText("- Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
     }
 
     public void addComp(Component comp, int x, int y, int width, int height) {
@@ -82,8 +80,10 @@ public class PanelZoologico extends JPanel {
     }
 
     public void toggleHabitat() {
+        PanelHabitat openPanelHabitat = listaPanelHabitat[openPanelHabitatIndex];
         openPanelHabitat.toggleVisible();
         bOpciones[0].setVisible(openPanelHabitat.getVisible());
+        bOpciones[2].setVisible(!openPanelHabitat.getVisible());
         for(int i=0; i<6; i++) {
             selectHabitat[i].setVisible(!openPanelHabitat.getVisible());
             if(i<4) {
@@ -99,26 +99,33 @@ public class PanelZoologico extends JPanel {
             PanelLinker.getPanelMenu().exitHabitat();
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
             remove(openPanelHabitat);
-            if(panelInformacion.getShowing()){
+            if(panelInformacion.isVisible()){
                 toggleInfo(-2, null);
             }
         }
     }
 
     public void toggleInfo(int index, Recinto recinto) {
-        if(panelInformacion.getShowing()) {
-            panelInformacion.toggleShowing();
-            remove(panelInformacion);
+        panelInformacion.toggleShowing();
+        if(!panelInformacion.isVisible()) {
             if(index == -1)
-                add(openPanelHabitat);
+                add(listaPanelHabitat[openPanelHabitatIndex]);
             repaint();
         }else{
-            panelInformacion.toggleShowing();
-            remove(openPanelHabitat);
-            add(panelInformacion);
+            remove(listaPanelHabitat[openPanelHabitatIndex]);
             if(index>=0 && recinto!=null)
                 panelInformacion.openInfo(index, recinto.getListaAnimales());
             repaint();
+        }
+    }
+
+    public void toggleBotones() {
+        bOpciones[2].setVisible(!bOpciones[2].isVisible());
+        for(int i=0; i<6; i++) {
+            selectHabitat[i].setEnabled(!selectHabitat[i].isEnabled());
+            if(i<4) {
+                bTiendas[i].setEnabled(!bTiendas[i].isEnabled());
+            }
         }
     }
 
@@ -147,7 +154,7 @@ public class PanelZoologico extends JPanel {
                         }
                         return;
                     }
-                    openPanelHabitat = listaPanelHabitat[i];
+                    openPanelHabitatIndex = i;
                     break;
                 }
             }
@@ -161,6 +168,12 @@ public class PanelZoologico extends JPanel {
             if(event.getSource()==bOpciones[1]){
                 zoologico.addPaga(1000);
                 PanelLinker.getPanelMenu().updateDinero(zoologico);
+                return;
+            }
+            else if(event.getSource()==bOpciones[2]){
+                panelInformacion.openInfoZoo();
+                toggleInfo(-1,null);
+                toggleBotones();
                 return;
             }
             for(int i=0; i<4; i++) {

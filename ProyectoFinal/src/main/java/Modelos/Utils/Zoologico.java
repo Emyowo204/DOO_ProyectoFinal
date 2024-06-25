@@ -16,7 +16,7 @@ public class Zoologico {
         listaHabitat = new Habitat[6];
         tiendas = new boolean[4];
         almacen = new Almacen();
-        dinero = 5000;
+        dinero = 3000;
         gananciaTotal = 0;
         multas = 0;
         gananciaEsp = new int[4];

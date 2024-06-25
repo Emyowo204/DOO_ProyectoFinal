@@ -6,23 +6,27 @@ import Vistas.Utils.Boton;
 import Vistas.Utils.CuadroTexto;
 import Vistas.Utils.ImageLoader;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PanelInformacion extends JPanel {
-    private boolean showing;
     private final Boton bCerrar;
     private BufferedImage ImgBackground;
+    private BufferedImage ImgInfoZoo;
     private CuadroTexto[] cNombres;
+    private int casoInfo;
 
     public PanelInformacion(){
         super(null);
         this.setBackground(Color.LIGHT_GRAY);
-        showing = false;
+        this.setEnabled(false);
+        this.setVisible(false);
         CerrarPanel cerrarPanel = new CerrarPanel();
         bCerrar = new Boton(Color.BLACK,true,"imgCerrar.png");
         bCerrar.setBounds(10,10,100,38);
@@ -35,6 +39,12 @@ public class PanelInformacion extends JPanel {
             this.add(cNombres[i]);
         }
         ImgBackground = null;
+        casoInfo=0;
+        try{
+            ImgInfoZoo = ImageIO.read(getClass().getClassLoader().getResource("Informacion/imgInfoZoo.png"));
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void openInfo(int index, ArrayList<Animal> animales) {
@@ -56,27 +66,32 @@ public class PanelInformacion extends JPanel {
                 nombres = nombres + ", ";
         }
         cNombres[numCuadro].setText(nombres);
+        casoInfo = -1;
+    }
+
+    public void openInfoZoo() {
+        ImgBackground = ImgInfoZoo;
+        casoInfo = -2;
     }
 
 
     public void toggleShowing() {
-        showing = !showing;
-    }
-
-    public boolean getShowing(){
-        return showing;
+        this.setEnabled(!this.isEnabled());
+        this.setVisible(!this.isVisible());
     }
 
     private class CerrarPanel implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            PanelLinker.getPanelZoo().toggleInfo(-1, null);
+            PanelLinker.getPanelZoo().toggleInfo(casoInfo, null);
+            if(casoInfo==-2)
+                PanelLinker.getPanelZoo().toggleBotones();
         }
     }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        if(getShowing())
+        if(this.isVisible())
             g.drawImage(ImgBackground, 0, 0, this);
     }
 }
