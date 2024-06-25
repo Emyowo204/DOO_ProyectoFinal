@@ -51,7 +51,7 @@ public class PanelZoologico extends JPanel {
         bOpciones[0].addActionListener(listenerHabitat);
         bOpciones[1].addActionListener(listenerTienda);
         bOpciones[2].addActionListener(listenerTienda);
-        addComp(bOpciones[2],56,641,100,50);
+        addComp(bOpciones[2],56,626,100,50);
         bOpciones[0].setVisible(false);
         int[] habPos = new int[]{50,150,250,555,655,755,250,450,50,50,450,250};
         for(int i=0; i<6; i++) {
@@ -69,7 +69,7 @@ public class PanelZoologico extends JPanel {
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
             cuadroInfo[i] = new CuadroTexto("-", "Arial", 1,13);
             cuadroInfo[i].setOpaque(false);
-            addComp(cuadroInfo[i], 650, 615+25*i, 240, 20);
+            addComp(cuadroInfo[i], 650, 635+20*i, 240, 20);
         }
         cuadroInfo[0].setText("- Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
     }
@@ -122,9 +122,9 @@ public class PanelZoologico extends JPanel {
     public void toggleBotones() {
         bOpciones[2].setVisible(!bOpciones[2].isVisible());
         for(int i=0; i<6; i++) {
-            selectHabitat[i].setEnabled(!selectHabitat[i].isEnabled());
+            selectHabitat[i].setVisible(!selectHabitat[i].isVisible());
             if(i<4) {
-                bTiendas[i].setEnabled(!bTiendas[i].isEnabled());
+                bTiendas[i].setVisible(!bTiendas[i].isVisible());
             }
         }
     }

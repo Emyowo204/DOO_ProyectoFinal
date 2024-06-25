@@ -11,6 +11,7 @@ public class Habitat {
     private ArrayList<TipoAnimal> TotalAni;
     private boolean adquirido;
     private boolean comprando;
+    private boolean temperatura;
     private int penalizacionHabitat;
 
     public Habitat(TipoHabitat tipo, ListaAnimales lista) {
@@ -18,6 +19,7 @@ public class Habitat {
         this.tipo = tipo;
         adquirido = false;
         comprando = false;
+        temperatura = false;
         listaRecintos = new Recinto[6];
         UnlockAni = new ArrayList<>();
         TotalAni = new ArrayList<>();
@@ -37,6 +39,9 @@ public class Habitat {
     public void desbloquear() {
         adquirido = true;
     }
+    public void desblTemperatura() {
+        temperatura = true;
+    }
     public void addAnimal(TipoAnimal animal) { UnlockAni.add(animal); }
     public Recinto getRecinto(int index) {
         return listaRecintos[index];
@@ -49,6 +54,7 @@ public class Habitat {
     }
     public boolean isComprando() { return comprando; }
     public boolean isAdquirido() { return adquirido; }
+    public boolean getTemperatura() { return temperatura; }
     public void setComprando(boolean comprando) { this.comprando = comprando; }
     public TipoHabitat getTipo() {
         return tipo;

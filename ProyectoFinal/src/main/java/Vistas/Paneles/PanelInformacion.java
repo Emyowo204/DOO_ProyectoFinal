@@ -70,6 +70,8 @@ public class PanelInformacion extends JPanel {
     }
 
     public void openInfoZoo() {
+        for(int i=0; i<5; i++)
+            cNombres[i].setText("");
         ImgBackground = ImgInfoZoo;
         casoInfo = -2;
     }

@@ -16,7 +16,7 @@ public class Zoologico {
         listaHabitat = new Habitat[6];
         tiendas = new boolean[4];
         almacen = new Almacen();
-        dinero = 3000;
+        dinero = 4000;
         gananciaTotal = 0;
         multas = 0;
         gananciaEsp = new int[4];
@@ -62,8 +62,11 @@ public class Zoologico {
    }
 
     public void comprarRecinto(Recinto recinto) {
-        if(transaccion(recinto.getHabitat().getTipo().getPrecioRecinto(),10)) {
-            gananciaEsp[1] += 10;
+        int mult = 1;
+        if(listaHabitat[recinto.getHabitat().getTipo().getValue()].getTemperatura())
+            mult = 2;
+        if(transaccion(recinto.getHabitat().getTipo().getPrecioRecinto(),10*mult)) {
+            gananciaEsp[1] += 10*mult;
             recinto.desbloquear();
         }
     }
@@ -76,6 +79,19 @@ public class Zoologico {
             }
         }
     }
+
+    public void comprarTemperatura(int index) {
+        if(transaccion(listaHabitat[index].getTipo().getprecioTemperatura(),0)) {
+            listaHabitat[index].desblTemperatura();
+            for(int i=0; i<6; i++) {
+              if(listaHabitat[index].getRecinto(i).getAdquirido()) {
+                  gananciaTotal += 10;
+                  gananciaEsp[1] += 10;
+              }
+            }
+        }
+    }
+
 
     public boolean transaccion(int precio, int bonus) {
         if(dinero >= precio) {
