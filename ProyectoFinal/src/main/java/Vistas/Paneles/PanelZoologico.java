@@ -56,6 +56,7 @@ public class PanelZoologico extends JPanel {
         int[] habPos = new int[]{50,150,250,555,655,755,250,450,50,50,450,250};
         for(int i=0; i<6; i++) {
             listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i));
+            listaPanelHabitat[i].setBounds(43,100,914,550);
             selectHabitat[i] = new Boton(Color.BLACK,true,"imgHabitatLock"+i+".png");
             selectHabitat[i].addActionListener(listenerHabitat);
             addComp(selectHabitat[i],habPos[i],habPos[i+6],180,120);

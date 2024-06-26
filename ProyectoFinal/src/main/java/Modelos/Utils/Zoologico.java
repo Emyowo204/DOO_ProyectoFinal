@@ -56,7 +56,7 @@ public class Zoologico {
 
     public void comprarHabitat(int index) {
         if(transaccion(listaHabitat[index].getTipo().getPrecio(),listaHabitat[index].getTipo().getPrecio()/100)) {
-            gananciaEsp[0] += 20;
+            gananciaEsp[0] += listaHabitat[index].getTipo().getPrecio()/100;
             listaHabitat[index].desbloquear();
         }
    }
