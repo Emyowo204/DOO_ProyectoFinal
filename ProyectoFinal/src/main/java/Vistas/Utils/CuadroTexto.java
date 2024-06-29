@@ -23,6 +23,14 @@ public class CuadroTexto extends JLabel {
         this.setFont(new Font(fuente, estilo, 15));
     }
 
+    public CuadroTexto(String texto, Color bg, Color color, String fuente, int estilo, int size) {
+        super(texto);
+        this.setOpaque(true);
+        this.setBackground(bg);
+        this.setForeground(color);
+        this.setFont(new Font(fuente, estilo, size));
+    }
+
     public CuadroTexto(String texto, String fuente, int estilo) {
         super(texto);
         this.setOpaque(true);

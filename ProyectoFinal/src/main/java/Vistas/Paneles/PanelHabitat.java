@@ -61,10 +61,14 @@ public class PanelHabitat extends JPanel {
     private class ComprarTemperatura implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            PanelLinker.getPanelPrincipal().getZoologico().comprarTemperatura(habitat.getTipo().getValue());
-            if(habitat.getTemperatura()) {
-                PanelLinker.getPanelMenu().updateDinero(PanelLinker.getPanelPrincipal().getZoologico());
-                removeBoton(temperatura);
+            try {
+                PanelLinker.getPanelPrincipal().getZoologico().comprarTemperatura(habitat.getTipo().getValue());
+                if(habitat.getTemperatura()) {
+                    PanelLinker.getPanelMenu().updateDinero(PanelLinker.getPanelPrincipal().getZoologico());
+                    removeBoton(temperatura);
+                }
+            } catch (Exception exception) {
+                PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
             }
         }
     }

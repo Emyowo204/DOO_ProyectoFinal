@@ -48,7 +48,7 @@ public class Recinto {
             else if(hambre<(30-getCantidadAnimal()))
                 penalizacion = 5;
             else if(hambre<(40-getCantidadAnimal()))
-                penalizacion = 10;
+                penalizacion = 100;
             else if(hambre<(50-getCantidadAnimal()))
                 penalizacion = 15;
             else {

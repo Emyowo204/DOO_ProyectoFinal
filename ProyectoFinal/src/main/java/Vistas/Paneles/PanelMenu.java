@@ -122,9 +122,13 @@ public class PanelMenu extends JPanel {
                 return;
             for(int i=0; i<6; i++) {
                 if(habitat.getRecinto(i).getTipo() != null && habitat.getRecinto(i).getTipo() == tipoAnimal) {
-                    PanelLinker.getPanelPrincipal().getZoologico().comprarAnimal(habitat.getRecinto(i), insertText.getText()) ;
-                    updateDinero(PanelLinker.getPanelPrincipal().getZoologico());
-                    insertText.setText(tipoAnimal.getNombre());
+                    try {
+                        PanelLinker.getPanelPrincipal().getZoologico().comprarAnimal(habitat.getRecinto(i), insertText.getText()) ;
+                        updateDinero(PanelLinker.getPanelPrincipal().getZoologico());
+                        insertText.setText(tipoAnimal.getNombre());
+                    } catch (Exception exception) {
+                        PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                    }
                     return;
                 }
             }

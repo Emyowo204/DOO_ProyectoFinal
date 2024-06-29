@@ -24,7 +24,8 @@ public class PanelZoologico extends JPanel {
     private Boton[] selectHabitat;
     private Boton[] bTiendas;
     private Boton[] bOpciones;
-    private CuadroTexto[] cuadroInfo;
+    private CuadroTexto[] textoInfo;
+    private boolean textoInfoAux;
     private BufferedImage ImgBackground;
     private PanelInformacion panelInformacion;
 
@@ -37,11 +38,17 @@ public class PanelZoologico extends JPanel {
         listaPanelHabitat = new PanelHabitat[6];
         zoologico = zoo;
         openPanelHabitatIndex = 0;
+        textoInfoAux = false;
         this.setBackground(new Color(25,155,57));
         selectHabitat = new Boton[6];
         bTiendas = new Boton[4];
         bOpciones = new Boton[3];
-        cuadroInfo = new CuadroTexto[4];
+        textoInfo =  new CuadroTexto[2];
+        textoInfo[0] = new CuadroTexto("", new Color(141,141,141,0), Color.BLACK,"Arial",1);
+        addComp(textoInfo[0],0, 654,100, 30);
+        textoInfo[1] = new CuadroTexto("Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial",1,13);
+        textoInfo[1].setOpaque(false);
+        addComp(textoInfo[1],773,654,200,30);
         InteraccionHabitat listenerHabitat = new InteraccionHabitat();
         InteraccionTienda listenerTienda = new InteraccionTienda();
         ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
@@ -51,7 +58,7 @@ public class PanelZoologico extends JPanel {
         bOpciones[0].addActionListener(listenerHabitat);
         bOpciones[1].addActionListener(listenerTienda);
         bOpciones[2].addActionListener(listenerTienda);
-        addComp(bOpciones[2],56,626,100,50);
+        addComp(bOpciones[2],624,644,100,50);
         bOpciones[0].setVisible(false);
         int[] habPos = new int[]{50,150,250,555,655,755,250,450,50,50,450,250};
         for(int i=0; i<6; i++) {
@@ -68,11 +75,7 @@ public class PanelZoologico extends JPanel {
             bTiendas[i] = new Boton(Color.BLACK, true, "Tienda/imgTiendaLock" + i + ".png");
             bTiendas[i].addActionListener(listenerTienda);
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
-            cuadroInfo[i] = new CuadroTexto("-", "Arial", 1,13);
-            cuadroInfo[i].setOpaque(false);
-            addComp(cuadroInfo[i], 650, 635+20*i, 240, 20);
         }
-        cuadroInfo[0].setText("- Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
     }
 
     public void addComp(Component comp, int x, int y, int width, int height) {
@@ -85,10 +88,10 @@ public class PanelZoologico extends JPanel {
         openPanelHabitat.toggleVisible();
         bOpciones[0].setVisible(openPanelHabitat.getVisible());
         bOpciones[2].setVisible(!openPanelHabitat.getVisible());
+        textoInfo[1].setVisible(!openPanelHabitat.getVisible());
         for(int i=0; i<6; i++) {
             selectHabitat[i].setVisible(!openPanelHabitat.getVisible());
             if(i<4) {
-                cuadroInfo[i].setVisible(!openPanelHabitat.getVisible());
                 bTiendas[i].setVisible(!openPanelHabitat.getVisible());
             }
         }
@@ -111,13 +114,13 @@ public class PanelZoologico extends JPanel {
         if(!panelInformacion.isVisible()) {
             if(index == -1)
                 add(listaPanelHabitat[openPanelHabitatIndex]);
-            repaint();
         }else{
             remove(listaPanelHabitat[openPanelHabitatIndex]);
-            if(index>=0 && recinto!=null)
+            if(index>=0 && recinto!=null) {
                 panelInformacion.openInfo(index, recinto.getListaAnimales());
-            repaint();
+            }
         }
+        repaint();
     }
 
     public void toggleBotones() {
@@ -130,15 +133,21 @@ public class PanelZoologico extends JPanel {
         }
     }
 
-
     public void setAlertHambre(int index, boolean alert) {
         if(alert) {
-            cuadroInfo[1].setText("- Animales con hambre");
             selectHabitat[index].changeImage("imgHabitatAlert" + index + ".png");
         } else {
-            cuadroInfo[1].setText("- ");
             selectHabitat[index].changeImage("imgHabitat" + index + ".png");
         }
+    }
+
+    public void setTextInfo(String text) {
+        text = "   "+text+"   ";
+        textoInfo[0].setBackground(new Color(141,141,141));
+        textoInfo[0].setForeground(Color.BLACK);
+        textoInfo[0].setBounds(0, 654, text.length()*7+20, 30);
+        textoInfo[0].setText(text);
+        textoInfoAux = !textoInfoAux;
     }
 
     private class InteraccionHabitat implements ActionListener {
@@ -147,7 +156,11 @@ public class PanelZoologico extends JPanel {
             for(int i=0; i<6; i++) {
                 if(event.getSource()==selectHabitat[i]) {
                     if(!listaPanelHabitat[i].getHabitat().isAdquirido()) {
-                        zoologico.comprarHabitat(i);
+                        try {
+                            zoologico.comprarHabitat(i);
+                        } catch (Exception exception) {
+                            PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                        }
                         if(listaPanelHabitat[i].getHabitat().isAdquirido()) {
                             PanelLinker.getPanelMenu().updateDinero(zoologico);
                             PanelLinker.getPanelMenu().addPanelComida();
@@ -179,13 +192,17 @@ public class PanelZoologico extends JPanel {
             }
             for(int i=0; i<4; i++) {
                 if(event.getSource() == bTiendas[i] && !zoologico.getTienda(i)) {
-                    zoologico.comprarTienda(i);
-                    PanelLinker.getPanelMenu().updateDinero(zoologico);
+                    try {
+                        zoologico.comprarTienda(i);
+                        PanelLinker.getPanelMenu().updateDinero(zoologico);
+                    } catch (Exception exception) {
+                        PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                    }
                     if(zoologico.getTienda(i)) {
                         bTiendas[i].changeImage("Tienda/imgTienda" + i + ".png");
-                        cuadroInfo[0].setText("- Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
+                        textoInfo[1].setText("Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
                         if(zoologico.getGananciaEsp(3)==4)
-                            cuadroInfo[0].setText("Tiendas compradas");
+                            textoInfo[1].setText("  Tiendas compradas");
                     }
                 }
             }
@@ -201,7 +218,14 @@ public class PanelZoologico extends JPanel {
 
     private class EscucharTiempo implements ActionListener {
         private int second;
-        public EscucharTiempo() { second = 0; }
+        private int textTimer;
+        private boolean textAux;
+
+        public EscucharTiempo() {
+            second = 0;
+            textTimer = 0;
+            textAux = false;
+        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -218,9 +242,8 @@ public class PanelZoologico extends JPanel {
                                 listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(true);
                             if(recinto.getPenalizacion() == 100) {
                                 zoologico.rescateAnimal(i,j);
-                                cuadroInfo[2].setText("- El Recinto '"+recinto.getTipo().getNombre()+"' fue vaciado");
-                                cuadroInfo[3].setText("- Los animales fueron rescatado");
                                 listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(false);
+                                setTextInfo("El recinto '"+listaPanelHabitat[i].getHabitat().getRecinto(j).getTipo().getNombre()+"' fue vaciado, y los animales rescatados");
                             }
                         }
                     }
@@ -232,6 +255,20 @@ public class PanelZoologico extends JPanel {
             if(second==5) {
                 zoologico.getPaga();
                 second = 0;
+            }
+            if(!textoInfo[0].getText().isEmpty()) {
+                if(textAux != textoInfoAux) {
+                    textTimer = 0;
+                    textAux = textoInfoAux;
+                }
+                textTimer++;
+                textoInfo[0].setBackground(new Color(141, 141, 141, 250 - 50 * textTimer));
+                textoInfo[0].setForeground(new Color(0, 0, 0, 250 - 50 * textTimer));
+                if(textTimer==5) {
+                    textTimer = 0;
+                    textoInfo[0].setText("");
+                }
+                repaint();
             }
             if(PanelLinker.getPanelPrincipal()!=null)
                 PanelLinker.getPanelMenu().updateDinero(zoologico);

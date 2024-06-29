@@ -1,6 +1,7 @@
 package Modelos.Utils;
 
 import Modelos.Enumeration.*;
+import Modelos.Exceptions.*;
 
 public class Zoologico {
     private Habitat[] listaHabitat;
@@ -29,7 +30,7 @@ public class Zoologico {
         }
     }
 
-    public void comprarTienda(int index) {
+    public void comprarTienda(int index) throws Exception {
         if (transaccion(precioTienda, 5)) {
             tiendas[index] = true;
             gananciaEsp[3]++;
@@ -37,7 +38,7 @@ public class Zoologico {
         }
     }
 
-    public void comprarAlimento(TipoComida comida, int index) {
+    public void comprarAlimento(TipoComida comida, int index) throws Exception {
         if(transaccion(comida.getPrecio()*index,0)) {
             for (int i = 0; i < index; i++)
                 almacen.addComida(comida);
@@ -54,14 +55,14 @@ public class Zoologico {
         }
     }
 
-    public void comprarHabitat(int index) {
+    public void comprarHabitat(int index) throws Exception {
         if(transaccion(listaHabitat[index].getTipo().getPrecio(),listaHabitat[index].getTipo().getPrecio()/100)) {
             gananciaEsp[0] += listaHabitat[index].getTipo().getPrecio()/100;
             listaHabitat[index].desbloquear();
         }
    }
 
-    public void comprarRecinto(Recinto recinto) {
+    public void comprarRecinto(Recinto recinto) throws Exception {
         int mult = 1;
         if(listaHabitat[recinto.getHabitat().getTipo().getValue()].getTemperatura())
             mult = 2;
@@ -71,16 +72,19 @@ public class Zoologico {
         }
     }
 
-    public void comprarAnimal(Recinto recinto, String nombre) {
+    public void comprarAnimal(Recinto recinto, String nombre) throws Exception {
         if(recinto.getCantidadAnimal()<10) {
             if (transaccion(recinto.getTipo().getPrecio(), recinto.getTipo().getPrecio()*5/100)) {
                 gananciaEsp[2] += recinto.getTipo().getPrecio()*5/100;
                 recinto.comprarAnimal(nombre);
             }
+        } else {
+            throw new MaximoAnimalesRecintoException("Cantidad Máxima de Animales [10]");
         }
+
     }
 
-    public void comprarTemperatura(int index) {
+    public void comprarTemperatura(int index) throws Exception {
         if(transaccion(listaHabitat[index].getTipo().getprecioTemperatura(),0)) {
             listaHabitat[index].desblTemperatura();
             for(int i=0; i<6; i++) {
@@ -93,13 +97,13 @@ public class Zoologico {
     }
 
 
-    public boolean transaccion(int precio, int bonus) {
+    public boolean transaccion(int precio, int bonus) throws Exception {
         if(dinero >= precio) {
             dinero -= precio;
             gananciaTotal += bonus;
             return true;
         } else {
-            return false;
+            throw new PagoInsuficienteException("Pago Insuficiente");
         }
     }
 

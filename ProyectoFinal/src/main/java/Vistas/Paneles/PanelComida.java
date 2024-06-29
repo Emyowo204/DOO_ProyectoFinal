@@ -56,10 +56,14 @@ public class PanelComida extends JPanel {
         public void actionPerformed(ActionEvent event) {
             for(int i=0; i<7; i++) {
                 if(event.getSource() == bComprar[i]) {
-                    Zoologico zoo = PanelLinker.getPanelPrincipal().getZoologico();
-                    zoo.comprarAlimento(TipoComida.values()[i],1);
-                    updateTexto(TipoComida.values()[i]);
-                    PanelLinker.getPanelMenu().updateDinero(zoo);
+                    try {
+                        Zoologico zoo = PanelLinker.getPanelPrincipal().getZoologico();
+                        zoo.comprarAlimento(TipoComida.values()[i],1);
+                        updateTexto(TipoComida.values()[i]);
+                        PanelLinker.getPanelMenu().updateDinero(zoo);
+                    } catch (Exception exception) {
+                        PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                    }
                 }
             }
         }
@@ -69,10 +73,14 @@ public class PanelComida extends JPanel {
         public void actionPerformed(ActionEvent event) {
             for(int i=0; i<7; i++) {
                 if(event.getSource() == bComprarx10[i]) {
-                    Zoologico zoo = PanelLinker.getPanelPrincipal().getZoologico();
-                    zoo.comprarAlimento(TipoComida.values()[i],10);
-                    updateTexto(TipoComida.values()[i]);
-                    PanelLinker.getPanelMenu().updateDinero(zoo);
+                    try {
+                        Zoologico zoo = PanelLinker.getPanelPrincipal().getZoologico();
+                        zoo.comprarAlimento(TipoComida.values()[i],10);
+                        updateTexto(TipoComida.values()[i]);
+                        PanelLinker.getPanelMenu().updateDinero(zoo);
+                    } catch (Exception exception) {
+                        PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                    }
                 }
             }
         }
