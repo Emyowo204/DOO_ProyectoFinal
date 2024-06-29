@@ -76,16 +76,15 @@ public class PanelInformacion extends JPanel {
         casoInfo = -2;
     }
 
-
-    public void toggleShowing() {
-        this.setEnabled(!this.isEnabled());
-        this.setVisible(!this.isVisible());
+    public void setVisibleInfo(boolean caso) {
+        this.setEnabled(caso);
+        this.setVisible(caso);
     }
 
     private class CerrarPanel implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            PanelLinker.getPanelZoo().toggleInfo(casoInfo, null);
+            PanelLinker.getPanelZoo().toggleInfo(false,casoInfo, null);
             if(casoInfo==-2)
                 PanelLinker.getPanelZoo().toggleBotones();
         }

@@ -44,8 +44,9 @@ public class PanelZoologico extends JPanel {
         bTiendas = new Boton[4];
         bOpciones = new Boton[3];
         textoInfo =  new CuadroTexto[2];
-        textoInfo[0] = new CuadroTexto("", new Color(141,141,141,0), Color.BLACK,"Arial",1);
-        addComp(textoInfo[0],0, 654,100, 30);
+        textoInfo[0] = new CuadroTexto("", new Color(0,0,0,0), Color.BLACK,"Arial",1);
+        textoInfo[0].setBorder(BorderFactory.createLineBorder( new Color(0,0,0,0), 5));
+        addComp(textoInfo[0],10, 654,100, 30);
         textoInfo[1] = new CuadroTexto("Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial",1,13);
         textoInfo[1].setOpaque(false);
         addComp(textoInfo[1],773,654,200,30);
@@ -104,13 +105,13 @@ public class PanelZoologico extends JPanel {
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
             remove(openPanelHabitat);
             if(panelInformacion.isVisible()){
-                toggleInfo(-2, null);
+                toggleInfo(false,-2, null);
             }
         }
     }
 
-    public void toggleInfo(int index, Recinto recinto) {
-        panelInformacion.toggleShowing();
+    public void toggleInfo(boolean caso, int index, Recinto recinto) {
+        panelInformacion.setVisibleInfo(caso);
         if(!panelInformacion.isVisible()) {
             if(index == -1)
                 add(listaPanelHabitat[openPanelHabitatIndex]);
@@ -145,7 +146,8 @@ public class PanelZoologico extends JPanel {
         text = "   "+text+"   ";
         textoInfo[0].setBackground(new Color(141,141,141));
         textoInfo[0].setForeground(Color.BLACK);
-        textoInfo[0].setBounds(0, 654, text.length()*7+20, 30);
+        textoInfo[0].setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        textoInfo[0].setBounds(10, 654, text.length()*7+20, 30);
         textoInfo[0].setText(text);
         textoInfoAux = !textoInfoAux;
     }
@@ -186,7 +188,7 @@ public class PanelZoologico extends JPanel {
             }
             else if(event.getSource()==bOpciones[2]){
                 panelInformacion.openInfoZoo();
-                toggleInfo(-1,null);
+                toggleInfo(true,-1,null);
                 toggleBotones();
                 return;
             }
@@ -264,6 +266,7 @@ public class PanelZoologico extends JPanel {
                 textTimer++;
                 textoInfo[0].setBackground(new Color(141, 141, 141, 250 - 50 * textTimer));
                 textoInfo[0].setForeground(new Color(0, 0, 0, 250 - 50 * textTimer));
+                textoInfo[0].setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 250 - 50 * textTimer), 3));
                 if(textTimer==5) {
                     textTimer = 0;
                     textoInfo[0].setText("");

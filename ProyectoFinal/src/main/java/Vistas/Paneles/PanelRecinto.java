@@ -90,12 +90,10 @@ public class PanelRecinto extends JPanel implements Runnable{
     }
 
     private class OpcionesAnimal implements ActionListener {
-
-        Boolean showingInfo = false;
         @Override
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == botonInfo) {
-                PanelLinker.getPanelZoo().toggleInfo(recinto.getTipo().getValue(), recinto);
+                PanelLinker.getPanelZoo().toggleInfo(true,recinto.getTipo().getValue(), recinto);
             }
             else {
                 int index = 1;
