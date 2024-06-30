@@ -16,8 +16,9 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class PanelZoologico extends JPanel {
+public class PanelZoologico extends JPanel implements Runnable {
     private Timer timer;
+    private Thread thread;
     private Zoologico zoologico;
     private PanelHabitat[] listaPanelHabitat;
     private int openPanelHabitatIndex;
@@ -31,8 +32,9 @@ public class PanelZoologico extends JPanel {
 
     public PanelZoologico(Zoologico zoo) {
         super(null);
-        timer = new Timer(1000,new EscucharTiempo());
-        timer.start();
+
+        thread = new Thread(this);
+
         panelInformacion = new PanelInformacion();
         addComp(panelInformacion,100,90,800,600);
         listaPanelHabitat = new PanelHabitat[6];
@@ -77,6 +79,8 @@ public class PanelZoologico extends JPanel {
             bTiendas[i].addActionListener(listenerTienda);
             addComp(bTiendas[i],400+136*(i%2),yTPos[i],50,50);
         }
+
+        thread.start();
     }
 
     public void addComp(Component comp, int x, int y, int width, int height) {
@@ -152,6 +156,8 @@ public class PanelZoologico extends JPanel {
         textoInfoAux = !textoInfoAux;
     }
 
+
+
     private class InteraccionHabitat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -218,56 +224,63 @@ public class PanelZoologico extends JPanel {
         g.drawImage(ImgBackground, 0, 0, this);
     }
 
-    private class EscucharTiempo implements ActionListener {
-        private int second;
-        private int textTimer;
-        private boolean textAux;
 
-        public EscucharTiempo() {
-            second = 0;
-            textTimer = 0;
-            textAux = false;
-        }
+    @Override
+    public void run() {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            second++;
+        float pagaTimer = 0;
+        float textTimer = 0;
+        float hambreTimer = 0;
+        boolean textAux = false;
+        long startTime = 0;
+        long endTime = 0;
+        long deltaTime = 0;
+
+        while(true) {
+            startTime = System.currentTimeMillis();
+
+            pagaTimer += (float) deltaTime / 1000;
+            hambreTimer += (float) deltaTime / 1000;
             int penalizacion = 0;
-            for (int i = 0; i < 6; i++) {
-                if(zoologico.getHabitat(i).isAdquirido()) {
-                    for (int j = 0; j < 6; j++) {
-                        if (zoologico.getHabitat(i).getRecinto(j).getAdquirido()) {
-                            Recinto recinto = zoologico.getHabitat(i).getRecinto(j);
-                            recinto.addHambre();
-                            listaPanelHabitat[i].getPanelRecinto(j).updateCantidad();
-                            if(recinto.getPenalizacion() == 5)
-                                listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(true);
-                            if(recinto.getPenalizacion() == 100) {
-                                zoologico.rescateAnimal(i,j);
-                                listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(false);
-                                setTextInfo("El recinto '"+listaPanelHabitat[i].getHabitat().getRecinto(j).getTipo().getNombre()+"' fue vaciado, y los animales rescatados");
+
+            if(hambreTimer>=1){
+                for (int i = 0; i < 6; i++) {
+                    if (zoologico.getHabitat(i).isAdquirido()) {
+                        for (int j = 0; j < 6; j++) {
+                            if (zoologico.getHabitat(i).getRecinto(j).getAdquirido()) {
+                                Recinto recinto = zoologico.getHabitat(i).getRecinto(j);
+                                recinto.addHambre();
+                                listaPanelHabitat[i].getPanelRecinto(j).updateCantidad();
+                                if (recinto.getPenalizacion() == 5)
+                                    listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(true);
+                                if (recinto.getPenalizacion() == 100) {
+                                    zoologico.rescateAnimal(i, j);
+                                    listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(false);
+                                    setTextInfo("El recinto '" + listaPanelHabitat[i].getHabitat().getRecinto(j).getTipo().getNombre() + "' fue vaciado, y los animales rescatados");
+                                }
                             }
                         }
+                        setAlertHambre(i, zoologico.getHabitat(i).getPenalizacionHabitat() > 0);
+                        penalizacion += zoologico.getHabitat(i).getPenalizacionHabitat();
                     }
-                    setAlertHambre(i,zoologico.getHabitat(i).getPenalizacionHabitat()>0);
-                    penalizacion += zoologico.getHabitat(i).getPenalizacionHabitat();
                 }
+                hambreTimer=0;
             }
             zoologico.setPenalizacion(penalizacion);
-            if(second==5) {
+            if(pagaTimer>=5) {
                 zoologico.getPaga();
-                second = 0;
+                pagaTimer = 0;
             }
             if(!textoInfo[0].getText().isEmpty()) {
                 if(textAux != textoInfoAux) {
                     textTimer = 0;
                     textAux = textoInfoAux;
                 }
-                textTimer++;
-                textoInfo[0].setBackground(new Color(141, 141, 141, 250 - 50 * textTimer));
-                textoInfo[0].setForeground(new Color(0, 0, 0, 250 - 50 * textTimer));
-                textoInfo[0].setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 250 - 50 * textTimer), 3));
-                if(textTimer==5) {
+                textTimer+= (float) deltaTime/1000;
+                textoInfo[0].setBackground(new Color(141, 141, 141, (int) (250 - 50 * textTimer)));
+                textoInfo[0].setForeground(new Color(0, 0, 0, (int) (250 -  50 *  textTimer)));
+                textoInfo[0].setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, (int)(250 - 50 * textTimer)), 3));
+                if(textTimer>=5) {
                     textTimer = 0;
                     textoInfo[0].setText("");
                 }
@@ -275,6 +288,20 @@ public class PanelZoologico extends JPanel {
             }
             if(PanelLinker.getPanelPrincipal()!=null)
                 PanelLinker.getPanelMenu().updateDinero(zoologico);
+
+
+
+            endTime = System.currentTimeMillis();
+            deltaTime = (1000/60) - (endTime - startTime);
+
+            System.out.println(pagaTimer);
+            if(deltaTime > 0){
+                try {
+                    Thread.sleep(deltaTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
