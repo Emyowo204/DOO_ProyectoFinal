@@ -1,6 +1,9 @@
 package Modelos.Utils;
 
 import Modelos.Enumeration.TipoAnimal;
+import Modelos.Exceptions.MaximoAnimalesRecintoException;
+import Modelos.Exceptions.NombreVacioException;
+import Vistas.Paneles.PanelLinker;
 
 import java.util.ArrayList;
 
@@ -66,12 +69,15 @@ public class Recinto {
         }
     }
 
-    public int getPenalizacion() {
-        return penalizacion;
+    public void comprarAnimal(String nombre) throws Exception {
+        if(nombre.isEmpty()) {
+            throw new NombreVacioException("Nombre no ingresado");
+        }
+        listaAnimales.add(new AnimalFactory().crearAnimal(tipo, nombre));
     }
 
-    public void comprarAnimal(String nombre) {
-        listaAnimales.add(new AnimalFactory().crearAnimal(tipo, nombre));
+    public int getPenalizacion() {
+        return penalizacion;
     }
     public ArrayList<Animal> getListaAnimales() { return listaAnimales; }
     public TipoAnimal getTipo() { return tipo; }

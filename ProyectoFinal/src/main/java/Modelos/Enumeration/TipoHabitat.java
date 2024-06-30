@@ -2,11 +2,11 @@ package Modelos.Enumeration;
 
 public enum TipoHabitat {
     Bosque(1000, 1000,1500,0),
-    Sabana(2000, 1000,1500,1),
+    Sabana(2000, 1000,2000,1),
     Selva(2000, 1000,1500,2),
-    Acuario(3000, 1000,1500,3),
-    Desierto(3000, 1000,1500,4),
-    Artico(4000, 1000,1500,5);
+    Acuario(3000, 1500,2500,3),
+    Desierto(3000, 1500,2000,4),
+    Artico(4000, 2000,3000,5);
     private int precio;
     private int precioRecinto;
     private int precioTemperatura;

@@ -33,7 +33,7 @@ public class PanelRecinto extends JPanel implements Runnable{
         this.setOpaque(false);
         InteraccionRecinto listenerRecinto = new InteraccionRecinto();
         OpcionesAnimal listenerOpciones = new OpcionesAnimal();
-        botonComprar = new Boton(Color.BLACK, true, "imgComprarRecinto.png");
+        botonComprar = new Boton(Color.BLACK, true, "imgRecinto"+recinto.getHabitat().getTipo().getPrecioRecinto()+".png");
         botonComprar.addActionListener(listenerRecinto);
         addComp(botonComprar,25,50,200,100);
         botonInfo = new Boton(Color.BLACK, true, "imgBotonInfo.png");
@@ -118,6 +118,7 @@ public class PanelRecinto extends JPanel implements Runnable{
                 }
                 if(recinto.getAdquirido()) {
                     PanelLinker.getPanelMenu().updateDinero(PanelLinker.getPanelPrincipal().getZoologico());
+                    PanelLinker.getPanelMenu().getAddAnimal().setText(" > Presione Aquí <");
                     togglePanelSelect();
                 }
                 return;

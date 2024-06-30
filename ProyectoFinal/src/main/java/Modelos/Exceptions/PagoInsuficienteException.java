@@ -1,6 +1,6 @@
 package Modelos.Exceptions;
 
-/** Esta excepción es resultante de un precio del producto mayor al valor de la moneda entregada */
+/** Esta excepción es resultante de tener una cantidad menor de dinero al precio de la compra */
 public class PagoInsuficienteException extends Exception {
     public PagoInsuficienteException(String errorMessage) {
         super(errorMessage);

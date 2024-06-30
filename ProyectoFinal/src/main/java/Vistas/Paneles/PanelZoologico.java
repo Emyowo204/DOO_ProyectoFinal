@@ -44,7 +44,7 @@ public class PanelZoologico extends JPanel {
         bTiendas = new Boton[4];
         bOpciones = new Boton[3];
         textoInfo =  new CuadroTexto[2];
-        textoInfo[0] = new CuadroTexto("", new Color(0,0,0,0), Color.BLACK,"Arial",1);
+        textoInfo[0] = new CuadroTexto("", new Color(0,0,0,0), Color.BLACK,"Arial",1,16);
         textoInfo[0].setBorder(BorderFactory.createLineBorder( new Color(0,0,0,0), 5));
         addComp(textoInfo[0],10, 654,100, 30);
         textoInfo[1] = new CuadroTexto("Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial",1,13);
@@ -147,7 +147,7 @@ public class PanelZoologico extends JPanel {
         textoInfo[0].setBackground(new Color(141,141,141));
         textoInfo[0].setForeground(Color.BLACK);
         textoInfo[0].setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        textoInfo[0].setBounds(10, 654, text.length()*7+20, 30);
+        textoInfo[0].setBounds(10, 654, text.length()*8, 30);
         textoInfo[0].setText(text);
         textoInfoAux = !textoInfoAux;
     }

@@ -100,6 +100,8 @@ public class PanelMenu extends JPanel {
 
     public PanelComida getPanelComida() { return panelComida; }
 
+    public PopupSelect getAddAnimal() { return addAnimal; }
+
     private class SelectAnimal implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -119,10 +121,6 @@ public class PanelMenu extends JPanel {
         @Override
         public void actionPerformed(ActionEvent event) {
             PanelLinker.getPanelZoo().toggleInfo(false,-1,null);
-            if(insertText.getText().isEmpty()) {
-                PanelLinker.getPanelZoo().setTextInfo("Nombre no ingresado");
-                return;
-            }
             for(int i=0; i<6; i++) {
                 if(habitat.getRecinto(i).getTipo() != null && habitat.getRecinto(i).getTipo() == tipoAnimal) {
                     try {
