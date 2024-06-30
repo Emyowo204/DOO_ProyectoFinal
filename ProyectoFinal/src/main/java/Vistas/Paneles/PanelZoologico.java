@@ -294,7 +294,6 @@ public class PanelZoologico extends JPanel implements Runnable {
             endTime = System.currentTimeMillis();
             deltaTime = (1000/60) - (endTime - startTime);
 
-            System.out.println(pagaTimer);
             if(deltaTime > 0){
                 try {
                     Thread.sleep(deltaTime);
