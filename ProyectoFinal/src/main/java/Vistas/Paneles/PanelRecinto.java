@@ -15,9 +15,8 @@ import java.util.ArrayList;
  * @author Chloe Yañez Lavin
  * @author Emily Osvaldo Gaete Bobadilla */
 
-public class PanelRecinto extends JPanel implements Runnable{
+public class PanelRecinto extends JPanel{
     private Recinto recinto;
-    private Thread thread;
     private ArrayList<Animal> animales;
     private PanelSelect panelSelect;
     private Boton[] selectButtons;
@@ -53,8 +52,7 @@ public class PanelRecinto extends JPanel implements Runnable{
             selectButtons[i].addActionListener(listenerRecinto);
         panelSelect.setVisible(false);
         this.add(panelSelect);
-        thread = new Thread(this);
-        thread.start();
+
     }
 
     public void addComp(Component comp, int x, int y, int width, int height) {
@@ -150,25 +148,11 @@ public class PanelRecinto extends JPanel implements Runnable{
             animales.get(i).paintComponent(g, this);
     }
 
-    @Override
-    public void run() {
-        while(true) {
-            long startTime = System.currentTimeMillis();
-
-            for(int i=0; i< animales.size(); i++){
-                animales.get(i).moveInPath();
-            }
-            repaint();
-
-            long endTime = System.currentTimeMillis();
-            long deltaTime = (1000/60) - (endTime - startTime);
-            if(deltaTime > 0){
-                try {
-                    Thread.sleep(deltaTime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+    public void moveAnimals() {
+        for(int i=0; i< animales.size(); i++){
+            animales.get(i).moveInPath();
         }
+        repaint();
     }
+
 }

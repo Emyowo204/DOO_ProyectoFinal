@@ -232,40 +232,44 @@ public class PanelZoologico extends JPanel implements Runnable {
         float textTimer = 0;
         float hambreTimer = 0;
         boolean textAux = false;
-        long startTime = 0;
-        long endTime = 0;
         long deltaTime = 0;
 
         while(true) {
-            startTime = System.currentTimeMillis();
+            long startTime = System.currentTimeMillis();
 
             pagaTimer += (float) deltaTime / 1000;
             hambreTimer += (float) deltaTime / 1000;
             int penalizacion = 0;
 
-            if(hambreTimer>=1){
-                for (int i = 0; i < 6; i++) {
-                    if (zoologico.getHabitat(i).isAdquirido()) {
-                        for (int j = 0; j < 6; j++) {
-                            if (zoologico.getHabitat(i).getRecinto(j).getAdquirido()) {
-                                Recinto recinto = zoologico.getHabitat(i).getRecinto(j);
+            for (int i = 0; i < 6; i++) {
+                if (zoologico.getHabitat(i).isAdquirido()) {
+                    for (int j = 0; j < 6; j++) {
+                        if (zoologico.getHabitat(i).getRecinto(j).getAdquirido()) {
+                            Recinto recinto = zoologico.getHabitat(i).getRecinto(j);
+
+                            if(hambreTimer>=1){
                                 recinto.addHambre();
-                                listaPanelHabitat[i].getPanelRecinto(j).updateCantidad();
-                                if (recinto.getPenalizacion() == 5)
-                                    listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(true);
-                                if (recinto.getPenalizacion() == 100) {
-                                    zoologico.rescateAnimal(i, j);
-                                    listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(false);
-                                    setTextInfo("El recinto '" + listaPanelHabitat[i].getHabitat().getRecinto(j).getTipo().getNombre() + "' fue vaciado, y los animales rescatados");
-                                }
+                                hambreTimer=0;
+                            }
+
+                            listaPanelHabitat[i].getPanelRecinto(j).updateCantidad();
+                            if(listaPanelHabitat[i].getVisible()) {
+                                listaPanelHabitat[i].getPanelRecinto(j).moveAnimals();
+                            }
+                            if (recinto.getPenalizacion() == 5)
+                                listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(true);
+                            if (recinto.getPenalizacion() == 100) {
+                                zoologico.rescateAnimal(i, j);
+                                listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(false);
+                                setTextInfo("El recinto '" + listaPanelHabitat[i].getHabitat().getRecinto(j).getTipo().getNombre() + "' fue vaciado, y los animales rescatados");
                             }
                         }
-                        setAlertHambre(i, zoologico.getHabitat(i).getPenalizacionHabitat() > 0);
-                        penalizacion += zoologico.getHabitat(i).getPenalizacionHabitat();
                     }
+                    setAlertHambre(i, zoologico.getHabitat(i).getPenalizacionHabitat() > 0);
+                    penalizacion += zoologico.getHabitat(i).getPenalizacionHabitat();
                 }
-                hambreTimer=0;
             }
+
             zoologico.setPenalizacion(penalizacion);
             if(pagaTimer>=5) {
                 zoologico.getPaga();
@@ -291,7 +295,7 @@ public class PanelZoologico extends JPanel implements Runnable {
 
 
 
-            endTime = System.currentTimeMillis();
+            long endTime = System.currentTimeMillis();
             deltaTime = (1000/60) - (endTime - startTime);
 
             if(deltaTime > 0){
