@@ -33,10 +33,10 @@ public enum TipoAnimal {
     Camello(300, TipoHabitat.Desierto, TipoComida.Vegetacion,"Camello",25),
     Canguro(300, TipoHabitat.Desierto, TipoComida.Vegetacion,"Canguro",26),
     Coyote(200, TipoHabitat.Desierto, TipoComida.CarneRoja,"Coyote",27),
-    Lagarto(100, TipoHabitat.Desierto, TipoComida.Roedor,"Lagarto",28),
+    Lagarto(100, TipoHabitat.Desierto, TipoComida.Insectos,"Lagarto",28),
     Suricata(100, TipoHabitat.Desierto, TipoComida.Insectos,"Suricata",29),
 
-    Alce(200, TipoHabitat.Artico, TipoComida.Vegetacion,"Alce",30),
+    Alce(200, TipoHabitat.Artico, TipoComida.Arbustos,"Alce",30),
     BuhoNival(100, TipoHabitat.Artico, TipoComida.Roedor,"Búho nival",31),
     Morsa(300, TipoHabitat.Artico, TipoComida.Pescado,"Morsa",32),
     OsoPolar(300, TipoHabitat.Artico, TipoComida.CarneRoja,"Oso polar",33),
