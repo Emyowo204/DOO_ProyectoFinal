@@ -6,18 +6,13 @@ import Vistas.Utils.Boton;
 import Vistas.Utils.CuadroTexto;
 import Vistas.Utils.ImageLoader;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class PanelZoologico extends JPanel implements Runnable {
-    private Timer timer;
     private Thread thread;
     private Zoologico zoologico;
     private PanelHabitat[] listaPanelHabitat;
@@ -272,7 +267,7 @@ public class PanelZoologico extends JPanel implements Runnable {
 
             zoologico.setPenalizacion(penalizacion);
             if(pagaTimer>=5) {
-                zoologico.getPaga();
+                zoologico.recibirPaga();
                 pagaTimer = 0;
             }
             if(!textoInfo[0].getText().isEmpty()) {

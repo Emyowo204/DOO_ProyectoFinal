@@ -119,7 +119,7 @@ public class Zoologico {
         return gananciaTotal+(gananciaTotal*gananciaEsp[3]/4)-multas;
     }
 
-    public void getPaga(){
+    public void recibirPaga(){
         dinero += gananciaTotal+(gananciaTotal*gananciaEsp[3]/4)-multas;
     }
 
