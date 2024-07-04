@@ -21,7 +21,7 @@ public class Tiburon extends Animal {
 
     @Override
     public int getRandBound() {
-        return 4;
+        return 10;
     }
 
     public void moveInPath(){

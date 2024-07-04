@@ -22,7 +22,7 @@ public class ZorroArtico extends Animal {
 
     @Override
     public int getRandBound() {
-        return 4;
+        return 12;
     }
 
     public void moveInPath(){

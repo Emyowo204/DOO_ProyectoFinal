@@ -98,9 +98,14 @@ public class PanelMenu extends JPanel {
         }
     }
 
-    public PanelComida getPanelComida() { return panelComida; }
+    public void resetCompraAnimal() {
+        tipoAnimal = null;
+        addAnimal.setText(" > Presione Aquí <");
+        insertText.setText("");
+        comprarAnimal.setEnabled(false);
+    }
 
-    public PopupSelect getAddAnimal() { return addAnimal; }
+    public PanelComida getPanelComida() { return panelComida; }
 
     private class SelectAnimal implements ActionListener {
         @Override
