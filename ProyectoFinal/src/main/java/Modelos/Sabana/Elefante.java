@@ -14,8 +14,6 @@ public class Elefante extends Animal {
 
     public Elefante(String nombre) {
         super(nombre, TipoAnimal.Elefante);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Elefante extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 7;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){

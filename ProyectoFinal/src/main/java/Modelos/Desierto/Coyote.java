@@ -14,8 +14,6 @@ public class Coyote extends Animal {
 
     public Coyote(String nombre) {
         super(nombre, TipoAnimal.Coyote);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Coyote extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 27;
+    public int getRandBound() {
+        return 10;
     }
 
     public void moveInPath(){

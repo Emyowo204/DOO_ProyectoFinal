@@ -62,7 +62,7 @@ public class PanelZoologico extends JPanel implements Runnable {
         for(int i=0; i<6; i++) {
             listaPanelHabitat[i] = new PanelHabitat(zoologico.getHabitat(i));
             listaPanelHabitat[i].setBounds(43,100,914,550);
-            selectHabitat[i] = new Boton(Color.BLACK,true,"imgHabitatLock"+i+".png");
+            selectHabitat[i] = new Boton(Color.BLACK,true,"Habitat/imgHabitatLock"+i+".png");
             selectHabitat[i].addActionListener(listenerHabitat);
             addComp(selectHabitat[i],habPos[i],habPos[i+6],180,120);
         }
@@ -135,9 +135,9 @@ public class PanelZoologico extends JPanel implements Runnable {
 
     public void setAlertHambre(int index, boolean alert) {
         if(alert) {
-            selectHabitat[index].changeImage("imgHabitatAlert" + index + ".png");
+            selectHabitat[index].changeImage("Habitat/imgHabitatAlert" + index + ".png");
         } else {
-            selectHabitat[index].changeImage("imgHabitat" + index + ".png");
+            selectHabitat[index].changeImage("Habitat/imgHabitat" + index + ".png");
         }
     }
 
@@ -167,7 +167,7 @@ public class PanelZoologico extends JPanel implements Runnable {
                         if(listaPanelHabitat[i].getHabitat().isAdquirido()) {
                             PanelLinker.getPanelMenu().updateDinero(zoologico);
                             PanelLinker.getPanelMenu().addPanelComida();
-                            selectHabitat[i].changeImage("imgHabitat" + i + ".png");
+                            selectHabitat[i].changeImage("Habitat/imgHabitat" + i + ".png");
                         }
                         return;
                     }

@@ -14,16 +14,14 @@ public class Orca extends Animal {
     public Orca(String nombre) {
         super(nombre, TipoAnimal.Orca);
         moveSpeed=1;
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(200);
     }
 
     @Override
-    public int getNumImg() {
-        return 21;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){

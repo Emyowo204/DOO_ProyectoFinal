@@ -13,7 +13,7 @@ public interface Visible {
 
     /** Metodo para obtener el número de la imagen un Objeto
      * @return int con el número asociado a la imagen del Objeto */
-    public int getNumImg();
+    public int getRandBound();
 
     public void setImage(BufferedImage image);
 }

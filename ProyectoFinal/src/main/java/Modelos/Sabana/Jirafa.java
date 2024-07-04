@@ -14,8 +14,6 @@ public class Jirafa extends Animal {
 
     public Jirafa(String nombre) {
         super(nombre, TipoAnimal.Jirafa);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Jirafa extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 10;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){

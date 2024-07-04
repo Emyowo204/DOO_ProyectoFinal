@@ -15,16 +15,14 @@ public class Morsa extends Animal {
     public Morsa(String nombre) {
         super(nombre, TipoAnimal.Morsa);
         moveSpeed=1;
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(200);
     }
 
     @Override
-    public int getNumImg() {
-        return 32;
+    public int getRandBound() {
+        return 2;
     }
 
     public void moveInPath(){

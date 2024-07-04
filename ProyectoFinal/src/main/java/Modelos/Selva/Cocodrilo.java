@@ -14,8 +14,6 @@ public class Cocodrilo extends Animal {
 
     public Cocodrilo(String nombre) {
         super(nombre, TipoAnimal.Cocodrilo);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Cocodrilo extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 12;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){

@@ -14,8 +14,6 @@ public class Loro extends Animal {
 
     public Loro(String nombre) {
         super(nombre, TipoAnimal.Loro);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Loro extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 13;
+    public int getRandBound() {
+        return 3;
     }
 
     public void moveInPath(){

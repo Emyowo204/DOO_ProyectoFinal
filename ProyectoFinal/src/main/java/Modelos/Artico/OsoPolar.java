@@ -15,16 +15,14 @@ public class OsoPolar extends Animal {
     public OsoPolar(String nombre) {
         super(nombre, TipoAnimal.OsoPolar);
         moveSpeed=1;
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(200);
     }
 
     @Override
-    public int getNumImg() {
-        return 33;
+    public int getRandBound() {
+        return 12;
     }
 
     public void moveInPath(){

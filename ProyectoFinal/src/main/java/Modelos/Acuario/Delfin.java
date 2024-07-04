@@ -14,16 +14,14 @@ public class Delfin extends Animal {
     public Delfin(String nombre) {
         super(nombre, TipoAnimal.Delfin);
         moveSpeed=1;
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(200);
     }
 
     @Override
-    public int getNumImg() {
-        return 19;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){

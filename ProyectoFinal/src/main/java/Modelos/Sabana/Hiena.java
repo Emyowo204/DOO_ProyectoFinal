@@ -14,8 +14,6 @@ public class Hiena extends Animal {
 
     public Hiena(String nombre) {
         super(nombre, TipoAnimal.Hiena);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextInt(1,2);
@@ -23,8 +21,8 @@ public class Hiena extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 8;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){

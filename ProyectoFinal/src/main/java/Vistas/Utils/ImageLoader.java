@@ -18,6 +18,8 @@ public class ImageLoader {
     /** Imágenes de los Productos */
     private static BufferedImage[] imagenAnimal;
     private static BufferedImage[] imagenAnimalFlipped;
+    private static BufferedImage[] imagenAnimalAlterno;
+    private static BufferedImage[] imagenAnimalAlternoFlipped;
     private static BufferedImage[] fondosZoologico;
     private static BufferedImage[] fondosInformacion;
 
@@ -29,12 +31,15 @@ public class ImageLoader {
 
         imagenAnimal = new BufferedImage[cantidadAnimales];
         imagenAnimalFlipped = new BufferedImage[cantidadAnimales];
+        imagenAnimalAlterno = new BufferedImage[cantidadAnimales];
+        imagenAnimalAlternoFlipped = new BufferedImage[cantidadAnimales];
         fondosZoologico = new BufferedImage[cantidadHabitats];
         fondosInformacion = new BufferedImage[cantidadAnimales];
 
         for(int i=0; i<cantidadAnimales; i++){
             try{
                 imagenAnimal[i] = ImageIO.read(getClass().getClassLoader().getResource("Animales/imgAnimal"+ i +".png"));
+                imagenAnimalAlterno[i] = ImageIO.read(getClass().getClassLoader().getResource("Alternos/imgAnimal"+ i +".png"));
                 fondosInformacion[i] = ImageIO.read(getClass().getClassLoader().getResource("Informacion/imgAnimal"+ i +".png"));
             }catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -43,6 +48,11 @@ public class ImageLoader {
             transform.translate(-imagenAnimal[i].getWidth(null), 0);
             AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
             imagenAnimalFlipped[i] = op.filter(imagenAnimal[i], null);
+
+            AffineTransform transform_1 = AffineTransform.getScaleInstance(-1, 1);
+            transform_1.translate(-imagenAnimalAlterno[i].getWidth(null), 0);
+            AffineTransformOp op_1 = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+            imagenAnimalAlternoFlipped[i] = op_1.filter(imagenAnimalAlterno[i], null);
         }
         for(int i=0; i<cantidadHabitats; i++) {
             try{
@@ -68,6 +78,12 @@ public class ImageLoader {
     }
     public BufferedImage getImagenAnimalFlipped(int index){
         return imagenAnimalFlipped[index];
+    }
+    public BufferedImage getImagenAnimalAlterno(int index){
+        return imagenAnimalAlterno[index];
+    }
+    public BufferedImage getImagenAnimalAlternoFlipped(int index){
+        return imagenAnimalAlternoFlipped[index];
     }
     public BufferedImage getImagenFondoZoo(int index){
         return fondosZoologico[index];

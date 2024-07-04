@@ -14,8 +14,6 @@ public class OsoHormiguero extends Animal {
 
     public OsoHormiguero(String nombre) {
         super(nombre, TipoAnimal.OsoHormiguero);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class OsoHormiguero extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 15;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){

@@ -14,8 +14,6 @@ public class Pantera extends Animal {
 
     public Pantera(String nombre) {
         super(nombre, TipoAnimal.Pantera);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Pantera extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 16;
+    public int getRandBound() {
+        return 10;
     }
 
     public void moveInPath(){

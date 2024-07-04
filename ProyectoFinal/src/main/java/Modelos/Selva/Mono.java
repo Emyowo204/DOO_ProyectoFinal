@@ -17,18 +17,14 @@ public class Mono extends Animal {
     public Mono(String nombre) {
         super(nombre, TipoAnimal.Mono);
         moveSpeed = 1;
-
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
-
         randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(150);
 
     }
 
     @Override
-    public int getNumImg() {
-        return 14;
+    public int getRandBound() {
+        return 10;
     }
 
     public void moveInPath(){

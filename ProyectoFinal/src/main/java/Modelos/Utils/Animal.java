@@ -1,9 +1,11 @@
 package Modelos.Utils;
 
 import Modelos.Enumeration.*;
+import Vistas.Utils.ImageLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public abstract class Animal implements Visible {
     private String nombre;
@@ -21,6 +23,13 @@ public abstract class Animal implements Visible {
         habitat = tipo.getHabitat();
         comida = tipo.getComida();
         this.nombre = nombre;
+        int numImg = tipo.getValue();
+        setImage(ImageLoader.getInstancia().getImagenAnimal(numImg));
+        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(numImg));
+        if(new Random().nextInt(getRandBound())<1) {
+            setImage(ImageLoader.getInstancia().getImagenAnimalAlterno(numImg));
+            setFlippedImage(ImageLoader.getInstancia().getImagenAnimalAlternoFlipped(numImg));
+        }
     }
 
     public abstract void moveInPath();

@@ -14,8 +14,6 @@ public class Camello extends Animal {
 
     public Camello(String nombre) {
         super(nombre, TipoAnimal.Camello);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Camello extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 25;
+    public int getRandBound() {
+        return 2;
     }
 
     public void moveInPath(){

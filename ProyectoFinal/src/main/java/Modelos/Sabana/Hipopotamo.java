@@ -14,8 +14,6 @@ public class Hipopotamo extends Animal {
 
     public Hipopotamo(String nombre) {
         super(nombre, TipoAnimal.Hipopotamo);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Hipopotamo extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 9;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){

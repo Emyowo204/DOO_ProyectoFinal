@@ -14,17 +14,15 @@ public class Leon extends Animal {
 
     public Leon(String nombre) {
         super(nombre, TipoAnimal.Leon);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
-        moveSpeed=1;
+        moveSpeed = 1;
         randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(200);
     }
 
     @Override
-    public int getNumImg() {
-        return 11;
+    public int getRandBound() {
+        return 2;
     }
 
     public void moveInPath(){

@@ -14,8 +14,6 @@ public class Lagarto extends Animal {
 
     public Lagarto(String nombre) {
         super(nombre, TipoAnimal.Lagarto);
-        setImage(ImageLoader.getInstancia().getImagenAnimal(getNumImg()));
-        setFlippedImage(ImageLoader.getInstancia().getImagenAnimalFlipped(getNumImg()));
         Random random = new Random();
         moveSpeed=1;
         randomizer = random.nextFloat(1,2);
@@ -23,8 +21,8 @@ public class Lagarto extends Animal {
     }
 
     @Override
-    public int getNumImg() {
-        return 28;
+    public int getRandBound() {
+        return 4;
     }
 
     public void moveInPath(){
