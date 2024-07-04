@@ -22,7 +22,7 @@ public class Puma extends Animal {
 
     @Override
     public int getRandBound() {
-        return 4;
+        return 8;
     }
 
     public void moveInPath(){

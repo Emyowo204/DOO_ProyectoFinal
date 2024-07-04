@@ -22,7 +22,7 @@ public class Cocodrilo extends Animal {
 
     @Override
     public int getRandBound() {
-        return 4;
+        return 2;
     }
 
     public void moveInPath(){

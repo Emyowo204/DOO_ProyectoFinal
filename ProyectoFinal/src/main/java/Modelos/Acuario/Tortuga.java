@@ -21,7 +21,7 @@ public class Tortuga extends Animal {
 
     @Override
     public int getRandBound() {
-        return 4;
+        return 3;
     }
 
     public void moveInPath(){

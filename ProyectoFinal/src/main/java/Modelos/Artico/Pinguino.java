@@ -22,7 +22,7 @@ public class Pinguino extends Animal {
 
     @Override
     public int getRandBound() {
-        return 12;
+        return 4;
     }
 
     public void moveInPath(){
