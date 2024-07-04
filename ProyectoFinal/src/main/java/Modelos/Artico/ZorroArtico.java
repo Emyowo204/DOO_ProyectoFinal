@@ -16,9 +16,7 @@ public class ZorroArtico extends Animal {
         super(nombre, TipoAnimal.ZorroArtico);
         moveSpeed=1;
         Random random = new Random();
-        randomizer = random.nextFloat(1,2);{
-            
-        }
+        randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(200);
     }
 
