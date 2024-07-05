@@ -114,7 +114,7 @@ public class PanelRecinto extends JPanel{
                 } catch (Exception exception) {
                     PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
                 }
-                if(recinto.getAdquirido()) {
+                if(recinto.isAdquirido()) {
                     PanelLinker.getPanelMenu().updateDinero(PanelLinker.getPanelPrincipal().getZoologico());
                     PanelLinker.getPanelMenu().resetCompraAnimal();
                     togglePanelSelect();

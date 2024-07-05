@@ -88,7 +88,7 @@ public class Zoologico {
         if(transaccion(listaHabitat[index].getTipo().getprecioTemperatura(),0)) {
             listaHabitat[index].desblTemperatura();
             for(int i=0; i<6; i++) {
-              if(listaHabitat[index].getRecinto(i).getAdquirido()) {
+              if(listaHabitat[index].getRecinto(i).isAdquirido()) {
                   gananciaTotal += 10;
                   gananciaEsp[1] += 10;
               }

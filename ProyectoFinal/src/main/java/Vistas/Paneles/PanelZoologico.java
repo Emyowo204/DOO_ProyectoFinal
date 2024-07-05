@@ -239,7 +239,7 @@ public class PanelZoologico extends JPanel implements Runnable {
             for (int i = 0; i < 6; i++) {
                 if (zoologico.getHabitat(i).isAdquirido()) {
                     for (int j = 0; j < 6; j++) {
-                        if (zoologico.getHabitat(i).getRecinto(j).getAdquirido()) {
+                        if (zoologico.getHabitat(i).getRecinto(j).isAdquirido()) {
                             Recinto recinto = zoologico.getHabitat(i).getRecinto(j);
 
                             if(hambreTimer>=1){

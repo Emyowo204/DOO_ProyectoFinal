@@ -1,6 +1,7 @@
 package Modelos.Utils;
 
 import Modelos.Enumeration.ListaAnimales;
+import Modelos.Enumeration.TipoAnimal;
 import Modelos.Enumeration.TipoComida;
 import Modelos.Enumeration.TipoHabitat;
 import org.junit.jupiter.api.BeforeAll;
@@ -69,8 +70,9 @@ class ZoologicoSinDineroTest {
 
     @Test
     void comprarAnimal() {
+        zoo.getHabitat(0).getRecinto(0).asignarAnimal(TipoAnimal.Carpintero);
         try {
-            zoo.comprarAnimal(new Recinto(new Habitat(TipoHabitat.Acuario, ListaAnimales.Acuario)), "nombre");
+            zoo.comprarAnimal(zoo.getHabitat(0).getRecinto(0),"Carpintero");
         } catch (Exception e) {
             String expectedMessage = "Pago Insuficiente";
             String actualMessage = e.getMessage();

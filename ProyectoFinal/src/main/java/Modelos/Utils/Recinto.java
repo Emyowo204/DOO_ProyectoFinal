@@ -1,9 +1,7 @@
 package Modelos.Utils;
 
 import Modelos.Enumeration.TipoAnimal;
-import Modelos.Exceptions.MaximoAnimalesRecintoException;
 import Modelos.Exceptions.NombreVacioException;
-import Vistas.Paneles.PanelLinker;
 
 import java.util.ArrayList;
 
@@ -81,7 +79,7 @@ public class Recinto {
     }
     public ArrayList<Animal> getListaAnimales() { return listaAnimales; }
     public TipoAnimal getTipo() { return tipo; }
-    public boolean getAdquirido() { return adquirido; }
+    public boolean isAdquirido() { return adquirido; }
     public Habitat getHabitat() { return habitat; }
     public int getCantidadAnimal(){
         return listaAnimales.size();
