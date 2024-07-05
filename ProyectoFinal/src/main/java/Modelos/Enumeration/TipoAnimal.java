@@ -1,5 +1,9 @@
 package Modelos.Enumeration;
 
+/** Una lista (Enum) de los diferentes tipos de animales
+ * @author Chloe Yañez Lavin
+ * @author Emily Osvaldo Gaete Bobadilla */
+
 public enum TipoAnimal {
     Carpintero(100, TipoHabitat.Bosque, TipoComida.Insectos,"Carpintero",0),
     Huemul(200, TipoHabitat.Bosque, TipoComida.Arbustos,"Huemul",1),
@@ -43,12 +47,27 @@ public enum TipoAnimal {
     Pinguino(100, TipoHabitat.Artico, TipoComida.Pescado,"Pingüino",34),
     ZorroArtico(200, TipoHabitat.Artico, TipoComida.Roedor,"Zorro ártico",35);
 
+    /** Número entero que contiene el precio de uno de los animales */
     private int precio;
+
+    /** El tipo de habitat de un animal */
     private TipoHabitat tipoHabitat;
+
+    /** El tipo de comida de un animal */
     private TipoComida comida;
+
+    /** String con el nombre genérico de un animal */
     private String nombre;
+
+    /** Número entero que contiene la posición en lista de un animal */
     private int value;
 
+    /** Constructor donde se guarda el precio, el tipo de habitat, el tipo de comida, el nombre y el número de lista de un tipo de animal
+     * @param precio El número entero con el precio de uno de los animales
+     * @param habitat El tipo de habitat de uno de los animales
+     * @param comida El tipo de comida de uno de los animales
+     * @param nombre String que contiene el nombre genérico del animal
+     * @param value El número entero con la posición en lista de un animal */
     private TipoAnimal(int precio, TipoHabitat habitat, TipoComida comida, String nombre, int value) {
         this.precio = precio;
         this.tipoHabitat = habitat;
@@ -57,9 +76,23 @@ public enum TipoAnimal {
         this.value = value;
     }
 
+    /** Método que obtener el precio de un animal
+     * @return Número entero con el precio del animal */
     public int getPrecio() { return precio; }
+
+    /** Método que obtener el tipo de habitat de un animal
+     * @return Un TipoHabitat con el tipo de habitat del animal */
     public TipoHabitat getHabitat() { return tipoHabitat; }
+
+    /** Método que obtener el tipo de comida de un animal
+     * @return Un TipoComida con el tipo de comida del animal */
     public TipoComida getComida() { return comida; }
+
+    /** Método que obtener el nombre genérico de un animal
+     * @return El String con el nombre genérico del animal */
     public String getNombre() { return nombre; }
+
+    /** Método que obtener la posición en lista de un animal
+     * @return Número entero con la posición en lista del animal */
     public int getValue(){ return value; }
 }

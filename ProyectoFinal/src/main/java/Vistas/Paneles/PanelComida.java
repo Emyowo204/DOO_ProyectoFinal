@@ -47,8 +47,7 @@ public class PanelComida extends JPanel {
     }
 
     public void updateTexto(TipoComida comida) {
-        int index = comida.getValue();
-        cTexto[index].setText(comida.getNombre()+": "+PanelLinker.getPanelPrincipal().getZoologico().getAlmacen().getCantidad(index));
+        cTexto[comida.getValue()].setText(comida.getNombre()+": "+PanelLinker.getPanelPrincipal().getZoologico().getAlmacen().getCantidad(comida));
     }
 
     private class ComparComida implements ActionListener {
