@@ -13,6 +13,9 @@ class ZoologicoDineroExcactoTest {
     @BeforeAll
     static void Zoologico(){
         zoo = new Zoologico();
+        zoo.getHabitat(0).desbloquear();
+        zoo.getHabitat(0).getRecinto(0).desbloquear();
+        zoo.getHabitat(0).getRecinto(0).asignarAnimal(TipoAnimal.Carpintero);
         zoo.addPaga(-4000);
     }
 
@@ -37,7 +40,14 @@ class ZoologicoDineroExcactoTest {
     }
 
     @Test
-    void alimentar() {
+    void alimentar() throws Exception {
+        zoo.addPaga(100);
+        zoo.comprarAlimento(TipoComida.Insectos,1);
+        int alimentoInicial = zoo.getHabitat(0).getRecinto(0).getCantidadComida();
+        int expectedAlimento = alimentoInicial+1;
+        zoo.alimentar(zoo.getHabitat(0).getRecinto(0),1);
+        int currentAlimento = zoo.getHabitat(0).getRecinto(0).getCantidadComida();
+        assertEquals(expectedAlimento,currentAlimento);
     }
 
     @Test

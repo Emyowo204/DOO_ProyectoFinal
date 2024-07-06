@@ -43,7 +43,14 @@ class ZoologicoSinDineroTest {
     }
 
     @Test
-    void alimentar() {
+    void alimentar(){
+        try {
+            zoo.comprarAlimento(TipoComida.Insectos, 1);
+            zoo.alimentar(zoo.getHabitat(0).getRecinto(0), 1);
+
+        } catch (Exception ignored){
+            assertEquals(5,zoo.getHabitat(0).getRecinto(0).getCantidadComida());
+        }
     }
 
     @Test
