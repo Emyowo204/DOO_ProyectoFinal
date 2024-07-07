@@ -8,7 +8,16 @@ import Modelos.Desierto.*;
 import Modelos.Artico.*;
 import Modelos.Enumeration.*;
 
+/** Una fábrica de animales para crear y retornar instancias de animales específicos
+ * @author Chloe Yañez Lavin
+ * @author Emily Osvaldo Gaete Bobadilla */
+
 public class AnimalFactory {
+
+    /** Método para obtener una instancia de un animal utilizando un tipo animal y un nombre
+     * @param tipo El tipo de animal que se quiere fabricar
+     * @param nombre El nombre de la instancia de animal a fabricar
+     * @return La instancia de una subclase de Animal perteneciente al tipo animal */
     public Animal crearAnimal(TipoAnimal tipo, String nombre) {
         if(tipo.getHabitat() == TipoHabitat.Bosque) {
             if (tipo == TipoAnimal.Carpintero) {

@@ -2,7 +2,6 @@ package Modelos.Utils;
 
 import Modelos.Enumeration.*;
 import Vistas.Utils.ImageLoader;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;

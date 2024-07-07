@@ -1,8 +1,11 @@
 package Modelos.Utils;
 
 import Modelos.Enumeration.*;
-
 import java.util.ArrayList;
+
+/** Una fábrica de animales para crear y retornar instancias de animales específicos
+ * @author Chloe Yañez Lavin
+ * @author Emily Osvaldo Gaete Bobadilla */
 
 public class Habitat {
     private TipoHabitat tipo;

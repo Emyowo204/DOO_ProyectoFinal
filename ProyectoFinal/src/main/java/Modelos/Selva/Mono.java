@@ -2,8 +2,6 @@ package Modelos.Selva;
 
 import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
-import Vistas.Utils.ImageLoader;
-
 import java.awt.*;
 import java.util.Random;
 
@@ -12,10 +10,14 @@ import java.util.Random;
  * @author Emily Osvaldo Gaete Bobadilla */
 
 public class Mono extends Animal {
+
+    /** Número de un momento en el movimiento continuo del animal */
     private int moveTime;
+
+    /** Número del cambio de un momento a otro del movimiento continuo del animal */
     private int moveSpeed;
 
-    Random random = new Random();
+    /** Número pseudoaleatorio que crea una variación en el movimiento continuo del animal */
     private final float randomizer;
 
     /** Constructor ue genera los números pseudoaleatorios para el movimiento y le entrega el tipo animal Mono a la clase
@@ -23,6 +25,7 @@ public class Mono extends Animal {
     public Mono(String nombre) {
         super(nombre, TipoAnimal.Mono);
         moveSpeed = 1;
+        Random random = new Random();
         randomizer = random.nextFloat(1,2);
         moveTime = random.nextInt(150);
 

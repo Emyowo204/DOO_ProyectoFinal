@@ -11,16 +11,16 @@ import java.util.Random;
 
 public class Ajolote extends Animal {
 
-    /** Número pseudoaleatorio */
+    /** Número de un momento en el movimiento continuo del animal */
     private int moveTime;
 
-    /** Número pseudoaleatorio */
+    /** Número del cambio de un momento a otro del movimiento continuo del animal */
     private int moveSpeed;
 
-    /** Número pseudoaleatorio */
+    /** Número pseudoaleatorio que crea una variación en el movimiento continuo del animal */
     private final float randomizer;
 
-    /** Constructor ue genera los números pseudoaleatorios para el movimiento y le entrega el tipo animal Ajolote a la clase
+    /** Constructor que genera números pseudoaleatorios para el movimiento y le entrega el tipo animal Ajolote a la clase
      * @param nombre Nombre del animal tipo Ajolote */
     public Ajolote(String nombre) {
         super(nombre, TipoAnimal.Ajolote);

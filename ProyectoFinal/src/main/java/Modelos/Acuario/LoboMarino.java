@@ -2,17 +2,22 @@ package Modelos.Acuario;
 
 import Modelos.Utils.Animal;
 import Modelos.Enumeration.TipoAnimal;
-import Vistas.Utils.ImageLoader;
 import java.awt.*;
 import java.util.Random;
 
-/** Un Otaria flavescens es un animal mamífero pinnípedo de la familia Otariidae, es marino y se puede adoptar
+/** Una Otaria flavescens es un animal mamífero pinnípedo de la familia Otariidae, es marino y se puede adoptar
  * @author Chloe Yañez Lavin
  * @author Emily Osvaldo Gaete Bobadilla */
 
 public class LoboMarino extends Animal {
+
+    /** Número de un momento en el movimiento continuo del animal */
     private int moveTime;
+
+    /** Número del cambio de un momento a otro del movimiento continuo del animal */
     private int moveSpeed;
+
+    /** Número pseudoaleatorio que crea una variación en el movimiento continuo del animal */
     private final float randomizer;
 
     /** Constructor ue genera los números pseudoaleatorios para el movimiento y le entrega el tipo animal Lobo Marino a la clase

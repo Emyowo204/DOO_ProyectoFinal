@@ -5,6 +5,7 @@ import Modelos.Enumeration.TipoComida;
 /** Un almacen de comida que guarda la cantidad de comidas correspondientes a cada tioo de comida
  * @author Chloe Yañez Lavin
  * @author Emily Osvaldo Gaete Bobadilla */
+
 public class Almacen {
 
     /** Arreglo de números enteros con la cantidad de comida de cada tipo */
