@@ -51,7 +51,7 @@ public enum TipoAnimal {
     private int precio;
 
     /** El tipo de habitat de un animal */
-    private TipoHabitat tipoHabitat;
+    private TipoHabitat habitat;
 
     /** El tipo de comida de un animal */
     private TipoComida comida;
@@ -70,7 +70,7 @@ public enum TipoAnimal {
      * @param value El número entero con la posición en lista de un animal */
     private TipoAnimal(int precio, TipoHabitat habitat, TipoComida comida, String nombre, int value) {
         this.precio = precio;
-        this.tipoHabitat = habitat;
+        this.habitat = habitat;
         this.comida = comida;
         this.nombre = nombre;
         this.value = value;
@@ -82,7 +82,7 @@ public enum TipoAnimal {
 
     /** Método que obtener el tipo de habitat de un animal
      * @return Un TipoHabitat con el tipo de habitat del animal */
-    public TipoHabitat getHabitat() { return tipoHabitat; }
+    public TipoHabitat getHabitat() { return habitat; }
 
     /** Método que obtener el tipo de comida de un animal
      * @return Un TipoComida con el tipo de comida del animal */
