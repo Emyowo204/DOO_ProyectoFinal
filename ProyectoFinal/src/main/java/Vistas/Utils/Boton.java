@@ -31,9 +31,4 @@ public class Boton extends JButton {
         this.filename = filename;
     }
 
-    /** Método para obtener el nombre de la imagen utilizada como icono
-     * @return Nombre de la imagen guardada en la carpeta de "resources" */
-    public String getFilename() {
-        return filename;
-    }
 }

@@ -72,16 +72,22 @@ public class ImageLoader {
         return imageLoader;
     }
 
-    /** Método para devolver las imágenes de los Productos */
+    /** Método para devolver las imágenes de los animales */
     public BufferedImage getImagenAnimal(int index){
         return imagenAnimal[index];
     }
+
+    /** Método para devolver las imágenes de los animales girados */
     public BufferedImage getImagenAnimalFlipped(int index){
         return imagenAnimalFlipped[index];
     }
+
+    /** Método para devolver las imágenes de los alternos animales */
     public BufferedImage getImagenAnimalAlterno(int index){
         return imagenAnimalAlterno[index];
     }
+
+    /** Método para devolver las imágenes de los alternos animales girados */
     public BufferedImage getImagenAnimalAlternoFlipped(int index){
         return imagenAnimalAlternoFlipped[index];
     }

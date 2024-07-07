@@ -1,8 +1,8 @@
 package Vistas.Utils;
 
-import Vistas.Paneles.PanelLinker;
 import Vistas.Paneles.PanelPrincipal;
-import javax.swing.JFrame;
+
+import javax.swing.*;
 import java.awt.*;
 
 /** Una ventana donde se crean paneles para mostrarlos en una interfaz GUI

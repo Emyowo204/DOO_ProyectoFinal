@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/** Un Popup al cual se le pueden añadir items */
 public class PopupSelect extends CuadroTexto {
     private JPopupMenu[] popupSelect;
     private int[] cantidadMenus;

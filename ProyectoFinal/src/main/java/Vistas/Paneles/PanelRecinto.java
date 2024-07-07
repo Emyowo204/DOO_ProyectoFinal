@@ -11,20 +11,38 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-/** Un panel que muestra las monedas guardadas en un deposito y sus series
+/** Un panel que muéstra un recinto de animales
  * @author Chloe Yañez Lavin
  * @author Emily Osvaldo Gaete Bobadilla */
 
 public class PanelRecinto extends JPanel{
+
+    /** Recinto */
     private Recinto recinto;
+
+    /** Lista de animales del recinto */
     private ArrayList<Animal> animales;
+
+    /** Panel de selección del tipo de recinto */
     private PanelSelect panelSelect;
+
+    /** Botones de los animales a seleccionar */
     private Boton[] selectButtons;
+
+    /** Botón para comprar el recinto */
     private Boton botonComprar;
+
+    /** Botón para mostrar la información de los animales del recinto */
     private Boton botonInfo;
+
+    /** Botones para alimentar a los animales */
     private Boton[] bAlimento;
+
+    /** Cuadro de texto con cantidad de comida en el recinto */
     private CuadroTexto cantidadComida;
 
+
+    /** Constructor de PanelRecinto */
     public PanelRecinto(Recinto recinto) {
         super(null);
         this.recinto = recinto;
@@ -55,11 +73,13 @@ public class PanelRecinto extends JPanel{
 
     }
 
+    /** Método para añadir un componente al panel */
     public void addComp(Component comp, int x, int y, int width, int height) {
         comp.setBounds(x,y,width,height);
         this.add(comp);
     }
 
+    /** Método para activar/desactivar el panel de selección de animal */
     public void togglePanelSelect() {
         if(recinto.getTipo() == null) {
             recinto.getHabitat().setComprando(true);
@@ -71,6 +91,8 @@ public class PanelRecinto extends JPanel{
             this.remove(panelSelect);
         }
     }
+
+    /** Método para alertar que el recinto tiene hambre */
     public void setAlertHambre(boolean alert) {
         if(alert) {
             cantidadComida.setText("¡Con Hambre!");
@@ -83,10 +105,12 @@ public class PanelRecinto extends JPanel{
         }
     }
 
+    /** Método para actualizar la cantidad de comida */
     public void updateCantidad() {
         cantidadComida.setText("N° Comida: "+recinto.getCantidadComida());
     }
 
+    /** Clase que escucha los botones de información y de alimentar */
     private class OpcionesAnimal implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -105,6 +129,7 @@ public class PanelRecinto extends JPanel{
         }
     }
 
+    /** Clase que escucha la selección y compra del recinto */
     private class InteraccionRecinto implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -148,7 +173,7 @@ public class PanelRecinto extends JPanel{
             animales.get(i).paintComponent(g, this);
     }
 
-    /** Método para mover los animales */
+    /** Método para mover los animales en el recinto*/
     public void moveAnimals() {
         for(int i=0; i< animales.size(); i++){
             animales.get(i).moveInPath();

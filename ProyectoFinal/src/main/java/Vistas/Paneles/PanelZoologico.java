@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+/** Panel que permite la visualización de un zoológico
+ *  @author Chloe Yañez Lavin
+ *  @author Emily Osvaldo Gaete Bobadilla */
 public class PanelZoologico extends JPanel implements Runnable {
     private Thread thread;
     private Zoologico zoologico;
@@ -25,6 +28,8 @@ public class PanelZoologico extends JPanel implements Runnable {
     private BufferedImage ImgBackground;
     private PanelInformacion panelInformacion;
 
+    /** Constructor de PanelZoologico
+     * @param zoo Zoológico */
     public PanelZoologico(Zoologico zoo) {
         super(null);
 
@@ -78,11 +83,13 @@ public class PanelZoologico extends JPanel implements Runnable {
         thread.start();
     }
 
+    /** Método para añadir un componente al panel */
     public void addComp(Component comp, int x, int y, int width, int height) {
         comp.setBounds(x,y,width,height);
         this.add(comp);
     }
 
+    /** Método para activar/desactivar la visualización de los paneles de hábitat */
     public void toggleHabitat() {
         PanelHabitat openPanelHabitat = listaPanelHabitat[openPanelHabitatIndex];
         openPanelHabitat.toggleVisible();
@@ -109,6 +116,7 @@ public class PanelZoologico extends JPanel implements Runnable {
         }
     }
 
+    /** Método para activar/desactivar la visualización del panel de información */
     public void toggleInfo(boolean caso, int index, Recinto recinto) {
         panelInformacion.setVisibleInfo(caso);
         if(!panelInformacion.isVisible()) {
@@ -123,6 +131,7 @@ public class PanelZoologico extends JPanel implements Runnable {
         repaint();
     }
 
+    /** Método para activar/desactivar botones de hábitat y tiendas */
     public void toggleBotones() {
         bOpciones[2].setVisible(!bOpciones[2].isVisible());
         for(int i=0; i<6; i++) {
@@ -133,6 +142,7 @@ public class PanelZoologico extends JPanel implements Runnable {
         }
     }
 
+    /** Método para activar la alerta de hambre en los hábitat */
     public void setAlertHambre(int index, boolean alert) {
         if(alert) {
             selectHabitat[index].changeImage("Habitat/imgHabitatAlert" + index + ".png");
@@ -151,8 +161,7 @@ public class PanelZoologico extends JPanel implements Runnable {
         textoInfoAux = !textoInfoAux;
     }
 
-
-
+    /** Clase que escucha las interacciones con los hábitat */
     private class InteraccionHabitat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -179,6 +188,8 @@ public class PanelZoologico extends JPanel implements Runnable {
             repaint();
         }
     }
+
+    /** Clase que escucha las interacciones con las tiendas */
     private class InteraccionTienda implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {

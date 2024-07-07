@@ -5,7 +5,7 @@ import Modelos.Exceptions.NombreVacioException;
 
 import java.util.ArrayList;
 
-/** Una recinto de animales de un zoológico
+/** Un recinto de animales de un zoológico
  * @author Chloe Yañez Lavin
  * @author Emily Osvaldo Gaete Bobadilla */
 public class Recinto {

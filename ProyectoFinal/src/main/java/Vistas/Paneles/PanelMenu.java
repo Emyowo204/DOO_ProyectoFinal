@@ -10,19 +10,43 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/** Panel donde se alojan paneles de información y compra de un zoológico */
 public class PanelMenu extends JPanel {
+
+    /** Panel para comprar comida */
     private PanelComida panelComida;
+
+    /** Panel de información económica */
     private PanelDinero panelDinero;
+
+    /** Hábitat de un zoological */
     private Habitat habitat;
+
+    /** Tipo de animal a comprar */
     private TipoAnimal tipoAnimal;
+
+    /** Popup para seleccionar animal a comprar */
     private PopupSelect addAnimal;
+
+    /** Animales disponibles en el Popup */
     private ArrayList<ArrayList<JMenuItem>> selectAnimal;
+
+    /** Botón para comprar el animal */
     private Boton comprarAnimal;
+
+    /** Listener de compra animal */
     private SelectAnimal listenerAnimal;
+
+    /** Zona de texto de selección animal */
     private ZonaTexto insertText;
+
+    /** Zona de texto con el precio del animal */
     private CuadroTexto cuadroPrecio;
+
+    /** Fondo del panel */
     private BufferedImage ImgBackground;
 
+    /** Constructor de PanelMenu */
     public PanelMenu() {
         super(null);
         this.setBackground(Color.LIGHT_GRAY);
@@ -53,14 +77,19 @@ public class PanelMenu extends JPanel {
         ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(7);
     }
 
+    /** Método para añadir un componente al panel */
     public void addComp(Component comp, int x, int y, int width, int height) {
         comp.setBounds(x,y,width,height);
         this.add(comp);
     }
+
+    /** Método para actualizar el panel de información económica
+     * @param zoo Zoológico */
     public void updateDinero(Zoologico zoo) {
         panelDinero.updatePanelDinero(zoo);
     }
 
+    /** Método para agregar PanelComida */
     public void addPanelComida() {
         if(panelComida==null) {
             panelComida = new PanelComida();
@@ -69,6 +98,8 @@ public class PanelMenu extends JPanel {
         }
     }
 
+    /** Método que actualiza el panel cuando se entra a un hábitat
+     * @param habitat Hábitat al cual se entra */
     public void enterHabitat(Habitat habitat) {
         this.habitat = habitat;
         tipoAnimal = null;
@@ -79,6 +110,8 @@ public class PanelMenu extends JPanel {
         addAnimal.setIndex(habitat.getTipo().getValue());
         updatePopup();
     }
+
+    /** Método que actualiza el panel cuando se sale de un hábitat */
     public void exitHabitat() {
         this.habitat = null;
         addAnimal.setText(" Seleccione un Habitat");
@@ -89,6 +122,7 @@ public class PanelMenu extends JPanel {
         comprarAnimal.setEnabled(false);
     }
 
+    /** Método para actualizar el Popup de compra animal */
     public void updatePopup() {
         int index = habitat.getTipo().getValue();
         for(int i=selectAnimal.get(index).size(); i<habitat.getUnlocked().size(); i++) {
@@ -98,6 +132,7 @@ public class PanelMenu extends JPanel {
         }
     }
 
+    /** Método para reiniciar el panel de compra animal */
     public void resetCompraAnimal() {
         tipoAnimal = null;
         addAnimal.setText(" > Presione Aquí <");
@@ -105,8 +140,10 @@ public class PanelMenu extends JPanel {
         comprarAnimal.setEnabled(false);
     }
 
+    /** Método para obtener el panel de comida */
     public PanelComida getPanelComida() { return panelComida; }
 
+    /** Clase que escucha la selección de un animal */
     private class SelectAnimal implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -122,6 +159,8 @@ public class PanelMenu extends JPanel {
             }
         }
     }
+
+    /** Clase que escucha la compra animal */
     private class MenuOptions implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
