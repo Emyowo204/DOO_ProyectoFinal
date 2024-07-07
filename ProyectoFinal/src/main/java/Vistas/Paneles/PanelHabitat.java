@@ -10,18 +10,33 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/** Un panel que contiene paneles y botones que muestran visualmente un expendedor
+/** Un panel que contiene a los paneles de recinto de un zoológico
  * @author Chloe Yañez Lavin
  * @author Emily Osvaldo Gaete Bobadilla */
 
 public class PanelHabitat extends JPanel {
+
+    /** Instancia del habitat */
     private Habitat habitat;
+
+    /** Arreglo con los paneles de los recintos */
     private PanelRecinto[] listaPanelRecinto;
+
+    /** Botón para comprar la mejora de temperatura */
     private Boton temperatura;
+
+    /** Estado de visibilidad del panel */
     private boolean visible;
+
+    /** Valor del habitat */
     private int value;
+
+    /** Listener para comprar la mejora de temperatura */
     private ComprarTemperatura comprarTemperatura;
 
+
+    /** Constructor del PanelHabitat
+     * @param habitat Instancia del hábitat */
     public PanelHabitat(Habitat habitat) {
         super(null);
         this.habitat = habitat;
@@ -44,20 +59,35 @@ public class PanelHabitat extends JPanel {
         temperatura.setOpaque(false);
         this.add(temperatura);
     }
+
+    /** Método para quitar un bóton del panel */
     public void removeBoton(Boton boton) {
         this.remove(boton);
         repaint();
     }
+
+    /** Método para cambiar el estado de visibilidad del panel */
     public void toggleVisible() {
         visible=!visible;
     }
+
+    /** Método para obtener el estado de visibilidad del panel */
     public boolean getVisible() { return visible; }
+
+    /** Método para obtener el hábitat */
     public Habitat getHabitat() { return habitat; }
+
+    /** Método para obtener el valor del hábitat */
     public int getValue() { return value; }
+
+    /** Método para obtener un panel de recinto
+     * @param index Número del panel recinto a obtener
+     * @return Panel recinto */
     public PanelRecinto getPanelRecinto(int index) {
         return listaPanelRecinto[index];
     }
 
+    /** Clase para escuchar la compra de la mejora de temperatura */
     private class ComprarTemperatura implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {

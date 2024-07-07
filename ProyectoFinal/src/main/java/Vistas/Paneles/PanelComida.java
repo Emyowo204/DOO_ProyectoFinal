@@ -10,18 +10,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** Panel para comprar alimento para el zoológico */
 public class PanelComida extends JPanel {
+
+    /** Botones para comprar 1 alimento */
     private Boton[] bComprar;
+
+    /** Botones para comprar 10 alimentos */
     private Boton[] bComprarx10;
+
+    /** Cuadros de texto con la cantidad de alimentos en el depósito del zoológico */
     private CuadroTexto[] cTexto;
 
+    /** Constructor de PanelComida */
     public PanelComida() {
         super(null);
         this.setOpaque(false);
         bComprar = new Boton[7];
         bComprarx10 = new Boton[7];
         cTexto = new CuadroTexto[7];
-        ComparComida comprarComida = new ComparComida();
+        ComprarComida comprarComida = new ComprarComida();
         ComparComidax10 comprarComidax10 = new ComparComidax10();
 
         CuadroTexto titulo =  new CuadroTexto("Comprar Alimento:", "Arial", 1, false);
@@ -41,16 +49,26 @@ public class PanelComida extends JPanel {
         }
     }
 
+    /** Método para añadir un componente
+     * @param comp Componente a agregar
+     * @param x Posición en el eje X
+     * @param y Posición en el eje Y
+     * @param width Ancho
+     * @param height Alto
+     */
     public void addComp(Component comp, int x, int y, int width, int height) {
         comp.setBounds(x,y,width,height);
         this.add(comp);
     }
 
+    /** Método para actualizar el texto de la comida
+     * @param comida Comida a actualizar texto */
     public void updateTexto(TipoComida comida) {
         cTexto[comida.getValue()].setText(comida.getNombre()+": "+PanelLinker.getPanelPrincipal().getZoologico().getAlmacen().getCantidad(comida));
     }
 
-    private class ComparComida implements ActionListener {
+    /** Clase que escucha las compras de 1 comida */
+    private class ComprarComida implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
             for(int i=0; i<7; i++) {
@@ -67,6 +85,7 @@ public class PanelComida extends JPanel {
             }
         }
     }
+    /** Clase que escucha las compras de 10 comida */
     private class ComparComidax10 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {

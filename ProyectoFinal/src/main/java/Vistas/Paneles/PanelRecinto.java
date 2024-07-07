@@ -140,7 +140,7 @@ public class PanelRecinto extends JPanel{
 
 
     /** Método para dibujar la imagen del fondo del panel y sus componentes
-     * @param g El objeto grafico que dibuja los componentes */
+     * @param g El objeto gráfico que dibuja los componentes */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -148,6 +148,7 @@ public class PanelRecinto extends JPanel{
             animales.get(i).paintComponent(g, this);
     }
 
+    /** Método para mover los animales */
     public void moveAnimals() {
         for(int i=0; i< animales.size(); i++){
             animales.get(i).moveInPath();

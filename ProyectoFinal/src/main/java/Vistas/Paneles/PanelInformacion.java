@@ -15,13 +15,25 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/** Un panel que muestra información relacionada con el zoológico y sus animales */
 public class PanelInformacion extends JPanel {
+
+    /** Botón para cerrar el panel */
     private final Boton bCerrar;
+
+    /** Imágen de fondo */
     private BufferedImage ImgBackground;
+
+    /** Imágen con la información del zoológico */
     private BufferedImage ImgInfoZoo;
+
+    /** Cuadro de texto con los nombres de los animales */
     private CuadroTexto[] cNombres;
+
+    /** Estado en que se encuentra el panel */
     private int casoInfo;
 
+    /** Constructor de PanelInformacion */
     public PanelInformacion(){
         super(null);
         this.setBackground(Color.LIGHT_GRAY);
@@ -47,6 +59,7 @@ public class PanelInformacion extends JPanel {
         }
     }
 
+    /** Método para abrir la información de un tipo de animal */
     public void openInfo(int index, ArrayList<Animal> animales) {
         ImgBackground = ImageLoader.getInstancia().getImagenFondoInfo(index);
         for(int i=0; i<5; i++)
@@ -69,6 +82,7 @@ public class PanelInformacion extends JPanel {
         casoInfo = -1;
     }
 
+    /** Método para abrir la información del zoológico */
     public void openInfoZoo() {
         for(int i=0; i<5; i++)
             cNombres[i].setText("");
@@ -76,11 +90,14 @@ public class PanelInformacion extends JPanel {
         casoInfo = -2;
     }
 
+    /** Método para hacer visible el panel
+     * @param caso estado de visibilidad del panel */
     public void setVisibleInfo(boolean caso) {
         this.setEnabled(caso);
         this.setVisible(caso);
     }
 
+    /** Clase que escucha el cierre del panel */
     private class CerrarPanel implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -90,6 +107,8 @@ public class PanelInformacion extends JPanel {
         }
     }
 
+    /** Método para dibujar los componentes de Swing del panel y los sub paneles
+     * @param g El objeto gráfico que dibuja los componentes */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         if(this.isVisible())

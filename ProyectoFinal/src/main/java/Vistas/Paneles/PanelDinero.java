@@ -11,11 +11,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/** Panel con la información económica del zoológico */
 public class PanelDinero extends JPanel {
+
+    /** Cuadro de texto con el dinero total del zoológico */
     private CuadroTexto cuadroDinero;
+
+    /** Cuadro de texto con las ganancias que genera el zoológico */
     private CuadroTexto cuadroGanancia;
+
+    /** Popup que muestra información de las ganancias */
     private JPopupMenu popUpInfo;
+
+    /** Items del Popup de información de las ganancias */
     private JMenuItem[] mItemInfo;
+
+    /** Constructor de PanelDinero */
     public PanelDinero() {
         super(null);
         this.setOpaque(false);
@@ -37,6 +48,9 @@ public class PanelDinero extends JPanel {
         popUpInfo.setVisible(false);
     }
 
+    /** Método para actualizar el PanelDinero
+     * @param zoo Instancia del zoológico
+     */
     public void updatePanelDinero(Zoologico zoo) {
         cuadroDinero.setText(" Dinero: "+zoo.getDinero()+" $");
         cuadroGanancia.setText(" Ganancias: +"+zoo.getGanancia()+" $ /5 seg");
@@ -50,6 +64,7 @@ public class PanelDinero extends JPanel {
         }
     }
 
+    /** Clase para escuchar el abrir del panel de información de ganancias */
     private class OpenInfo implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent event) {}

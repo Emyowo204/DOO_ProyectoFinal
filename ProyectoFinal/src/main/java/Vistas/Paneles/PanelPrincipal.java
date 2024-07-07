@@ -29,7 +29,7 @@ public class PanelPrincipal extends JPanel {
     public Zoologico getZoologico() { return zoologico; }
 
     /** Método para dibujar los componentes de Swing del panel y los sub paneles
-     * @param g El objeto grafico que dibuja los componentes */
+     * @param g El objeto gráfico que dibuja los componentes */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
     }
