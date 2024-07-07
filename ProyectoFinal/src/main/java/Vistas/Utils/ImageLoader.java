@@ -15,12 +15,22 @@ public class ImageLoader {
     /** Puntero a la instancia única de ImageLoader */
     private static ImageLoader imageLoader;
 
-    /** Imágenes de los Productos */
+    /** Arreglo de imágenes de los animales */
     private static BufferedImage[] imagenAnimal;
+
+    /** Arreglo de imágenes volteadas de los animales */
     private static BufferedImage[] imagenAnimalFlipped;
+
+    /** Arreglo de imágenes alternativas de los animales */
     private static BufferedImage[] imagenAnimalAlterno;
+
+    /** Arreglo de imágenes alternativas volteadas de los animales */
     private static BufferedImage[] imagenAnimalAlternoFlipped;
+
+    /** Arreglo de imágenes de los distintos fondos del zoológico */
     private static BufferedImage[] fondosZoologico;
+
+    /** Arreglo de imágenes de los distintos fondos con información de animales */
     private static BufferedImage[] fondosInformacion;
 
     /** Constructor privado donde se cargan las Imágenes */
@@ -64,7 +74,7 @@ public class ImageLoader {
 
     }
 
-    /** Método para devolver la instancia unica de ImageLoader */
+    /** Método para devolver la instancia única de ImageLoader */
     public static ImageLoader getInstancia(){
         if(imageLoader == null){
             imageLoader = new ImageLoader();
@@ -72,28 +82,44 @@ public class ImageLoader {
         return imageLoader;
     }
 
-    /** Método para devolver las imágenes de los animales */
+    /** Método para devolver una imagen del arreglo de imágenes de animales
+     * @param index El número entero con el número de la imagen en el arreglo
+     * @return La imagen del animal correspondiente al arreglo y al número entregado */
     public BufferedImage getImagenAnimal(int index){
         return imagenAnimal[index];
     }
 
-    /** Método para devolver las imágenes de los animales girados */
+    /** Método para devolver una imagen volteada del arreglo de imágenes de animales
+     * @param index El número entero con el número de la imagen en el arreglo
+     * @return La imagen volteada del animal correspondiente al arreglo y al número entregado */
     public BufferedImage getImagenAnimalFlipped(int index){
         return imagenAnimalFlipped[index];
     }
 
-    /** Método para devolver las imágenes de los alternos animales */
+    /** Método para devolver una imagen del arreglo de imágenes de animales alternativos
+     * @param index El número entero con el número de la imagen en el arreglo
+     * @return La imagen alternativa del animal correspondiente al arreglo y al número entregado */
     public BufferedImage getImagenAnimalAlterno(int index){
         return imagenAnimalAlterno[index];
     }
 
-    /** Método para devolver las imágenes de los alternos animales girados */
+    /** Método para devolver una imagen volteada del arreglo de imágenes de animales alternativos
+     * @param index El número entero con el número de la imagen en el arreglo
+     * @return La imagen alternativa volteada del animal correspondiente al arreglo y al número entregado */
     public BufferedImage getImagenAnimalAlternoFlipped(int index){
         return imagenAnimalAlternoFlipped[index];
     }
+
+    /** Método para devolver una imagen del arreglo de imágenes de fondos del zoológico
+     * @param index El número entero con el número de la imagen en el arreglo
+     * @return La imagen del fondo correspondiente al arreglo y al número entregado */
     public BufferedImage getImagenFondoZoo(int index){
         return fondosZoologico[index];
     }
+
+    /** Método para devolver una imagen del arreglo de imágenes de información de animales
+     * @param index El número entero con el número de la imagen en el arreglo
+     * @return La imagen con información correspondiente al arreglo y al número entregado */
     public BufferedImage getImagenFondoInfo(int index){
         return fondosInformacion[index];
     }

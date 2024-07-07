@@ -3,7 +3,9 @@ package Modelos.Utils;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
- /** Interfaz que permite la visualización objetos asociándolos a una image */
+ /** Interfaz que permite la visualización objetos asociándolos a una image
+  * @author Chloe Yañez Lavin
+  * @author Emily Osvaldo Gaete Bobadilla */
 public interface Visible {
 
     /** Método para guardar la posición en el eje X y eje Y de un Objeto */

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class PanelRecinto extends JPanel{
 
-    /** Recinto */
+    /** Recinto asociado al panelRecinto */
     private Recinto recinto;
 
     /** Lista de animales del recinto */
@@ -42,7 +42,8 @@ public class PanelRecinto extends JPanel{
     private CuadroTexto cantidadComida;
 
 
-    /** Constructor de PanelRecinto */
+    /** Constructor de PanelRecinto, donde se crean sus componentes correspondientes
+     * @param recinto El recinto asociado al panel recinto */
     public PanelRecinto(Recinto recinto) {
         super(null);
         this.recinto = recinto;
@@ -73,7 +74,12 @@ public class PanelRecinto extends JPanel{
 
     }
 
-    /** Método para añadir un componente al panel */
+    /** Método para añadir un componente de swing al panel
+     * @param comp El componente de swing a agregar al panel
+     * @param x El número entero con la posición en el panel del componente en el eje X
+     * @param y El número entero con la posición en el panel del componente en el eje Y
+     * @param width El número entero con el ancho del componente
+     * @param height El número entero con el alto del componente */
     public void addComp(Component comp, int x, int y, int width, int height) {
         comp.setBounds(x,y,width,height);
         this.add(comp);
@@ -115,7 +121,7 @@ public class PanelRecinto extends JPanel{
         @Override
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == botonInfo) {
-                PanelLinker.getPanelZoo().toggleInfo(true,recinto.getTipo().getValue(), recinto);
+                PanelLinker.getPanelZoo().setEnableInfo(true,recinto.getTipo().getValue(), recinto);
             }
             else {
                 int index = 1;
@@ -137,7 +143,7 @@ public class PanelRecinto extends JPanel{
                 try {
                     PanelLinker.getPanelPrincipal().getZoologico().comprarRecinto(recinto);
                 } catch (Exception exception) {
-                    PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                    PanelLinker.getPanelZoo().setTextMessage(exception.getMessage());
                 }
                 if(recinto.isAdquirido()) {
                     PanelLinker.getPanelMenu().updateDinero(PanelLinker.getPanelPrincipal().getZoologico());

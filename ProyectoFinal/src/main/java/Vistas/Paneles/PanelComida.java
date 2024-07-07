@@ -10,16 +10,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/** Panel para comprar alimento para el zoológico */
+/** Panel para comprar alimento para el zoológico
+ * @author Chloe Yañez Lavin
+ * @author Emily Osvaldo Gaete Bobadilla */
 public class PanelComida extends JPanel {
 
-    /** Botones para comprar 1 alimento */
+    /** Arreglo de botones para comprar un alimento */
     private Boton[] bComprar;
 
-    /** Botones para comprar 10 alimentos */
+    /** Arreglo de botones para comprar diez alimentos */
     private Boton[] bComprarx10;
 
-    /** Cuadros de texto con la cantidad de alimentos en el depósito del zoológico */
+    /** Arreglo de cuadros de texto con la cantidad de alimentos en el depósito del zoológico */
     private CuadroTexto[] cTexto;
 
     /** Constructor de PanelComida */
@@ -49,13 +51,12 @@ public class PanelComida extends JPanel {
         }
     }
 
-    /** Método para añadir un componente
-     * @param comp Componente a agregar
-     * @param x Posición en el eje X
-     * @param y Posición en el eje Y
-     * @param width Ancho
-     * @param height Alto
-     */
+    /** Método para añadir un componente de swing al panel
+     * @param comp El componente de swing a agregar al panel
+     * @param x El número entero con la posición en el panel del componente en el eje X
+     * @param y El número entero con la posición en el panel del componente en el eje Y
+     * @param width El número entero con el ancho del componente
+     * @param height El número entero con el alto del componente */
     public void addComp(Component comp, int x, int y, int width, int height) {
         comp.setBounds(x,y,width,height);
         this.add(comp);
@@ -79,7 +80,7 @@ public class PanelComida extends JPanel {
                         updateTexto(TipoComida.values()[i]);
                         PanelLinker.getPanelMenu().updateDinero(zoo);
                     } catch (Exception exception) {
-                        PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                        PanelLinker.getPanelZoo().setTextMessage(exception.getMessage());
                     }
                 }
             }
@@ -97,7 +98,7 @@ public class PanelComida extends JPanel {
                         updateTexto(TipoComida.values()[i]);
                         PanelLinker.getPanelMenu().updateDinero(zoo);
                     } catch (Exception exception) {
-                        PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                        PanelLinker.getPanelZoo().setTextMessage(exception.getMessage());
                     }
                 }
             }

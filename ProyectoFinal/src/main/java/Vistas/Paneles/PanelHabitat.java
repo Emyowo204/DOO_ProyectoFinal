@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 
 public class PanelHabitat extends JPanel {
 
-    /** Instancia del habitat */
+    /** Habitat asociado al panelHabitat */
     private Habitat habitat;
 
     /** Arreglo con los paneles de los recintos */
@@ -35,8 +35,8 @@ public class PanelHabitat extends JPanel {
     private ComprarTemperatura comprarTemperatura;
 
 
-    /** Constructor del PanelHabitat
-     * @param habitat Instancia del hábitat */
+    /** Constructor del PanelHabitat, donde se crean sus componentes correspondientes
+     * @param habitat La instancia del habitat asociado al panelHabitat */
     public PanelHabitat(Habitat habitat) {
         super(null);
         this.habitat = habitat;
@@ -98,7 +98,7 @@ public class PanelHabitat extends JPanel {
                     removeBoton(temperatura);
                 }
             } catch (Exception exception) {
-                PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                PanelLinker.getPanelZoo().setTextMessage(exception.getMessage());
             }
         }
     }

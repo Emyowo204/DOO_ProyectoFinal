@@ -19,7 +19,7 @@ public class Recinto {
     /** Cantidad de hambre en el recinto */
     private int hambre;
 
-    /** Indicador de si el recinto fué adquirido */
+    /** Indicador de sí el recinto fué adquirido */
     private boolean adquirido;
 
     /** Hábitat al que corresponde el recinto */
@@ -28,7 +28,7 @@ public class Recinto {
     /** Cantidad de comida en el recinto */
     private int cantidadComida;
 
-    /** Cantidad de penalizacion en el recinto */
+    /** Cantidad de penalización en el recinto */
     private int penalizacion;
 
 
@@ -49,7 +49,7 @@ public class Recinto {
     /** Método que establece que el hábitat fué desbloqueado */
     public void desbloquear() { adquirido = true; }
 
-    /** Método que establece el el tipo de animal que corresponde al recinto */
+    /** Método que establece el tipo de animal que corresponde al recinto */
     public void asignarAnimal(TipoAnimal animal) {
         if(tipo == null)
             tipo = animal;
@@ -62,7 +62,7 @@ public class Recinto {
         penalizacion = 0;
     }
 
-    /** Método que causa que a los animales le de hambre */
+    /** Método que imcrementa el hambre de los animales */
     public void addHambre() {
         if(getCantidadAnimal()>0)
             hambre++;
@@ -116,7 +116,7 @@ public class Recinto {
      * @return Tipo del recinto */
     public TipoAnimal getTipo() { return tipo; }
 
-    /** Método para devuelve el estado de adquisición del recinto
+    /** Método para obtener el estado de adquisición del recinto
      * @return Estado de adquisición del recinto */
     public boolean isAdquirido() { return adquirido; }
 

@@ -16,23 +16,44 @@ import java.awt.image.BufferedImage;
  *  @author Chloe Yañez Lavin
  *  @author Emily Osvaldo Gaete Bobadilla */
 public class PanelZoologico extends JPanel implements Runnable {
+
+    /**  */
     private Thread thread;
+
+    /** Zoológico asociado a panelZoologico */
     private Zoologico zoologico;
+
+    /** Arreglo de panelesHabitat y cada panel con un habitat asociado  */
     private PanelHabitat[] listaPanelHabitat;
+
+    /** Número entero con el número del panelHabitat actualmente abierto del arreglo */
     private int openPanelHabitatIndex;
+
+    /** Arreglo de botones para comprar y/o seleccionar un habitat */
     private Boton[] selectHabitat;
+
+    /** Arreglo de botones para comprar una tienda */
     private Boton[] bTiendas;
+
+    /** Arreglo de botones para realizar una acción en el panelZoologico */
     private Boton[] bOpciones;
-    private CuadroTexto[] textoInfo;
-    private boolean textoInfoAux;
+
+    /** Arreglo de cuadros de texto con mensajes de panelZoologico */
+    private CuadroTexto[] textMessage;
+
+    /** Booleano con el caso del mensaje de texto (activado o desactivado) */
+    private boolean textMessageCase;
+
+    /** Imagen con el fondo del panelZoologico */
     private BufferedImage ImgBackground;
+
+    /** Panel con información de distintos recintos de animales */
     private PanelInformacion panelInformacion;
 
-    /** Constructor de PanelZoologico
-     * @param zoo Zoológico */
+    /** Constructor de PanelZoologico, donde se crean sus componentes correspondientes
+     * @param zoo La instancia del zoológico asociado al panelZoologico */
     public PanelZoologico(Zoologico zoo) {
         super(null);
-
         thread = new Thread(this);
 
         panelInformacion = new PanelInformacion();
@@ -40,18 +61,18 @@ public class PanelZoologico extends JPanel implements Runnable {
         listaPanelHabitat = new PanelHabitat[6];
         zoologico = zoo;
         openPanelHabitatIndex = 0;
-        textoInfoAux = false;
+        textMessageCase = false;
         this.setBackground(new Color(25,155,57));
         selectHabitat = new Boton[6];
         bTiendas = new Boton[4];
         bOpciones = new Boton[3];
-        textoInfo =  new CuadroTexto[2];
-        textoInfo[0] = new CuadroTexto("", new Color(0,0,0,0), Color.BLACK,"Arial",1,16);
-        textoInfo[0].setBorder(BorderFactory.createLineBorder( new Color(0,0,0,0), 5));
-        addComp(textoInfo[0],10, 654,100, 30);
-        textoInfo[1] = new CuadroTexto("Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial",1,13);
-        textoInfo[1].setOpaque(false);
-        addComp(textoInfo[1],773,654,200,30);
+        textMessage =  new CuadroTexto[2];
+        textMessage[0] = new CuadroTexto("", new Color(0,0,0,0), Color.BLACK,"Arial",1,16);
+        textMessage[0].setBorder(BorderFactory.createLineBorder( new Color(0,0,0,0), 5));
+        addComp(textMessage[0],10, 654,100, 30);
+        textMessage[1] = new CuadroTexto("Precio Tiendas: "+zoologico.getPrecioTienda()+" $","Arial",1,13);
+        textMessage[1].setOpaque(false);
+        addComp(textMessage[1],773,654,200,30);
         InteraccionHabitat listenerHabitat = new InteraccionHabitat();
         InteraccionTienda listenerTienda = new InteraccionTienda();
         ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
@@ -83,19 +104,24 @@ public class PanelZoologico extends JPanel implements Runnable {
         thread.start();
     }
 
-    /** Método para añadir un componente al panel */
+    /** Método para añadir un componente de swing al panel
+     * @param comp El componente de swing a agregar al panel
+     * @param x El número entero con la posición en el panel del componente en el eje X
+     * @param y El número entero con la posición en el panel del componente en el eje Y
+     * @param width El número entero con el ancho del componente
+     * @param height El número entero con el alto del componente */
     public void addComp(Component comp, int x, int y, int width, int height) {
         comp.setBounds(x,y,width,height);
         this.add(comp);
     }
 
-    /** Método para activar/desactivar la visualización de los paneles de hábitat */
+    /** Método para activar (si está desactivado) o desactivar (si está activado) la visualización de los paneles de hábitat */
     public void toggleHabitat() {
         PanelHabitat openPanelHabitat = listaPanelHabitat[openPanelHabitatIndex];
         openPanelHabitat.toggleVisible();
         bOpciones[0].setVisible(openPanelHabitat.getVisible());
         bOpciones[2].setVisible(!openPanelHabitat.getVisible());
-        textoInfo[1].setVisible(!openPanelHabitat.getVisible());
+        textMessage[1].setVisible(!openPanelHabitat.getVisible());
         for(int i=0; i<6; i++) {
             selectHabitat[i].setVisible(!openPanelHabitat.getVisible());
             if(i<4) {
@@ -111,13 +137,16 @@ public class PanelZoologico extends JPanel implements Runnable {
             ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(6);
             remove(openPanelHabitat);
             if(panelInformacion.isVisible()){
-                toggleInfo(false,-2, null);
+                setEnableInfo(false,-2, null);
             }
         }
     }
 
-    /** Método para activar/desactivar la visualización del panel de información */
-    public void toggleInfo(boolean caso, int index, Recinto recinto) {
+    /** Método para activar o desactivar la visualización del panel de información
+     * @param caso El booleano con el caso de activación (true) o de desactivación (false)
+     * @param index El número entero con el número del panelInfo a activar (<0 cuando se desactiva)
+     * @param recinto El recinto asociado al panel información */
+    public void setEnableInfo(boolean caso, int index, Recinto recinto) {
         panelInformacion.setVisibleInfo(caso);
         if(!panelInformacion.isVisible()) {
             if(index == -1)
@@ -131,7 +160,7 @@ public class PanelZoologico extends JPanel implements Runnable {
         repaint();
     }
 
-    /** Método para activar/desactivar botones de hábitat y tiendas */
+    /** Método para activar (si está desactivado) o desactivar (si está activado) botones de hábitat y tiendas */
     public void toggleBotones() {
         bOpciones[2].setVisible(!bOpciones[2].isVisible());
         for(int i=0; i<6; i++) {
@@ -142,7 +171,9 @@ public class PanelZoologico extends JPanel implements Runnable {
         }
     }
 
-    /** Método para activar la alerta de hambre en los hábitat */
+    /** Método para activar o desactivar una alerta de hambre en un habitat
+     * @param index El número entero con el número del habitat en la lista de habitats
+     * @param alert El booleano con el caso de activación (true) o de desactivación (false) de la alerta */
     public void setAlertHambre(int index, boolean alert) {
         if(alert) {
             selectHabitat[index].changeImage("Habitat/imgHabitatAlert" + index + ".png");
@@ -151,17 +182,19 @@ public class PanelZoologico extends JPanel implements Runnable {
         }
     }
 
-    public void setTextInfo(String text) {
+    /** Método establecer un nuevo texto para el mensaje de texto y comenzar un ciclo del texto
+     * @param text El String con el texto que se le va a asignar al mensaje */
+    public void setTextMessage(String text) {
         text = "   "+text+"   ";
-        textoInfo[0].setBackground(new Color(141,141,141));
-        textoInfo[0].setForeground(Color.BLACK);
-        textoInfo[0].setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        textoInfo[0].setBounds(10, 654, text.length()*8, 30);
-        textoInfo[0].setText(text);
-        textoInfoAux = !textoInfoAux;
+        textMessage[0].setBackground(new Color(141,141,141));
+        textMessage[0].setForeground(Color.BLACK);
+        textMessage[0].setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        textMessage[0].setBounds(10, 654, text.length()*8, 30);
+        textMessage[0].setText(text);
+        textMessageCase = !textMessageCase;
     }
 
-    /** Clase que escucha las interacciones con los hábitat */
+    /** Clase que escucha las interacciones con los hábitats */
     private class InteraccionHabitat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -171,7 +204,7 @@ public class PanelZoologico extends JPanel implements Runnable {
                         try {
                             zoologico.comprarHabitat(i);
                         } catch (Exception exception) {
-                            PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                            PanelLinker.getPanelZoo().setTextMessage(exception.getMessage());
                         }
                         if(listaPanelHabitat[i].getHabitat().isAdquirido()) {
                             PanelLinker.getPanelMenu().updateDinero(zoologico);
@@ -200,7 +233,7 @@ public class PanelZoologico extends JPanel implements Runnable {
             }
             else if(event.getSource()==bOpciones[2]){
                 panelInformacion.openInfoZoo();
-                toggleInfo(true,-1,null);
+                setEnableInfo(true,-1,null);
                 toggleBotones();
                 return;
             }
@@ -210,13 +243,13 @@ public class PanelZoologico extends JPanel implements Runnable {
                         zoologico.comprarTienda(i);
                         PanelLinker.getPanelMenu().updateDinero(zoologico);
                     } catch (Exception exception) {
-                        PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                        PanelLinker.getPanelZoo().setTextMessage(exception.getMessage());
                     }
                     if(zoologico.getTienda(i)) {
                         bTiendas[i].changeImage("Tienda/imgTienda" + i + ".png");
-                        textoInfo[1].setText("Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
+                        textMessage[1].setText("Precio Tiendas: "+zoologico.getPrecioTienda()+" $");
                         if(zoologico.getGananciaEsp(3)==4)
-                            textoInfo[1].setText("  Tiendas compradas");
+                            textMessage[1].setText("  Tiendas compradas");
                     }
                 }
             }
@@ -224,7 +257,7 @@ public class PanelZoologico extends JPanel implements Runnable {
     }
 
     /** Método para dibujar los componentes de Swing del panel y los sub paneles
-     * @param g El objeto grafico que dibuja los componentes */
+     * @param g El objeto gráfico que dibuja los componentes */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(ImgBackground, 0, 0, this);
@@ -267,7 +300,7 @@ public class PanelZoologico extends JPanel implements Runnable {
                             if (recinto.getPenalizacion() == 100) {
                                 zoologico.rescateAnimal(i, j);
                                 listaPanelHabitat[i].getPanelRecinto(j).setAlertHambre(false);
-                                setTextInfo("El recinto '" + listaPanelHabitat[i].getHabitat().getRecinto(j).getTipo().getNombre() + "' fue vaciado, y los animales rescatados");
+                                setTextMessage("El recinto '" + listaPanelHabitat[i].getHabitat().getRecinto(j).getTipo().getNombre() + "' fue vaciado, y los animales rescatados");
                             }
                         }
                     }
@@ -281,18 +314,18 @@ public class PanelZoologico extends JPanel implements Runnable {
                 zoologico.recibirPaga();
                 pagaTimer = 0;
             }
-            if(!textoInfo[0].getText().isEmpty()) {
-                if(textAux != textoInfoAux) {
+            if(!textMessage[0].getText().isEmpty()) {
+                if(textAux != textMessageCase) {
                     textTimer = 0;
-                    textAux = textoInfoAux;
+                    textAux = textMessageCase;
                 }
                 textTimer+= (float) deltaTime/1000;
-                textoInfo[0].setBackground(new Color(141, 141, 141, (int) (250 - 50 * textTimer)));
-                textoInfo[0].setForeground(new Color(0, 0, 0, (int) (250 -  50 *  textTimer)));
-                textoInfo[0].setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, (int)(250 - 50 * textTimer)), 3));
+                textMessage[0].setBackground(new Color(141, 141, 141, (int) (250 - 50 * textTimer)));
+                textMessage[0].setForeground(new Color(0, 0, 0, (int) (250 -  50 *  textTimer)));
+                textMessage[0].setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, (int)(250 - 50 * textTimer)), 3));
                 if(textTimer>=5) {
                     textTimer = 0;
-                    textoInfo[0].setText("");
+                    textMessage[0].setText("");
                 }
                 repaint();
             }

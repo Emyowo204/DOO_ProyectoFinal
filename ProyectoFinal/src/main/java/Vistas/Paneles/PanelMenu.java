@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-/** Panel donde se alojan paneles de información y compra de un zoológico */
+/** Panel donde se alojan paneles de información y compra de un zoológico
+ * @author Chloe Yañez Lavin
+ * @author Emily Osvaldo Gaete Bobadilla */
 public class PanelMenu extends JPanel {
 
     /** Panel para comprar comida */
@@ -77,7 +79,12 @@ public class PanelMenu extends JPanel {
         ImgBackground = ImageLoader.getInstancia().getImagenFondoZoo(7);
     }
 
-    /** Método para añadir un componente al panel */
+    /** Método para añadir un componente de swing al panel
+     * @param comp El componente de swing a agregar al panel
+     * @param x El número entero con la posición en el panel del componente en el eje X
+     * @param y El número entero con la posición en el panel del componente en el eje Y
+     * @param width El número entero con el ancho del componente
+     * @param height El número entero con el alto del componente */
     public void addComp(Component comp, int x, int y, int width, int height) {
         comp.setBounds(x,y,width,height);
         this.add(comp);
@@ -164,7 +171,7 @@ public class PanelMenu extends JPanel {
     private class MenuOptions implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            PanelLinker.getPanelZoo().toggleInfo(false,-1,null);
+            PanelLinker.getPanelZoo().setEnableInfo(false,-1,null);
             for(int i=0; i<6; i++) {
                 if(habitat.getRecinto(i).getTipo() != null && habitat.getRecinto(i).getTipo() == tipoAnimal) {
                     try {
@@ -172,7 +179,7 @@ public class PanelMenu extends JPanel {
                         updateDinero(PanelLinker.getPanelPrincipal().getZoologico());
                         insertText.setText(tipoAnimal.getNombre());
                     } catch (Exception exception) {
-                        PanelLinker.getPanelZoo().setTextInfo(exception.getMessage());
+                        PanelLinker.getPanelZoo().setTextMessage(exception.getMessage());
                     }
                     return;
                 }

@@ -30,5 +30,4 @@ public class Boton extends JButton {
         this.setIcon(new ImageIcon(getClass().getClassLoader().getResource(filename)));
         this.filename = filename;
     }
-
 }

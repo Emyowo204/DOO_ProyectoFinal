@@ -3,9 +3,10 @@ package Modelos.Utils;
 import Modelos.Enumeration.*;
 import Modelos.Exceptions.*;
 
-/** Un zoológico
+/** Un zoológico en el cual se puede comprar habitats, recintos, animales y comida, y obtiene dinero
  * @author Chloe Yañez Lavin
  * @author Emily Osvaldo Gaete Bobadilla */
+
 public class Zoologico {
 
     /** Arreglo con los hábitat dentro del zoológico */

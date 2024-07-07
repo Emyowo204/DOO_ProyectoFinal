@@ -11,7 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-/** Panel con la información económica del zoológico */
+/** Panel con la información económica del zoológico
+ * @author Chloe Yañez Lavin
+ * @author Emily Osvaldo Gaete Bobadilla */
 public class PanelDinero extends JPanel {
 
     /** Cuadro de texto con el dinero total del zoológico */

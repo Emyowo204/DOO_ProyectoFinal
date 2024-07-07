@@ -15,7 +15,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/** Un panel que muestra información relacionada con el zoológico y sus animales */
+/** Un panel que muestra información relacionada con el zoológico y sus animales
+ * @author Chloe Yañez Lavin
+ * @author Emily Osvaldo Gaete Bobadilla */
+
 public class PanelInformacion extends JPanel {
 
     /** Botón para cerrar el panel */
@@ -101,7 +104,7 @@ public class PanelInformacion extends JPanel {
     private class CerrarPanel implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            PanelLinker.getPanelZoo().toggleInfo(false,casoInfo, null);
+            PanelLinker.getPanelZoo().setEnableInfo(false,casoInfo, null);
             if(casoInfo==-2)
                 PanelLinker.getPanelZoo().toggleBotones();
         }
