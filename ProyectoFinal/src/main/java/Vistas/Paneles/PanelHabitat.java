@@ -31,9 +31,6 @@ public class PanelHabitat extends JPanel {
     /** Valor del habitat */
     private int value;
 
-    /** Listener para comprar la mejora de temperatura */
-    private ComprarTemperatura comprarTemperatura;
-
 
     /** Constructor del PanelHabitat, donde se crean sus componentes correspondientes
      * @param habitat La instancia del habitat asociado al panelHabitat */
@@ -54,7 +51,7 @@ public class PanelHabitat extends JPanel {
         value = habitat.getTipo().getValue();
         temperatura = new Boton(Color.BLACK,true,"imgTemp"+habitat.getTipo().getValue()+".png");
         temperatura.setBounds(402,500,110,40);
-        comprarTemperatura = new ComprarTemperatura();
+        ComprarTemperatura comprarTemperatura = new ComprarTemperatura();
         temperatura.addActionListener(comprarTemperatura);
         temperatura.setOpaque(false);
         this.add(temperatura);
