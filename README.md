@@ -45,7 +45,7 @@ En la parte derecha de la pantalla tienes el menu, donde se pueden adoptar anima
 - **3. Ver los nombres:** En el panel de información *(Punto 3.4)* en la parte inferior podrá ver los nombres de los animales adoptados en el recinto.
 - **4. Adoptar un animal:** Para adoptar un animal tiene que, luego de seleccionarlo, presionar el botón "ADOPTAR". Una adopción tiene un precio y una ganancia, ambas información están justo arriba del botón "ADOPCIÓN" (Solo se ven si hay un animal seleccionado).
 - **5. Ganancias:** La adopción de un animal también entrega ganancias, esta es el 5% del precio del animal (+5$, +10$ ó +15$). Para más detalle ver "Info Zoo" *(Punto 1.5)*.
-- **6. Animal adoptado:** Luego de adoptarlo en animal aparecerá en el recinto correspondiente, dando vueltas.
+- **6. Animal adoptado:** Luego de adoptarlo en animal aparecerá en el recinto correspondiente, dando vueltas. Solo puedes tener 10 animales por recinto.
 
 ### 5. Alimentar Animales:
 
