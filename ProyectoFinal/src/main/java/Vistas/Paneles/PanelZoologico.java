@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
  *  @author Emily Osvaldo Gaete Bobadilla */
 public class PanelZoologico extends JPanel implements Runnable {
 
-    /**  */
+    /** Hilo en el que se ejecutan los eventos del programa */
     private Thread thread;
 
     /** Zoológico asociado a panelZoologico */
